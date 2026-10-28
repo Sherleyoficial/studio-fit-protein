@@ -310,6 +310,11 @@ button.meta-note{color:var(--teal);font-weight:700;text-decoration:underline;tex
 .cmp-meta{display:flex;align-items:center;justify-content:space-around;gap:10px;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:16px}
 .cmp-meta div{display:flex;flex-direction:column;align-items:center;gap:4px}
 .cmp-meta b{font-family:var(--f-display);font-size:28px}
+.guide{background:var(--teal-soft);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px}
+.guide h3{margin:0;font-family:var(--f-display);font-size:18px}
+.guide ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:14px}
+.sh-row{background:var(--surface);border-radius:14px;box-shadow:var(--shadow);padding:12px;display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.sh-n{font-weight:700;font-size:14px}
 
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
@@ -424,6 +429,10 @@ const FOODS = [
  {id:"cenoura",n:"Cenoura",prep:"cozida",taco:109,src:"TACO",p:0.8,kcal:30,fat:0.2,grp:"veg",por:[["3 colheres de sopa",50]]},
  {id:"banana",n:"Banana prata",prep:"crua",taco:182,src:"TACO",p:1.3,kcal:98,fat:0.1,grp:"fruta",pronto:true,por:[["1 unidade",60]]},
  {id:"mamao",n:"Mamão papaia",prep:"cru",taco:226,src:"TACO",p:0.5,kcal:40,fat:0.1,grp:"fruta",pronto:true,por:[["1 fatia",100],["½ unidade",150]]},
+ {id:"leite_int",n:"Leite integral",prep:"UHT · valor de rótulo ilustrativo",taco:null,src:"ILUSTRATIVO",p:3.2,kcal:61,fat:3.3,grp:"lacteo",pronto:true,unit:"ml",por:[["1 copo",200],["½ copo",100]],obs:"Valor ilustrativo de rótulo; confira o rótulo do seu leite."},
+ {id:"soja",n:"Bebida de soja",prep:"valor de rótulo ilustrativo",taco:null,src:"ILUSTRATIVO",p:3.0,kcal:45,fat:1.8,grp:"vegetal",pronto:true,unit:"ml",por:[["1 copo",200],["½ copo",100]],obs:"Valor ilustrativo de rótulo; varia bastante por marca. Confira o rótulo."},
+ {id:"morango",n:"Morango",prep:"cru · valor ilustrativo",taco:null,src:"ILUSTRATIVO",p:0.9,kcal:30,fat:0.3,grp:"fruta",pronto:true,por:[["5 unidades",75],["1 xícara",150]],obs:"Valor ilustrativo, ainda não conferido na TACO."},
+ {id:"pasta_amend",n:"Pasta de amendoim",prep:"valor de rótulo ilustrativo",taco:null,src:"ILUSTRATIVO",p:25,kcal:590,fat:50,grp:"vegetal",pronto:true,por:[["1 colher de sobremesa",10],["1 colher de sopa",15]],obs:"Valor ilustrativo de rótulo; confira o rótulo do seu produto."},
  {id:"whey",n:"Whey protein",prep:"conforme rótulo",taco:null,src:"ILUSTRATIVO",grp:"suplemento",pronto:true,whey:true,por:[["1 porção do rótulo",30]],obs:"Valores ilustrativos de rótulo. Variam por marca e sabor: use o rótulo do seu produto."}
 ];
 const WHEY_DEFAULT = {porcao:30, p:21, kcal:116, fat:1.5, carb:3, ilustrativo:true};
@@ -446,6 +455,13 @@ const COMBOS = [
  {id:"l4",meal:"lanche",n:"Pão francês com queijo minas e tomate",ing:[["pao",50],["minas",40],["tomate",50]]},
  {id:"l5",meal:"lanche",n:"Sanduíche de atum no pão integral",ing:[["atum",60],["pao_int",50],["alface",20]]},
  {id:"l6",meal:"lanche",n:"Iogurte natural com amendoim e mamão",ing:[["iogurte",170],["amendoim",15],["mamao",100]]},
+ {id:"w1",meal:"cafe",n:"Shake de whey, banana congelada e leite desnatado",ing:[["whey",30],["banana",120],["leite",200]]},
+ {id:"w2",meal:"lanche",n:"Shake de whey, morango e iogurte",ing:[["whey",30],["morango",100],["iogurte",170]]},
+ {id:"w3",meal:"cafe",n:"Mingau de aveia com whey e banana",ing:[["aveia",30],["leite",200],["whey",30],["banana",60]]},
+ {id:"w4",meal:"lanche",n:"Shake de whey, banana, pasta de amendoim e leite integral",ing:[["whey",30],["banana",60],["pasta_amend",15],["leite_int",200]]},
+ {id:"w5",meal:"lanche",n:"Whey batido na água com mamão",ing:[["whey",30],["mamao",150]]},
+ {id:"w6",meal:"lanche",n:"Shake de whey, banana e bebida de soja",ing:[["whey",30],["banana",60],["soja",200]]},
+ {id:"w7",meal:"cafe",n:"Whey com aveia e leite desnatado",ing:[["whey",30],["aveia",30],["leite",200]]},
  {id:"j1",meal:"jantar",n:"Omelete de queijo com salada",ing:[["omelete",120],["alface",40],["tomate",50]]},
  {id:"j2",meal:"jantar",n:"Coxa de frango, arroz e cenoura",ing:[["coxa",120],["arroz",100],["cenoura",50]]},
  {id:"j3",meal:"jantar",n:"Sardinha assada com batata e salada",ing:[["sardinha",100],["batata",150],["alface",40],["tomate",50]]},
@@ -546,8 +562,10 @@ const comboWhey = c=>c.ing.some(([id])=>FOOD[id].whey);
 const comboPronto = c=>c.ing.every(([id])=>FOOD[id].pronto);
 const unit = f=>f.unit||"g";
 
+function shakeNut(ing){ let t={p:0,kcal:0,fat:0}; ing.forEach(([id,g])=>{ const v=foodNut(id,g); t.p+=v.p; t.kcal+=v.kcal; t.fat+=v.fat; }); return t; }
 function makeEntry(o){
   const base={id:uid(),meal:o.meal,ts:Date.now(),sim:!!o.sim};
+  if(o.kind==="shake"){ const v=shakeNut(o.ing); return {...base,kind:"shake",n:o.n||"Shake com whey",ing:o.ing,...v,ilu:o.ing.some(([id])=>isIlu(id))}; }
   if(o.kind==="combo"){ const c=COMBO[o.ref]; const v=comboNut(c,o.mult); return {...base,kind:"combo",ref:o.ref,mult:o.mult,n:c.n,...v,ilu:comboIlu(c)}; }
   const f=FOOD[o.ref]; const v=foodNut(o.ref,o.g); return {...base,kind:"food",ref:o.ref,g:o.g,n:f.n,...v,ilu:isIlu(o.ref)};
 }
@@ -698,6 +716,13 @@ function renderHoje(){
   const dt=new Date().toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long"});
   el.innerHTML = `
   <div class="greet"><h2 class="v-title">Olá, ${esc(firstName())}</h2><p class="sub">${dt}</p></div>
+  ${showGuide()?`<div class="guide"><h3>Comece por aqui</h3>
+    <p class="sub" style="margin:0">O anel mostra quanto da sua meta de proteína você já consumiu hoje. Para usar o app:</p>
+    <ol><li>Toque no botão <b>+</b>, no centro da barra de baixo, para registrar o que comeu: foto, busca de alimento, combinação pronta ou o montador de shake com whey.</li>
+    <li>Confirme a porção e toque em <b>Confirmar consumo</b>. O anel e o número de <b>Faltam</b> se atualizam.</li>
+    <li>Sem ideia do que comer? Veja <b>Para completar</b> logo abaixo do anel ou a aba <b>Sugestões</b>.</li></ol>
+    <button class="btn btn-primary" id="gAdd">Registrar minha primeira refeição</button>
+    <button class="btn btn-link" id="gOff">Entendi, ocultar este guia</button></div>`:""}
   <div class="ring-card">
     <div class="ring-wrap">
       <svg viewBox="0 0 200 200" aria-hidden="true"><circle class="ring-track" cx="100" cy="100" r="92" fill="none" stroke-width="14"/>
@@ -711,7 +736,7 @@ function renderHoje(){
     </div>
     <button class="meta-note" id="btnMetaInfo">${metaLabel()}</button>
   </div>
-  ${ left>0 ? `<div class="sug-inline"><div class="sec-head"><h3>Para completar ${fmtP(left)} g</h3><button class="link" id="btnMoreSug">Mais opções</button></div>
+  ${ left>0 ? `<div class="sug-inline"><div class="sec-head"><h3>Para completar ${fmtP(left)} g</h3><button class="link" id="btnMoreSug">Ver todas as sugestões</button></div>
       ${opts.map((c,i)=>`<div class="opt-row"><div class="ri"><div class="rn">${esc(c.n)}</div><div class="rm">${esc(c.sub)}</div>
         <div class="combo-tags" style="margin-top:6px"><span class="badge b-neutral">${optLabel(c)}</span>${c.whey?'<span class="badge b-whey">com whey</span>':'<span class="badge b-ok">sem whey</span>'}${c.ilu?'<span class="badge b-ilu">ilustrativo</span>':""}</div></div>
         <div class="or-side"><b class="num">≈ ${fmtP(c.p)} g</b><button class="btn btn-primary btn-sm" data-pick="${i}">Já comi</button></div></div>`).join("")}
@@ -721,6 +746,8 @@ function renderHoje(){
   ${byMeal}
   <p class="foot-note">Valores de proteína são estimativas. Fonte principal: TACO 4ª ed. (NEPA/UNICAMP). Itens marcados como <b>ilustrativo</b> ainda não foram verificados. Toque em ✎ para corrigir a porção ou em 🗑 para excluir; também é possível deslizar o item para a esquerda.</p>`;
   document.getElementById("btnMetaInfo").onclick=openMetaInfo;
+  const ga=document.getElementById("gAdd"); if(ga) ga.onclick=()=>document.getElementById("btnAdd").click();
+  const go2=document.getElementById("gOff"); if(go2) go2.onclick=()=>{ S.guideOff=true; S.guideForce=false; save(); renderHoje(); };
   const ms=document.getElementById("btnMoreSug"); if(ms) ms.onclick=()=>go("sug");
   el.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{ const c=opts[+b.dataset.pick]; openPortion({kind:c.kind,ref:c.ref,g:c.g,mult:1,meal:currentMeal()}); });
   el.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>editEntry(b.dataset.edit));
@@ -729,10 +756,16 @@ function renderHoje(){
   if(shownP!==null && Math.abs(shownP-total)>0.01){ const from=shownP; requestAnimationFrame(()=>{ document.getElementById("ringProg").style.strokeDashoffset=C*(1-pct); countUp(from,total); }); }
   shownP=total;
 }
+function showGuide(){
+  if(!S || S.demo || MODE!=="perfil") return false;
+  if(S.guideForce) return true;
+  if(S.guideOff) return false;
+  return Object.values(S.days).every(a=>!a.length);
+}
 function countUp(a,b){ const el=document.getElementById("ringVal"); const t0=performance.now(), D=900;
   const step=t=>{ const k=Math.min(1,(t-t0)/D), e=1-Math.pow(1-k,3); if(el) el.innerHTML=fmtP(a+(b-a)*e)+"<small>g</small>"; if(k<1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
 function entryHTML(e){
-  const q = e.kind==="combo" ? (e.mult===1?"1 porção":fmt(e.mult)+" porções") : `${fmt(e.g,0)} ${unit(FOOD[e.ref])}`;
+  const q = e.kind==="shake" ? "Shake montado por você" : e.kind==="combo" ? (e.mult===1?"1 porção":fmt(e.mult)+" porções") : `${fmt(e.g,0)} ${unit(FOOD[e.ref])}`;
   const tags = (e.sim?`<span class="badge b-sim">simulação</span>`:"") + (e.ilu?`<span class="badge b-ilu">ilustrativo</span>`:"") + (e.demo?`<span class="badge b-neutral">exemplo</span>`:"");
   return `<div class="entry" data-id="${e.id}"><div class="entry-del-bg">Excluir</div><div class="entry-main">
     <div class="entry-info"><div class="entry-name">${esc(e.n)}</div><div class="entry-meta"><span>${q}</span>${tags}</div></div>
@@ -755,6 +788,7 @@ function delEntry(id){
   toast("Item excluído", ()=>{ if(!lastDeleted) return; (S.days[lastDeleted.k] ||= []).splice(lastDeleted.i,0,lastDeleted.e); lastDeleted=null; save(); renderHoje(); });
 }
 function editEntry(id){ const e=dayEntries(today()).find(x=>x.id===id); if(!e) return;
+  if(e.kind==="shake"){ openShake({ing:e.ing,n:e.n,meal:e.meal,entryId:e.id}); return; }
   openPortion({kind:e.kind,ref:e.ref,g:e.g,mult:e.mult,meal:e.meal,entryId:e.id,sim:e.sim}); }
 
 /* ===== FOLHAS ===== */
@@ -775,7 +809,9 @@ document.getElementById("btnAdd").onclick=()=>{
   openSheet("Registrar refeição",`
     <button class="choice" id="chFoto"><div class="ic" style="background:var(--magenta-soft);color:var(--magenta)"><svg><use href="#i-cam"/></svg></div><div><b>Foto da refeição</b><span>Câmera ou galeria · análise simulada nesta versão</span></div></button>
     <button class="choice" id="chManual"><div class="ic" style="background:var(--teal-soft);color:var(--teal)"><svg><use href="#i-search"/></svg></div><div><b>Registro manual</b><span>Busque o alimento e escolha a porção</span></div></button>
+    <button class="choice" id="chShake"><div class="ic" style="background:var(--magenta-soft);color:var(--magenta)"><svg><use href="#i-bowl"/></svg></div><div><b>Monte seu shake com whey</b><span>Escolha whey, líquido e frutas do seu jeito</span></div></button>
     <button class="choice" id="chSug"><div class="ic" style="background:var(--surface-2);color:var(--ink)"><svg><use href="#i-bowl"/></svg></div><div><b>Combinações prontas</b><span>Escolha uma refeição sugerida</span></div></button>`);
+  document.getElementById("chShake").onclick=()=>openShake({});
   document.getElementById("chFoto").onclick=openPhoto;
   document.getElementById("chManual").onclick=openManual;
   document.getElementById("chSug").onclick=()=>{closeSheet(); go("sug");};
@@ -848,6 +884,69 @@ function openWhey(after){
     if(!(n.porcao>0) || !(n.p>=0) || n.p>n.porcao || !(n.kcal>=0) || !(n.fat>=0)){ toast("Confira os valores: a porção precisa ser maior que a proteína."); return; }
     S.whey=n; save(); toast("Rótulo salvo"); after?after():closeSheet(); render();
   };
+}
+
+/* ===== MONTADOR DE SHAKE COM WHEY ===== */
+const SH_LIQ=[["leite","Leite desnatado"],["leite_int","Leite integral"],["soja","Bebida de soja"],["agua","Água"]];
+const SH_VOL=[100,150,200,250,300];
+const SH_EXTRAS=["banana","morango","mamao","aveia","pasta_amend","amendoim","iogurte"];
+const SH_DOSES=[[0.5,"½ porção"],[1,"1 porção"],[1.5,"1½ porção"],[2,"2 porções"]];
+function shakeAutoName(ing,water){ const nomes=ing.filter(([id])=>id!=="whey").map(([id])=>FOOD[id].n.toLowerCase()); if(water) nomes.push("água"); return "Shake de whey"+(nomes.length?" com "+nomes.join(", "):""); }
+function openShake(o){
+  const por=()=>S.whey.porcao;
+  const st={wg:por(),liq:"leite",vol:200,items:{},meal:o.meal||currentMeal(),name:""};
+  if(o.ing){
+    st.liq="agua";
+    o.ing.forEach(([id,g])=>{
+      if(id==="whey") st.wg=g;
+      else if(["leite","leite_int","soja"].includes(id)){ st.liq=id; st.vol=g; }
+      else if(SH_EXTRAS.includes(id)) st.items[id]=g;
+    });
+  }
+  const draw=()=>{
+    const nm=document.getElementById("shName"); if(nm) st.name=nm.value;
+    const ing=[["whey",st.wg]]; if(st.liq!=="agua") ing.push([st.liq,st.vol]);
+    Object.entries(st.items).forEach(([id,g])=>ing.push([id,g]));
+    const v=shakeNut(ing), ilu=ing.some(([id])=>isIlu(id)), auto=shakeAutoName(ing,st.liq==="agua");
+    const body=`
+      ${S.whey.ilustrativo?`<div class="notice"><svg><use href="#i-warn"/></svg><span>Você está usando um whey de exemplo (${fmt(S.whey.p)} g de proteína em ${fmt(S.whey.porcao)} g). Informe o rótulo do seu produto para a conta ficar certa.</span></div>`:""}
+      <div class="field"><span class="label">1. Whey</span><div class="chips">${SH_DOSES.map(([d,l])=>`<button class="chip" data-wd="${d}" aria-pressed="${Math.abs(st.wg-por()*d)<0.05}">${l}</button>`).join("")}</div>
+        <p class="hint">1 porção do rótulo = ${fmt(por())} g (${fmt(S.whey.p)} g de proteína). Aqui: ${fmt(st.wg)} g de whey.</p>
+        <button class="btn btn-ghost btn-sm" id="shLabel">Usar o rótulo do meu whey</button></div>
+      <div class="field"><span class="label">2. Líquido</span><div class="chips">${SH_LIQ.map(([id,l])=>`<button class="chip" data-liq="${id}" aria-pressed="${st.liq===id}">${l}</button>`).join("")}</div>
+        ${st.liq!=="agua"?`<div class="chips">${SH_VOL.map(m=>`<button class="chip" data-vol="${m}" aria-pressed="${st.vol===m}">${m} ml</button>`).join("")}</div>`:`<p class="hint">Água não soma proteína.</p>`}</div>
+      <div class="field"><span class="label">3. Frutas e extras (opcional)</span><div class="chips">${SH_EXTRAS.map(id=>`<button class="chip" data-ex="${id}" aria-pressed="${id in st.items}">${esc(FOOD[id].n)}</button>`).join("")}</div>
+        ${Object.entries(st.items).map(([id,g])=>{ const f=FOOD[id]; return `<div class="sh-row"><div class="sh-n">${esc(f.n)}</div><div class="chips">${f.por.map(([l,pg])=>`<button class="chip" data-eg="${id}|${pg}" aria-pressed="${g===pg}">${l}</button>`).join("")}</div>
+          <div class="mini-step"><button data-xm="${id}" aria-label="Diminuir">−</button><span class="num">${fmt(g,0)} g</span><button data-xp="${id}" aria-label="Aumentar">+</button></div></div>`; }).join("")}</div>
+      <div class="p-result"><b class="num">≈ ${fmtP(v.p)} g</b><span>de proteína neste shake (estimativa)</span></div>
+      <details class="more"><summary>Calorias, gordura e fonte</summary><dl class="kv"><dt>Calorias</dt><dd class="num">≈ ${fmt(Math.round(v.kcal),0)} kcal</dd><dt>Gorduras</dt><dd class="num">≈ ${fmt(v.fat)} g</dd><dt>Fonte</dt><dd>${ilu?"TACO + itens ilustrativos (whey e leite: confira o rótulo)":"TACO 4ª ed. e rótulo informado por você"}</dd></dl></details>
+      <label class="field" for="shName"><span class="label">Nome do shake (opcional)</span><input class="inp" id="shName" placeholder="${esc(auto)}" value="${esc(st.name)}"></label>
+      <div class="field"><span class="label">Refeição</span><div class="chips">${MEALS.map(([m,,s])=>`<button class="chip" data-meal="${m}" aria-pressed="${st.meal===m}">${s}</button>`).join("")}</div></div>`;
+    const foot=`<button class="btn btn-primary" id="shOk">${o.entryId?"Salvar correção":"Confirmar consumo"}</button><button class="btn btn-ghost" id="shSave">Salvar como meu shake</button>`;
+    openSheet(o.entryId?"Corrigir shake":"Monte seu shake",body,foot);
+    const q=s=>document.querySelectorAll("#sheetBody "+s);
+    q("[data-wd]").forEach(b=>b.onclick=()=>{ st.wg=+(por()*+b.dataset.wd).toFixed(1); draw(); });
+    q("[data-liq]").forEach(b=>b.onclick=()=>{ st.liq=b.dataset.liq; draw(); });
+    q("[data-vol]").forEach(b=>b.onclick=()=>{ st.vol=+b.dataset.vol; draw(); });
+    q("[data-ex]").forEach(b=>b.onclick=()=>{ const id=b.dataset.ex; if(id in st.items) delete st.items[id]; else st.items[id]=FOOD[id].por[0][1]; draw(); });
+    q("[data-eg]").forEach(b=>b.onclick=()=>{ const [id,g]=b.dataset.eg.split("|"); st.items[id]=+g; draw(); });
+    q("[data-xm]").forEach(b=>b.onclick=()=>{ const id=b.dataset.xm, s=st.items[id]<=30?5:10; st.items[id]=Math.max(5,st.items[id]-s); draw(); });
+    q("[data-xp]").forEach(b=>b.onclick=()=>{ const id=b.dataset.xp, s=st.items[id]<=30?5:10; st.items[id]=Math.min(500,st.items[id]+s); draw(); });
+    q("[data-meal]").forEach(b=>b.onclick=()=>{ st.meal=b.dataset.meal; draw(); });
+    document.getElementById("shLabel").onclick=()=>openWhey(()=>draw());
+    const nome=()=>(document.getElementById("shName").value||"").trim()||auto;
+    document.getElementById("shSave").onclick=()=>{ (S.shakes ||= []).push({id:uid(),n:nome(),ing:ing.map(a=>[...a])}); save(); toast("Salvo em Meus shakes (aba Sugestões)"); };
+    document.getElementById("shOk").onclick=()=>{
+      const k=today(); S.days[k] ||= [];
+      const ne=makeEntry({kind:"shake",n:nome(),ing,meal:st.meal});
+      if(o.entryId){ const i=S.days[k].findIndex(e=>e.id===o.entryId); if(i>=0){ ne.id=o.entryId; S.days[k][i]=ne; } }
+      else S.days[k].push(ne);
+      save(); closeSheet(); if(view!=="hoje") go("hoje"); else renderHoje();
+      toast(o.entryId?"Correção salva":`Registrado: ≈ ${fmtP(ne.p)} g de proteína`);
+      checkCelebrate();
+    };
+  };
+  draw();
 }
 
 /* ===== FOTO (SIMULAÇÃO) ===== */
@@ -928,7 +1027,14 @@ function pickOptions(left){
 function optLabel(c){ return c.pronto?"Sem preparo":(c.kind==="combo"?"Refeição":"Porção simples"); }
 
 /* ===== SUGESTÕES ===== */
-const SG={tab:"ref",meal:null,whey:"todos",sort:"padrao",cmpTarget:20,cmp:["frango","linguica","lentilha"]};
+const SG={tab:"ref",meal:null,whey:"todos",sort:"padrao",fit:false,cmpTarget:20,cmp:["frango","linguica","lentilha"]};
+function savedShakesHTML(){
+  const L=S.shakes||[]; if(!L.length) return "";
+  return `<div class="sec-head"><h3>Meus shakes</h3></div>`+L.map(s=>{ const v=shakeNut(s.ing);
+    return `<div class="combo"><div class="combo-top"><div class="ri"><h4>${esc(s.n)}</h4><div class="ing">${s.ing.map(([id,g])=>`${FOOD[id].n} ${fmt(g,0)} ${unit(FOOD[id])}`).join(" · ")}</div></div>
+      <div class="pbig"><b class="num">≈ ${fmtP(v.p)} g</b><span>proteína</span></div></div>
+      <div class="combo-actions"><button class="btn btn-primary btn-sm" data-shuse="${s.id}">Já comi</button><button class="btn btn-ghost btn-sm" data-shdel="${s.id}">Excluir</button></div></div>`; }).join("");
+}
 function renderSug(){
   if(!SG.meal) SG.meal=currentMeal();
   const el=document.getElementById("v-sug");
@@ -937,10 +1043,13 @@ function renderSug(){
   if(SG.tab==="ref"){
     let cs=COMBOS.filter(c=>c.meal===SG.meal).map(c=>({c,v:comboNut(c)}));
     if(SG.whey==="com") cs=cs.filter(x=>comboWhey(x.c)); if(SG.whey==="sem") cs=cs.filter(x=>!comboWhey(x.c));
+    if(SG.fit && left>0) cs=cs.filter(x=>x.v.p<=left*1.25);
     if(SG.sort==="padrao") cs.sort((a,b)=>b.v.p-a.v.p); if(SG.sort==="gord") cs.sort((a,b)=>a.v.fat-b.v.fat); if(SG.sort==="kcal") cs.sort((a,b)=>a.v.kcal-b.v.kcal);
-    body=`<div class="meal-tabs">${MEALS.map(([m,,s])=>`<button data-sm="${m}" aria-pressed="${SG.meal===m}">${s}</button>`).join("")}</div>
+    body=`<button class="choice" id="sgShake"><div class="ic" style="background:var(--magenta-soft);color:var(--magenta)"><svg><use href="#i-bowl"/></svg></div><div><b>Monte seu shake com whey</b><span>Whey, leite ou água, banana, aveia e o que mais você usar</span></div></button>
+      ${savedShakesHTML()}
+      <div class="meal-tabs">${MEALS.map(([m,,s])=>`<button data-sm="${m}" aria-pressed="${SG.meal===m}">${s}</button>`).join("")}</div>
       <div class="filters"><div class="chips">${[["todos","Todas"],["com","Com whey"],["sem","Sem whey"]].map(([k,l])=>`<button class="chip" data-w="${k}" aria-pressed="${SG.whey===k}">${l}</button>`).join("")}</div>
-      <div class="chips">${[["padrao","Mais proteína"],["gord","Menos gordura"],["kcal","Menos calorias"]].map(([k,l])=>`<button class="chip" data-s="${k}" aria-pressed="${SG.sort===k}">${l}</button>`).join("")}</div></div>
+      <div class="chips">${[["padrao","Mais proteína"],["gord","Menos gordura"],["kcal","Menos calorias"]].map(([k,l])=>`<button class="chip" data-s="${k}" aria-pressed="${SG.sort===k}">${l}</button>`).join("")}${left>0?`<button class="chip" id="sgFit" aria-pressed="${SG.fit}">Cabe no que falta</button>`:""}</div></div>
       ${left>0?`<p class="hint">Hoje ainda faltam <b>${fmtP(left)} g</b> para a sua meta de ${metaHoje()} g.</p>`:`<p class="hint">Meta de hoje atingida. As sugestões ficam disponíveis para planejar as próximas refeições.</p>`}
       ${cs.length? cs.map(({c,v})=>comboCard(c,v)).join("") : `<p class="hint">Nenhuma combinação com esse filtro nesta refeição.</p>`}
       <p class="foot-note">Combinações calculadas a partir dos ingredientes (TACO 4ª ed.). Whey e leite fluido usam valores ilustrativos de rótulo.</p>`;
@@ -951,6 +1060,10 @@ function renderSug(){
   el.querySelectorAll("[data-sm]").forEach(b=>b.onclick=()=>{SG.meal=b.dataset.sm; renderSug();});
   el.querySelectorAll("[data-w]").forEach(b=>b.onclick=()=>{SG.whey=b.dataset.w; renderSug();});
   el.querySelectorAll("[data-s]").forEach(b=>b.onclick=()=>{SG.sort=b.dataset.s; renderSug();});
+  const sb=el.querySelector("#sgShake"); if(sb) sb.onclick=()=>openShake({});
+  const sf=el.querySelector("#sgFit"); if(sf) sf.onclick=()=>{ SG.fit=!SG.fit; renderSug(); };
+  el.querySelectorAll("[data-shuse]").forEach(b=>b.onclick=()=>{ const s=(S.shakes||[]).find(x=>x.id===b.dataset.shuse); if(s) openShake({ing:s.ing,n:s.n}); });
+  el.querySelectorAll("[data-shdel]").forEach(b=>b.onclick=()=>{ S.shakes=(S.shakes||[]).filter(x=>x.id!==b.dataset.shdel); save(); renderSug(); toast("Shake excluído"); });
   el.querySelectorAll("[data-eat]").forEach(b=>b.onclick=()=>openPortion({kind:"combo",ref:b.dataset.eat,mult:1,meal:COMBO[b.dataset.eat].meal}));
   el.querySelectorAll("[data-ct]").forEach(b=>b.onclick=()=>{SG.cmpTarget=+b.dataset.ct; renderSug();});
   el.querySelectorAll("select[data-ci]").forEach(s=>s.onchange=()=>{SG.cmp[+s.dataset.ci]=s.value; renderSug();});
@@ -1070,6 +1183,7 @@ function openPerfil(){
       <div class="row"><div class="ri"><div class="rm">Rotina</div><div class="rn">${esc(NIV.find(n=>n.id===pf.nivel).n)}</div></div></div>
     </div>
     <button class="btn btn-ghost" id="aEdit">Editar perfil</button>
+    ${MODE==="perfil"?`<button class="btn btn-ghost" id="aGuide">Ver o guia "Comece por aqui"</button>`:""}
     <div class="list">
       <button class="row" id="aMeta"><div class="ri"><div class="rn">Meta diária: ${m.valor} g</div><div class="rm">${m.tipo==="profissional"?"Definida por profissional":"Estimativa educativa · ver cálculo"}</div></div><svg width="18" height="18"><use href="#i-arrow"/></svg></button>
       <button class="row" id="aWhey"><div class="ri"><div class="rn">Rótulo do whey</div><div class="rm">${S.whey.ilustrativo?"Usando exemplo ilustrativo":"Usando o rótulo informado"} · ${fmt(S.whey.p)} g de proteína em ${fmt(S.whey.porcao)} g</div></div><svg width="18" height="18"><use href="#i-arrow"/></svg></button>
@@ -1082,6 +1196,7 @@ function openPerfil(){
     ${MODE==="demo"?`<button class="btn btn-primary" id="aExit">Sair da demonstração e criar meu perfil</button>`
       :`<button class="btn btn-ghost" id="aDel" style="color:var(--magenta)">Apagar meu perfil e registros</button><div id="delBox"></div>`}`);
   document.getElementById("aEdit").onclick=openEditPerfil;
+  const ag=document.getElementById("aGuide"); if(ag) ag.onclick=()=>{ S.guideForce=true; S.guideOff=false; save(); closeSheet(); go("hoje"); };
   document.getElementById("aMeta").onclick=openMetaInfo;
   document.getElementById("aWhey").onclick=()=>openWhey();
   document.getElementById("aZero").onclick=()=>{ S.days[today()]=[]; delete S.celebrated[today()]; save(); shownP=null; closeSheet(); go("hoje"); toast("Registros de hoje apagados"); };
