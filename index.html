@@ -323,6 +323,7 @@ button.meta-note{color:var(--teal);font-weight:700;text-decoration:underline;tex
 <body>
 
 
+
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--teal)"/><stop offset="1" stop-color="#0FA59E"/></linearGradient>
@@ -820,18 +821,35 @@ document.getElementById("btnAdd").onclick=()=>{
   document.getElementById("chManual").onclick=openManual;
   document.getElementById("chSug").onclick=()=>{closeSheet(); go("sug");};
 };
+/* Outros nomes que o cliente usa para cada alimento (busca) */
+const ALIAS={frango:"frango, peito de frango, file de frango, galinha, frango grelhado",frango_desf:"frango desfiado, galinha desfiada, frango cozido",coxa:"coxa, sobrecoxa, frango assado, coxa de frango",
+ ovo:"ovo, ovos, ovo cozido",clara:"clara, claras",omelete:"omelete, omelet, ovo mexido",
+ patinho:"carne, bife, carne vermelha, carne bovina, carne magra, patinho",contrafile:"carne, bife, carne vermelha, carne bovina, contra file, contrafile",
+ acem:"carne moida, moida, moido, carne, carne bovina, carne vermelha, guisado, picadinho",lombo:"porco, carne de porco, suino, lombo",linguica:"linguica, linguica de porco",
+ merluza:"peixe, file de peixe, peixe assado",atum:"atum, peixe, peixe em lata",sardinha:"sardinha, peixe",
+ iogurte:"iogurte",iogurte_d:"iogurte, iogurte light",minas:"queijo, queijo branco, queijo fresco, frescal",ricota:"queijo, ricota",mussarela:"queijo, mucarela, mozarela, queijo amarelo",
+ leite:"leite",leite_int:"leite",soja:"leite de soja, bebida vegetal",feijao:"feijao, caldo de feijao",feijao_preto:"feijao, feijao preto",lentilha:"lentilha",ervilha:"ervilha",tofu:"tofu, queijo de soja",
+ amendoim:"amendoim",pasta_amend:"pasta de amendoim, manteiga de amendoim",arroz:"arroz, arroz branco",arroz_int:"arroz, arroz integral",batata:"batata, pure",mandioca:"mandioca, aipim, macaxeira",
+ pao:"pao, pao de sal, paozinho, pao frances",pao_int:"pao, pao integral, pao de forma",aveia:"aveia",alface:"salada, alface, verdura, folhas",tomate:"tomate, salada",cenoura:"cenoura, legume, legumes",
+ banana:"banana",mamao:"mamao, papaia",morango:"morango",whey:"whey, proteina em po, suplemento"};
+const STOP=new Set(["de","da","do","das","dos","com","e","em","a","o"]);
+const stem=w=>w.replace(/s$/,"").replace(/[aoe]$/,"");
+function matchQ(q,hay){ const qs=norm(q).split(/[^a-z0-9]+/).filter(w=>w.length>1&&!STOP.has(w)).map(stem); if(!qs.length) return true;
+  const hs=norm(hay).split(/[^a-z0-9]+/).filter(Boolean).map(stem); return qs.every(t=>hs.some(h=>h.startsWith(t))); }
+function foodHay(f){ return f.n+" "+(f.prep||"")+" "+(ALIAS[f.id]||""); }
+
 function openManual(){
   openSheet("Registro manual",`<div class="search"><svg width="18" height="18" style="color:var(--muted)"><use href="#i-search"/></svg><input id="q" type="search" placeholder="Buscar alimento" autocomplete="off" aria-label="Buscar alimento"></div><div class="list" id="foodList"></div>
-    <button class="btn btn-ghost" id="btnCustom"><svg width="18" height="18"><use href="#i-pen"/></svg>Não encontrei, quero digitar</button>`);
+    <button class="btn btn-ghost" id="btnCustom"><svg width="18" height="18"><use href="#i-pen"/></svg>Não encontrei: digitar valores do rótulo</button>`);
   document.getElementById("btnCustom").onclick=()=>openCustom({n:document.getElementById("q").value.trim()});
   const q=document.getElementById("q"), list=document.getElementById("foodList");
-  const draw=()=>{ const t=norm(q.value.trim());
-    const cs=(S.customs||[]).filter(c=>!t||norm(c.n).includes(t));
-    const fs=FOODS.filter(f=>!t||norm(f.n+" "+f.prep).includes(t));
+  const draw=()=>{ const t=q.value.trim();
+    const cs=(S.customs||[]).filter(c=>!t||matchQ(t,c.n));
+    const fs=FOODS.filter(f=>!t||matchQ(t,foodHay(f))).sort((a,b)=>(matchQ(t,a.n)?0:1)-(matchQ(t,b.n)?0:1));
     const ch=cs.map(c=>`<button class="row" data-c="${c.id}"><div class="ri"><div class="rn">${esc(c.n)}</div><div class="rm"><span class="badge b-user">informado por você</span>${c.kcal!=null?` · ≈ ${fmt(Math.round(c.kcal),0)} kcal`:""}</div></div><div class="rp num">≈ ${fmtP(c.p)} g</div></button>`).join("");
     const fh=fs.map(f=>{ const [pl,pg]=f.por[0]; const v=foodNut(f.id,pg);
       return `<button class="row" data-f="${f.id}"><div class="ri"><div class="rn">${esc(f.n)}</div><div class="rm">${esc(f.prep||"")}${f.prep?" · ":""}${pl} (${pg} ${unit(f)}) ${isIlu(f.id)?' · <span class="badge b-ilu">ilustrativo</span>':""}</div></div><div class="rp num">≈ ${fmtP(v.p)} g</div></button>`; }).join("");
-    list.innerHTML = (ch+fh) || `<div class="row"><div class="ri"><div class="rn">Nenhum alimento encontrado</div><div class="rm">Toque em "Não encontrei, quero digitar" para registrar com os valores do rótulo.</div></div></div>`;
+    list.innerHTML = (ch+fh) || `<div class="row"><div class="ri"><div class="rn">Nada encontrado para "${esc(t)}"</div><div class="rm">Tente uma palavra simples, como <b>carne</b>, <b>frango</b>, <b>peixe</b>, <b>queijo</b> ou <b>feijão</b>, e escolha o alimento mais parecido. Use "digitar" só para produtos com rótulo.</div></div></div>`;
     list.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>openPortion({kind:"food",ref:b.dataset.f,meal:currentMeal()}));
     list.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{ const c=S.customs.find(x=>x.id===b.dataset.c); openCustom({n:c.n,p:c.p,kcal:c.kcal,savedId:c.id}); }); };
   q.oninput=draw; draw();
@@ -840,7 +858,8 @@ function openCustom(o){
   const st={meal:o.meal||currentMeal(),save:!o.entryId&&!o.savedId};
   const draw=(err)=>{
     openSheet(o.entryId?"Corrigir alimento digitado":"Digitar alimento",`
-      <p class="hint">Use os valores do rótulo ou da sua estimativa para a quantidade que você comeu.</p>
+      <p class="hint">Use para produtos com rótulo (iogurte proteico, barrinha, etc.): copie a proteína da tabela nutricional, para a quantidade que você comeu.</p>
+      <div class="notice"><svg><use href="#i-warn"/></svg><span>Comida caseira e não sabe a proteína? Volte e busque um alimento parecido (ex.: <b>carne moída</b> → Acém moído). O app calcula pela porção.</span></div>
       <label class="field" for="cNome"><span class="label">Nome do alimento</span><input class="inp" id="cNome" value="${esc(o.n||"")}" placeholder="ex.: Iogurte proteico (marca)" autocomplete="off"></label>
       <div class="two"><label class="field" for="cP"><span class="label">Proteína</span><div class="inp-u"><input class="inp" id="cP" type="number" inputmode="decimal" step="0.1" value="${o.p!=null?o.p:""}"><span>g</span></div></label>
       <label class="field" for="cK"><span class="label">Calorias (opcional)</span><div class="inp-u"><input class="inp" id="cK" type="number" inputmode="decimal" value="${o.kcal!=null?o.kcal:""}"><span>kcal</span></div></label></div>
