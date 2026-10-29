@@ -108,6 +108,7 @@ h2.v-title{font-family:var(--f-display);font-size:22px;font-weight:700;margin:4p
 .b-ok{background:var(--teal-soft);color:var(--teal)}
 .b-whey{background:var(--magenta-soft);color:var(--magenta)}
 .b-neutral{background:var(--surface-2);color:var(--muted)}
+.b-user{background:var(--surface-2);color:var(--ink)}
 .foot-note{font-size:12px;color:var(--muted);line-height:1.5;padding:4px 2px}
 
 /* Navegação inferior */
@@ -491,6 +492,7 @@ const COMBO = Object.fromEntries(COMBOS.map(c=>[c.id,c]));
    profissional). Resultado = ESTIMATIVA EDUCATIVA, não prescrição. */
 const OBJ = {
  emag:{n:"Emagrecimento e redução de gordura corporal",d:"Perder gordura preservando a massa muscular.",faixa:[1.2,1.6],pts:[1.2,1.3,1.4,1.6],ref:"Leidy et al., Am J Clin Nutr, 2015: 1,2 a 1,6 g/kg/dia em dietas para perda e manutenção de peso."},
+ recomp:{n:"Perder gordura/medidas e ganhar massa muscular",d:"Reduzir gordura e medidas enquanto ganha músculo, com treino de força.",faixa:[1.6,2.0],pts:[1.6,1.6,1.8,2.0],ref:"Leidy et al., Am J Clin Nutr, 2015 (até 1,6 g/kg na perda de peso); Morton et al., Br J Sports Med, 2018 (ganhos de massa magra estabilizam perto de 1,6 g/kg); ISSN, Jäger et al., 2017 (até 2,0 g/kg para quem treina)."},
  massa:{n:"Ganho de massa muscular",d:"Aumentar músculo, com treino de força regular.",faixa:[1.4,2.0],pts:[1.4,1.5,1.6,1.8],ref:"ISSN (Jäger et al., 2017): 1,4 a 2,0 g/kg/dia para quem treina. Morton et al., Br J Sports Med, 2018: ganhos de massa magra estabilizam perto de 1,6 g/kg/dia."},
  manut:{n:"Manutenção do peso e da composição corporal",d:"Manter o peso e a massa muscular atuais.",faixa:[0.8,1.4],pts:[0.8,1.0,1.2,1.4],ref:"Do valor de referência para adultos (0,8 g/kg/dia, DRI/IOM) até o limite inferior da ISSN 2017 para quem treina (1,4 g/kg/dia)."},
  env:{n:"Envelhecimento saudável e preservação da massa muscular",d:"Preservar músculo, força e autonomia ao longo dos anos.",faixa:[1.0,1.2],pts:[1.0,1.1,1.2,1.2],ref:"PROT-AGE (Bauer et al., JAMDA, 2013): pelo menos 1,0 a 1,2 g/kg/dia para pessoas acima de 65 anos."}
@@ -513,7 +515,7 @@ function estimate(pf){
   let f=o.pts[i];
   if(pf.idade>=65 && f<1.0){ f=1.0; r.avisos.push("A partir de 65 anos, o fator mínimo usado é 1,0 g/kg/dia (PROT-AGE)."); }
   if(pf.objetivo==="env" && pf.idade<65) r.avisos.push("A referência PROT-AGE foi definida para pessoas acima de 65 anos; abaixo dessa idade, a estimativa é uma aproximação.");
-  if(pf.objetivo==="massa" && pf.nivel==="sed") r.avisos.push("Ganho de massa muscular depende de treino de força regular.");
+  if((pf.objetivo==="massa"||pf.objetivo==="recomp") && pf.nivel==="sed") r.avisos.push("Ganho de massa muscular depende de treino de força regular.");
   let pesoCalc=pf.peso, pesoTipo="peso atual";
   if(imc>=30){ pesoCalc=25*(pf.altura/100)**2; pesoTipo="peso de referência (IMC 25)";
     r.avisos.push("Com IMC a partir de 30, o cálculo usa o peso equivalente ao IMC 25 para não superestimar a meta. Recomendamos validar com um profissional."); }
@@ -567,6 +569,7 @@ function makeEntry(o){
   const base={id:uid(),meal:o.meal,ts:Date.now(),sim:!!o.sim};
   if(o.kind==="shake"){ const v=shakeNut(o.ing); return {...base,kind:"shake",n:o.n||"Shake com whey",ing:o.ing,...v,ilu:o.ing.some(([id])=>isIlu(id))}; }
   if(o.kind==="combo"){ const c=COMBO[o.ref]; const v=comboNut(c,o.mult); return {...base,kind:"combo",ref:o.ref,mult:o.mult,n:c.n,...v,ilu:comboIlu(c)}; }
+  if(o.kind==="custom") return {...base,kind:"custom",n:o.n,p:o.p,kcal:o.kcal??null,fat:null,ilu:false,user:true};
   const f=FOOD[o.ref]; const v=foodNut(o.ref,o.g); return {...base,kind:"food",ref:o.ref,g:o.g,n:f.n,...v,ilu:isIlu(o.ref)};
 }
 function newState(profile){ return {v:2,profile:{...profile,criado:today()},days:{},celebrated:{},whey:{...WHEY_DEFAULT},plate:0,metaLog:[],meta:null}; }
@@ -765,8 +768,8 @@ function showGuide(){
 function countUp(a,b){ const el=document.getElementById("ringVal"); const t0=performance.now(), D=900;
   const step=t=>{ const k=Math.min(1,(t-t0)/D), e=1-Math.pow(1-k,3); if(el) el.innerHTML=fmtP(a+(b-a)*e)+"<small>g</small>"; if(k<1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
 function entryHTML(e){
-  const q = e.kind==="shake" ? "Shake montado por você" : e.kind==="combo" ? (e.mult===1?"1 porção":fmt(e.mult)+" porções") : `${fmt(e.g,0)} ${unit(FOOD[e.ref])}`;
-  const tags = (e.sim?`<span class="badge b-sim">simulação</span>`:"") + (e.ilu?`<span class="badge b-ilu">ilustrativo</span>`:"") + (e.demo?`<span class="badge b-neutral">exemplo</span>`:"");
+  const q = e.kind==="custom" ? (e.kcal!=null?`≈ ${fmt(Math.round(e.kcal),0)} kcal`:"") : e.kind==="shake" ? "Shake montado por você" : e.kind==="combo" ? (e.mult===1?"1 porção":fmt(e.mult)+" porções") : `${fmt(e.g,0)} ${unit(FOOD[e.ref])}`;
+  const tags = (e.user?`<span class="badge b-user">informado por você</span>`:"") + (e.sim?`<span class="badge b-sim">simulação</span>`:"") + (e.ilu?`<span class="badge b-ilu">ilustrativo</span>`:"") + (e.demo?`<span class="badge b-neutral">exemplo</span>`:"");
   return `<div class="entry" data-id="${e.id}"><div class="entry-del-bg">Excluir</div><div class="entry-main">
     <div class="entry-info"><div class="entry-name">${esc(e.n)}</div><div class="entry-meta"><span>${q}</span>${tags}</div></div>
     <div class="entry-p num">≈ ${fmtP(e.p)} g</div>
@@ -789,6 +792,7 @@ function delEntry(id){
 }
 function editEntry(id){ const e=dayEntries(today()).find(x=>x.id===id); if(!e) return;
   if(e.kind==="shake"){ openShake({ing:e.ing,n:e.n,meal:e.meal,entryId:e.id}); return; }
+  if(e.kind==="custom"){ openCustom({entryId:e.id,n:e.n,p:e.p,kcal:e.kcal,meal:e.meal}); return; }
   openPortion({kind:e.kind,ref:e.ref,g:e.g,mult:e.mult,meal:e.meal,entryId:e.id,sim:e.sim}); }
 
 /* ===== FOLHAS ===== */
@@ -817,14 +821,52 @@ document.getElementById("btnAdd").onclick=()=>{
   document.getElementById("chSug").onclick=()=>{closeSheet(); go("sug");};
 };
 function openManual(){
-  openSheet("Registro manual",`<div class="search"><svg width="18" height="18" style="color:var(--muted)"><use href="#i-search"/></svg><input id="q" type="search" placeholder="Buscar alimento" autocomplete="off" aria-label="Buscar alimento"></div><div class="list" id="foodList"></div>`);
+  openSheet("Registro manual",`<div class="search"><svg width="18" height="18" style="color:var(--muted)"><use href="#i-search"/></svg><input id="q" type="search" placeholder="Buscar alimento" autocomplete="off" aria-label="Buscar alimento"></div><div class="list" id="foodList"></div>
+    <button class="btn btn-ghost" id="btnCustom"><svg width="18" height="18"><use href="#i-pen"/></svg>Não encontrei, quero digitar</button>`);
+  document.getElementById("btnCustom").onclick=()=>openCustom({n:document.getElementById("q").value.trim()});
   const q=document.getElementById("q"), list=document.getElementById("foodList");
-  const draw=()=>{ const t=norm(q.value.trim()); const fs=FOODS.filter(f=>!t||norm(f.n+" "+f.prep).includes(t));
-    list.innerHTML = fs.length? fs.map(f=>{ const [pl,pg]=f.por[0]; const v=foodNut(f.id,pg);
-      return `<button class="row" data-f="${f.id}"><div class="ri"><div class="rn">${esc(f.n)}</div><div class="rm">${esc(f.prep||"")}${f.prep?" · ":""}${pl} (${pg} ${unit(f)}) ${isIlu(f.id)?' · <span class="badge b-ilu">ilustrativo</span>':""}</div></div><div class="rp num">≈ ${fmtP(v.p)} g</div></button>`; }).join("")
-      : `<div class="row"><div class="ri"><div class="rn">Nenhum alimento encontrado</div><div class="rm">A biblioteca desta versão tem ${FOODS.length} alimentos.</div></div></div>`;
-    list.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>openPortion({kind:"food",ref:b.dataset.f,meal:currentMeal()})); };
+  const draw=()=>{ const t=norm(q.value.trim());
+    const cs=(S.customs||[]).filter(c=>!t||norm(c.n).includes(t));
+    const fs=FOODS.filter(f=>!t||norm(f.n+" "+f.prep).includes(t));
+    const ch=cs.map(c=>`<button class="row" data-c="${c.id}"><div class="ri"><div class="rn">${esc(c.n)}</div><div class="rm"><span class="badge b-user">informado por você</span>${c.kcal!=null?` · ≈ ${fmt(Math.round(c.kcal),0)} kcal`:""}</div></div><div class="rp num">≈ ${fmtP(c.p)} g</div></button>`).join("");
+    const fh=fs.map(f=>{ const [pl,pg]=f.por[0]; const v=foodNut(f.id,pg);
+      return `<button class="row" data-f="${f.id}"><div class="ri"><div class="rn">${esc(f.n)}</div><div class="rm">${esc(f.prep||"")}${f.prep?" · ":""}${pl} (${pg} ${unit(f)}) ${isIlu(f.id)?' · <span class="badge b-ilu">ilustrativo</span>':""}</div></div><div class="rp num">≈ ${fmtP(v.p)} g</div></button>`; }).join("");
+    list.innerHTML = (ch+fh) || `<div class="row"><div class="ri"><div class="rn">Nenhum alimento encontrado</div><div class="rm">Toque em "Não encontrei, quero digitar" para registrar com os valores do rótulo.</div></div></div>`;
+    list.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>openPortion({kind:"food",ref:b.dataset.f,meal:currentMeal()}));
+    list.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{ const c=S.customs.find(x=>x.id===b.dataset.c); openCustom({n:c.n,p:c.p,kcal:c.kcal,savedId:c.id}); }); };
   q.oninput=draw; draw();
+}
+function openCustom(o){
+  const st={meal:o.meal||currentMeal(),save:!o.entryId&&!o.savedId};
+  const draw=(err)=>{
+    openSheet(o.entryId?"Corrigir alimento digitado":"Digitar alimento",`
+      <p class="hint">Use os valores do rótulo ou da sua estimativa para a quantidade que você comeu.</p>
+      <label class="field" for="cNome"><span class="label">Nome do alimento</span><input class="inp" id="cNome" value="${esc(o.n||"")}" placeholder="ex.: Iogurte proteico (marca)" autocomplete="off"></label>
+      <div class="two"><label class="field" for="cP"><span class="label">Proteína</span><div class="inp-u"><input class="inp" id="cP" type="number" inputmode="decimal" step="0.1" value="${o.p!=null?o.p:""}"><span>g</span></div></label>
+      <label class="field" for="cK"><span class="label">Calorias (opcional)</span><div class="inp-u"><input class="inp" id="cK" type="number" inputmode="decimal" value="${o.kcal!=null?o.kcal:""}"><span>kcal</span></div></label></div>
+      ${err?errH(err):""}
+      ${o.entryId?"":`<button class="chip" id="cSave" aria-pressed="${st.save}" style="align-self:flex-start">${st.save?"✓ ":""}Salvar para usar de novo</button>`}
+      <div class="field"><span class="label">Refeição</span><div class="chips">${MEALS.map(([m,,s2])=>`<button class="chip" data-meal="${m}" aria-pressed="${st.meal===m}">${s2}</button>`).join("")}</div></div>
+      <p class="foot-note">Este valor fica marcado como "informado por você" e não vem da tabela TACO.</p>`,
+      `<button class="btn btn-primary" id="cOk">${o.entryId?"Salvar correção":"Confirmar consumo"}</button>`);
+    const keep=()=>{ o.n=document.getElementById("cNome").value; o.p=document.getElementById("cP").value; o.kcal=document.getElementById("cK").value; };
+    const sv=document.getElementById("cSave"); if(sv) sv.onclick=()=>{ keep(); st.save=!st.save; draw(); };
+    document.querySelectorAll("#sheetBody [data-meal]").forEach(b=>b.onclick=()=>{ keep(); st.meal=b.dataset.meal; draw(); });
+    document.getElementById("cOk").onclick=()=>{ keep();
+      const n=String(o.n||"").trim(), p=numVal(o.p), k=String(o.kcal??"").trim()===""?null:numVal(o.kcal);
+      if(n.length<2) return draw("Informe o nome do alimento.");
+      if(p===null||p<0||p>200) return draw("Informe a proteína em gramas, entre 0 e 200.");
+      if(k!==null&&(k<0||k>3000)) return draw("Calorias: informe um valor entre 0 e 3000, ou deixe em branco.");
+      const k2=today(); S.days[k2] ||= [];
+      const ne=makeEntry({kind:"custom",n,p,kcal:k,meal:st.meal});
+      if(o.entryId){ const i=S.days[k2].findIndex(e=>e.id===o.entryId); if(i>=0){ ne.id=o.entryId; S.days[k2][i]=ne; } }
+      else S.days[k2].push(ne);
+      if(st.save){ S.customs ||= []; const ex=S.customs.find(c=>norm(c.n)===norm(n)); if(ex){ ex.p=p; ex.kcal=k; } else S.customs.unshift({id:uid(),n,p,kcal:k}); }
+      save(); closeSheet(); if(view!=="hoje") go("hoje"); else renderHoje();
+      toast(o.entryId?"Correção salva":`Registrado: ≈ ${fmtP(p)} g de proteína`); checkCelebrate();
+    };
+  };
+  draw();
 }
 function openPortion(o){
   const st={kind:o.kind,ref:o.ref,meal:o.meal||currentMeal(),g:o.g,mult:o.mult||1};
@@ -1114,7 +1156,7 @@ function renderHist(){
     <div class="hist-card"><div class="hist-sum"><div><b class="num">${hit} de ${valid.length}</b><div class="sub">dias com meta atingida</div></div><div style="text-align:right"><b class="num">${fmtP(avg)} g</b><div class="sub">média diária</div></div></div>
       <svg class="hist-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Proteína por dia nos últimos 7 dias">${bars}</svg></div>
     <div><div class="label">${histSel===today()?"Hoje":sd.toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long"})} · ≈ ${fmtP(selT)} g de ${dayMeta(histSel)} g</div></div>
-    <div class="list">${sel.length? sel.map(e=>`<div class="row"><div class="ri"><div class="rn">${esc(e.n)}</div><div class="rm">${MEAL_NAME[e.meal]}${e.sim?' · <span class="badge b-sim">simulação</span>':""}${e.demo?' · <span class="badge b-neutral">exemplo</span>':""}</div></div><div class="rp num">≈ ${fmtP(e.p)} g</div></div>`).join("") : `<div class="row"><div class="ri"><div class="rm">Nada registrado neste dia.</div></div></div>`}</div>
+    <div class="list">${sel.length? sel.map(e=>`<div class="row"><div class="ri"><div class="rn">${esc(e.n)}</div><div class="rm">${MEAL_NAME[e.meal]}${e.sim?' · <span class="badge b-sim">simulação</span>':""}${e.user?' · <span class="badge b-user">informado por você</span>':""}${e.demo?' · <span class="badge b-neutral">exemplo</span>':""}</div></div><div class="rp num">≈ ${fmtP(e.p)} g</div></div>`).join("") : `<div class="row"><div class="ri"><div class="rm">Nada registrado neste dia.</div></div></div>`}</div>
     <p class="foot-note">${MODE==="demo"?"Demonstração: todos os registros são exemplos fictícios.":"Dias anteriores ao cadastro aparecem com um traço."} Cada dia é comparado com a meta vigente naquele dia.</p>`;
   document.querySelectorAll("#v-hist [data-day]").forEach(g=>g.addEventListener("click",()=>{histSel=g.dataset.day; renderHist();}));
 }
