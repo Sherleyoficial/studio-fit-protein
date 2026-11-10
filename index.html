@@ -16,8 +16,7 @@
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Studio Fit Protein</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Manrope:wght@400;500;600;700&display=swap">
+<style>@font-face{font-family:"Sora";src:url("fonts/sora.woff2") format("woff2");font-weight:100 800;font-display:swap}@font-face{font-family:"Manrope";src:url("fonts/manrope.woff2") format("woff2");font-weight:200 800;font-display:swap}</style>
 <style>
 /* Layout: app de uma coluna para celular — topo fixo, conteúdo rolável, barra inferior com botão central de registro */
 :root{
@@ -42,7 +41,7 @@
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html,body{height:100%}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.45;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.45;-webkit-tap-highlight-color:transparent}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 button:focus-visible,input:focus-visible,select:focus-visible,label:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
 .num{font-variant-numeric:tabular-nums}
@@ -53,13 +52,13 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;backgroun
 .brand{display:flex;flex-direction:column;gap:2px;min-width:0}
 .wordmark{font-family:var(--f-display);font-weight:700;font-size:18px;letter-spacing:-.01em}
 .wordmark span{color:var(--teal)}
-.proto{align-self:flex-start;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--warn);background:var(--warn-soft);padding:3px 8px;border-radius:99px}
+.proto{align-self:flex-start;font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--warn);background:var(--warn-soft);padding:3px 8px;border-radius:99px}
 .icon-btn{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--surface);box-shadow:var(--shadow);flex:none}
 .icon-btn svg{width:20px;height:20px}
 
 .view{display:flex;flex-direction:column;gap:16px}
 h2.v-title{font-family:var(--f-display);font-size:22px;font-weight:700;margin:4px 0 0;letter-spacing:-.01em}
-.sub{color:var(--muted);font-size:13px;margin:0}
+.sub{color:var(--muted);font-size:15px;margin:0}
 
 /* Anel */
 .ring-card{background:var(--surface);border-radius:24px;box-shadow:var(--shadow);padding:22px 18px 18px;display:flex;flex-direction:column;align-items:center;gap:16px}
@@ -70,51 +69,51 @@ h2.v-title{font-family:var(--f-display);font-size:22px;font-weight:700;margin:4p
 .ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .ring-val{font-family:var(--f-display);font-weight:700;font-size:clamp(40px,12vw,52px);line-height:1;letter-spacing:-.03em}
 .ring-val small{font-size:.42em;font-weight:600;color:var(--muted);margin-left:2px}
-.ring-of{color:var(--muted);font-size:13px;margin-top:6px}
-.ring-done{margin-top:8px;font-size:12px;font-weight:700;color:var(--teal);background:var(--teal-soft);padding:4px 10px;border-radius:99px}
+.ring-of{color:var(--muted);font-size:15px;margin-top:6px}
+.ring-done{margin-top:8px;font-size:14px;font-weight:700;color:var(--teal);background:var(--teal-soft);padding:4px 10px;border-radius:99px}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);width:100%;border-top:1px solid var(--line);padding-top:14px}
 .stat{display:flex;flex-direction:column;align-items:center;gap:2px}
 .stat+.stat{border-left:1px solid var(--line)}
 .stat b{font-family:var(--f-display);font-size:20px;font-weight:600}
-.stat span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.stat span{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
 .stat.left b{color:var(--magenta)}
-.meta-note{font-size:12px;color:var(--muted);text-align:center}
+.meta-note{font-size:14px;color:var(--muted);text-align:center}
 
 .cta-card{display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--r);background:var(--teal);color:#fff;text-align:left;width:100%}
 .cta-card .big{font-family:var(--f-display);font-size:18px;font-weight:700}
-.cta-card .small{font-size:13px;opacity:.88}
+.cta-card .small{font-size:15px;opacity:.88}
 .cta-card .arrow{margin-left:auto;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.18);display:grid;place-items:center;flex:none}
 .done-card{padding:16px;border-radius:var(--r);background:var(--teal-soft);color:var(--ink);display:flex;gap:12px;align-items:center}
 .done-card b{font-family:var(--f-display)}
 
 .meal-block{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
 .meal-head{display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px 8px}
-.meal-head h3{margin:0;font-size:15px;font-weight:700}
-.meal-head .tot{font-family:var(--f-display);font-weight:600;font-size:14px;color:var(--teal)}
-.meal-empty{padding:0 16px 14px;color:var(--muted);font-size:13px}
+.meal-head h3{margin:0;font-size:17px;font-weight:700}
+.meal-head .tot{font-family:var(--f-display);font-weight:600;font-size:16px;color:var(--teal)}
+.meal-empty{padding:0 16px 14px;color:var(--muted);font-size:15px}
 .entry{position:relative;overflow:hidden;border-top:1px solid var(--line)}
-.entry-del-bg{position:absolute;inset:0 0 0 auto;width:96px;background:var(--magenta);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+.entry-del-bg{position:absolute;inset:0 0 0 auto;width:96px;background:var(--magenta);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
 .entry-main{position:relative;background:var(--surface);display:flex;align-items:center;gap:10px;padding:11px 8px 11px 16px;transition:transform .2s ease;touch-action:pan-y}
 .entry-info{flex:1;min-width:0}
-.entry-name{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.entry-meta{font-size:12px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.entry-p{font-family:var(--f-display);font-weight:600;font-size:15px;white-space:nowrap}
+.entry-name{font-weight:600;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.entry-meta{font-size:14px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.entry-p{font-family:var(--f-display);font-weight:600;font-size:17px;white-space:nowrap}
 .mini-btn{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:var(--muted)}
 .mini-btn:hover{background:var(--surface-2)}
 .mini-btn svg{width:18px;height:18px}
-.badge{font-size:10px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 6px;border-radius:6px;white-space:nowrap}
+.badge{font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:2px 6px;border-radius:6px;white-space:nowrap}
 .b-sim{background:var(--warn-soft);color:var(--warn)}
 .b-ilu{background:var(--warn-soft);color:var(--warn)}
 .b-ok{background:var(--teal-soft);color:var(--teal)}
 .b-whey{background:var(--magenta-soft);color:var(--magenta)}
 .b-neutral{background:var(--surface-2);color:var(--muted)}
 .b-user{background:var(--surface-2);color:var(--ink)}
-.foot-note{font-size:12px;color:var(--muted);line-height:1.5;padding:4px 2px}
+.foot-note{font-size:14px;color:var(--muted);line-height:1.5;padding:4px 2px}
 
 /* Navegação inferior */
 nav.bottom{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:env(safe-area-inset-left,0px);padding-right:env(safe-area-inset-right,0px)}
 .nav-in{max-width:480px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;align-items:end;height:68px}
-.nav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0;font-size:11px;font-weight:600;color:var(--muted)}
+.nav-btn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0;font-size:13px;font-weight:600;color:var(--muted)}
 .nav-btn svg{width:22px;height:22px}
 .nav-btn[aria-current="page"]{color:var(--teal)}
 .fab-slot{display:flex;justify-content:center}
@@ -133,40 +132,40 @@ nav.bottom{position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--su
 .sheet-body{overflow-y:auto;padding:6px 20px 20px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:14px;min-height:0}
 .sheet-foot{padding:12px 20px 16px;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));border-top:1px solid var(--line);flex:none;background:var(--bg)}
 
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;border-radius:14px;font-weight:700;font-size:15px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:15px;border-radius:14px;font-weight:700;font-size:17px}
 .btn-primary{background:var(--teal);color:#fff}
 .btn-primary:disabled{opacity:.4;cursor:not-allowed}
 .btn-ghost{background:var(--surface);box-shadow:var(--shadow)}
-.btn-sm{width:auto;padding:9px 14px;font-size:13px;border-radius:11px}
+.btn-sm{width:auto;padding:9px 14px;font-size:15px;border-radius:11px}
 .choice{display:flex;align-items:center;gap:14px;padding:18px;border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow);text-align:left;width:100%}
 .choice .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;flex:none}
 .choice .ic svg{width:24px;height:24px}
-.choice b{display:block;font-size:16px}
-.choice span{font-size:13px;color:var(--muted)}
+.choice b{display:block;font-size:18px}
+.choice span{font-size:15px;color:var(--muted)}
 
 .chips{display:flex;flex-wrap:wrap;gap:8px}
-.chip{padding:8px 13px;border-radius:99px;background:var(--surface);border:1px solid var(--line);font-size:13px;font-weight:600}
+.chip{padding:8px 13px;border-radius:99px;background:var(--surface);border:1px solid var(--line);font-size:15px;font-weight:600}
 .chip[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
 .seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;background:var(--surface-2);border-radius:12px;padding:4px;gap:4px}
-.seg button{padding:9px 6px;border-radius:9px;font-size:13px;font-weight:700;color:var(--muted)}
+.seg button{padding:9px 6px;border-radius:9px;font-size:15px;font-weight:700;color:var(--muted)}
 .seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
 
 .stepper{display:flex;align-items:center;justify-content:space-between;background:var(--surface);border-radius:14px;padding:8px;box-shadow:var(--shadow)}
 .stepper button{width:48px;height:48px;border-radius:12px;background:var(--surface-2);font-size:24px;font-weight:600}
 .stepper .val{font-family:var(--f-display);font-size:24px;font-weight:600}
-.stepper .val small{font-size:14px;color:var(--muted);font-weight:500;margin-left:2px}
+.stepper .val small{font-size:16px;color:var(--muted);font-weight:500;margin-left:2px}
 .p-result{text-align:center;padding:6px 0}
 .p-result b{font-family:var(--f-display);font-size:34px;font-weight:700;color:var(--teal)}
-.p-result span{display:block;font-size:12px;color:var(--muted)}
+.p-result span{display:block;font-size:14px;color:var(--muted)}
 details.more{background:var(--surface);border-radius:14px;padding:12px 14px}
-details.more summary{cursor:pointer;font-weight:600;font-size:13px;color:var(--muted)}
-.kv{display:grid;grid-template-columns:1fr auto;gap:6px 12px;margin-top:10px;font-size:13px}
+details.more summary{cursor:pointer;font-weight:600;font-size:15px;color:var(--muted)}
+.kv{display:grid;grid-template-columns:1fr auto;gap:6px 12px;margin-top:10px;font-size:15px}
 .kv dt{color:var(--muted)}
 .kv dd{margin:0;text-align:right;font-weight:600}
-.label{font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.label{font-size:13px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 .field{display:flex;flex-direction:column;gap:6px}
 
-.notice{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:var(--warn-soft);color:var(--warn);font-size:13px;font-weight:600;line-height:1.4}
+.notice{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:14px;background:var(--warn-soft);color:var(--warn);font-size:15px;font-weight:600;line-height:1.4}
 .notice svg{width:18px;height:18px;flex:none;margin-top:1px}
 .notice.sticky{position:sticky;top:0;z-index:2}
 
@@ -177,13 +176,13 @@ details.more summary{cursor:pointer;font-weight:600;font-size:13px;color:var(--m
 .row{display:flex;align-items:center;gap:12px;padding:13px 16px;text-align:left;width:100%}
 .row+.row{border-top:1px solid var(--line)}
 .row .ri{flex:1;min-width:0}
-.row .rn{font-weight:600;font-size:14px}
-.row .rm{font-size:12px;color:var(--muted)}
-.row .rp{font-family:var(--f-display);font-weight:600;font-size:14px;color:var(--teal);white-space:nowrap}
+.row .rn{font-weight:600;font-size:16px}
+.row .rm{font-size:14px;color:var(--muted)}
+.row .rp{font-family:var(--f-display);font-weight:600;font-size:16px;color:var(--teal);white-space:nowrap}
 
 /* Foto */
 .photo-pick{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.photo-pick label{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 10px;border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow);font-weight:700;font-size:14px;cursor:pointer;text-align:center}
+.photo-pick label{display:flex;flex-direction:column;align-items:center;gap:8px;padding:20px 10px;border-radius:var(--r);background:var(--surface);box-shadow:var(--shadow);font-weight:700;font-size:16px;cursor:pointer;text-align:center}
 .photo-pick label svg{width:28px;height:28px;color:var(--teal)}
 .photo-pick input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
 .photo-prev{width:100%;max-width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);background:var(--surface-2)}
@@ -191,38 +190,38 @@ details.more summary{cursor:pointer;font-weight:600;font-size:13px;color:var(--m
 .sim-item.off{opacity:.45}
 .sim-top{display:flex;align-items:flex-start;gap:10px}
 .sim-top .ri{flex:1;min-width:0}
-.conf{font-size:11px;font-weight:700;padding:3px 8px;border-radius:99px;white-space:nowrap}
+.conf{font-size:13px;font-weight:700;padding:3px 8px;border-radius:99px;white-space:nowrap}
 .conf.alta{background:var(--teal-soft);color:var(--teal)}
 .conf.media{background:var(--surface-2);color:var(--muted)}
 .conf.incerta{background:var(--warn-soft);color:var(--warn)}
 .mini-step{display:flex;align-items:center;gap:10px}
 .mini-step button{width:36px;height:36px;border-radius:10px;background:var(--surface-2);font-size:18px;font-weight:700}
 .mini-step span{font-weight:700;min-width:64px;text-align:center}
-.loading{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:14px;font-weight:600}
+.loading{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:16px;font-weight:600}
 .spin{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--teal);animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* Sugestões */
 .meal-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
-.meal-tabs button{padding:10px 4px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:12.5px;font-weight:700;color:var(--muted)}
+.meal-tabs button{padding:10px 4px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:14.5px;font-weight:700;color:var(--muted)}
 .meal-tabs button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
 .filters{display:flex;flex-direction:column;gap:8px}
 .combo{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:16px;display:flex;flex-direction:column;gap:10px}
 .combo-top{display:flex;gap:12px;align-items:flex-start}
 .combo-top .ri{flex:1;min-width:0}
-.combo h4{margin:0;font-size:15.5px;font-weight:700;line-height:1.3}
-.combo .ing{font-size:13px;color:var(--muted);margin-top:3px}
+.combo h4{margin:0;font-size:17.5px;font-weight:700;line-height:1.3}
+.combo .ing{font-size:15px;color:var(--muted);margin-top:3px}
 .combo .pbig{text-align:right;flex:none}
 .combo .pbig b{font-family:var(--f-display);font-size:24px;font-weight:700;color:var(--teal);display:block;line-height:1}
-.combo .pbig span{font-size:11px;color:var(--muted)}
+.combo .pbig span{font-size:13px;color:var(--muted)}
 .combo-tags{display:flex;flex-wrap:wrap;gap:6px}
 .combo-actions{display:flex;gap:8px;align-items:center}
 .combo-actions .btn{flex:1}
-.ing-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px}
+.ing-table{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:8px}
 .ing-table td{padding:6px 0;border-top:1px solid var(--line);vertical-align:top}
 .ing-table td:last-child{text-align:right;white-space:nowrap;padding-left:8px}
-.ing-table .src{display:block;color:var(--muted);font-size:11px}
-.hint{font-size:13px;color:var(--muted)}
+.ing-table .src{display:block;color:var(--muted);font-size:13px}
+.hint{font-size:15px;color:var(--muted)}
 .hint b{color:var(--magenta)}
 
 /* Comparador */
@@ -231,9 +230,9 @@ details.more summary{cursor:pointer;font-weight:600;font-size:13px;color:var(--m
 .cmp-out{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .cmp-out div{background:var(--surface-2);border-radius:12px;padding:10px 8px;text-align:center}
 .cmp-out b{display:block;font-family:var(--f-display);font-size:18px;font-weight:600}
-.cmp-out span{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.cmp-out span{font-size:13px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.05em}
 .cmp-row.best{outline:2px solid var(--teal)}
-.cmp-flag{font-size:12px;font-weight:700;color:var(--warn)}
+.cmp-flag{font-size:14px;font-weight:700;color:var(--warn)}
 
 /* Histórico */
 .hist-card{background:var(--surface);border-radius:24px;box-shadow:var(--shadow);padding:18px 14px 12px}
@@ -250,10 +249,10 @@ details.more summary{cursor:pointer;font-weight:600;font-size:13px;color:var(--m
 .cel-ring{width:96px;height:96px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--teal),var(--magenta),var(--teal))}
 .cel-ring div{width:78px;height:78px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:20px;color:var(--teal)}
 .cel-card h3{font-family:var(--f-display);font-size:20px;line-height:1.3;margin:0 0 8px;text-wrap:balance}
-.cel-card p{color:var(--muted);font-size:14px;margin:0 0 18px}
+.cel-card p{color:var(--muted);font-size:16px;margin:0 0 18px}
 #confetti{position:fixed;inset:0;z-index:61;pointer-events:none;width:100%;height:100%}
 
-.toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);z-index:50;background:var(--ink);color:var(--bg);padding:10px 10px 10px 16px;border-radius:14px;display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:all .25s;max-width:calc(100% - 32px)}
+.toast{position:fixed;left:50%;bottom:calc(92px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);z-index:50;background:var(--ink);color:var(--bg);padding:10px 10px 10px 16px;border-radius:14px;display:flex;align-items:center;gap:12px;font-size:16px;font-weight:600;opacity:0;pointer-events:none;transition:all .25s;max-width:calc(100% - 32px)}
 .toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
 .toast button{color:var(--teal-soft);font-weight:800;padding:6px 10px;border-radius:9px}
 :root[data-theme="dark"] .toast button{color:var(--teal)}
@@ -262,11 +261,11 @@ details.more summary{cursor:pointer;font-weight:600;font-size:13px;color:var(--m
 /* Cadastro e perfil */
 body.onb-mode nav.bottom{display:none}
 body.onb-mode .app{padding-block:0 32px}
-.avatar-btn{width:40px;height:40px;border-radius:50%;background:var(--teal);color:#fff;font-family:var(--f-display);font-weight:700;font-size:16px;display:grid;place-items:center;flex:none;box-shadow:var(--shadow)}
+.avatar-btn{width:40px;height:40px;border-radius:50%;background:var(--teal);color:#fff;font-family:var(--f-display);font-weight:700;font-size:18px;display:grid;place-items:center;flex:none;box-shadow:var(--shadow)}
 .welcome{display:flex;flex-direction:column;gap:14px;padding-top:24px}
 .w-ring{width:96px;height:96px}
 .w-title{font-family:var(--f-display);font-size:28px;line-height:1.15;letter-spacing:-.02em;margin:6px 0 0;text-wrap:balance}
-.w-text{color:var(--muted);font-size:15px;margin:0 0 8px;max-width:38ch}
+.w-text{color:var(--muted);font-size:17px;margin:0 0 8px;max-width:38ch}
 .onb-wrap{display:flex;flex-direction:column;gap:18px;padding-top:6px}
 .onb-top{display:flex;flex-direction:column;gap:8px}
 .prog{height:6px;border-radius:6px;background:var(--surface-2);overflow:hidden}
@@ -274,50 +273,61 @@ body.onb-mode .app{padding-block:0 32px}
 .onb-body{display:flex;flex-direction:column;gap:16px}
 .onb-foot{display:flex;flex-direction:column;gap:6px}
 .btn-link{background:none;color:var(--muted);padding:12px}
-.inp{width:100%;font:inherit;font-size:16px;font-weight:600;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);min-width:0}
+.inp{width:100%;font:inherit;font-size:18px;font-weight:600;padding:14px;border-radius:14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);min-width:0}
 .inp:focus{outline:2px solid var(--teal);outline-offset:1px}
 .inp-u{display:flex;align-items:center;gap:10px}
 .inp-u span{color:var(--muted);font-weight:600;flex:none;min-width:36px}
-.err{color:var(--magenta);font-size:13px;font-weight:600}
+.err{color:var(--magenta);font-size:15px;font-weight:600}
 .opts{display:flex;flex-direction:column;gap:10px}
 .opt{display:flex;flex-direction:column;gap:3px;text-align:left;padding:15px 16px;border-radius:var(--r);background:var(--surface);border:1.5px solid var(--line)}
-.opt b{font-size:15px}
-.opt span{font-size:13px;color:var(--muted)}
+.opt b{font-size:17px}
+.opt span{font-size:15px;color:var(--muted)}
 .opt[aria-pressed="true"]{border-color:var(--teal);background:var(--teal-soft)}
-.bul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:14px}
-.bul.small{font-size:12.5px;color:var(--muted);margin-top:10px}
+.bul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:16px}
+.bul.small{font-size:14.5px;color:var(--muted);margin-top:10px}
 .meta-res{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:18px;display:flex;flex-direction:column;gap:6px}
 .mr-val{font-family:var(--f-display);font-size:40px;font-weight:700;color:var(--teal);letter-spacing:-.02em;line-height:1.05}
-.mr-val small{font-size:15px;color:var(--muted);font-weight:600}
+.mr-val small{font-size:17px;color:var(--muted);font-weight:600}
 .prof-form{display:flex;flex-direction:column;gap:12px}
 .greet{display:flex;flex-direction:column;gap:2px}
 .greet .sub::first-letter{text-transform:uppercase}
-button.meta-note{color:var(--teal);font-weight:700;text-decoration:underline;text-underline-offset:3px;font-size:12.5px}
+button.meta-note{color:var(--teal);font-weight:700;text-decoration:underline;text-underline-offset:3px;font-size:14.5px}
 .sug-inline{display:flex;flex-direction:column;gap:10px}
 .sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.sec-head h3{margin:0;font-family:var(--f-display);font-size:17px}
-.link{color:var(--teal);font-weight:700;font-size:13px}
+.sec-head h3{margin:0;font-family:var(--f-display);font-size:18px}
+.link{color:var(--teal);font-weight:700;font-size:15px}
 .opt-row{display:flex;gap:12px;align-items:center;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:14px}
 .opt-row .ri{flex:1;min-width:0}
-.opt-row .rn{font-weight:700;font-size:14px}
-.opt-row .rm{font-size:12px;color:var(--muted)}
+.opt-row .rn{font-weight:700;font-size:16px}
+.opt-row .rm{font-size:14px;color:var(--muted)}
 .or-side{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex:none}
 .or-side b{font-family:var(--f-display);font-size:18px;color:var(--teal)}
 .prof-card{display:flex;align-items:center;gap:14px}
 .avatar-lg{width:52px;height:52px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-family:var(--f-display);font-weight:700;font-size:22px;flex:none}
-.prof-card .rn{font-weight:700;font-size:16px}
-.prof-card .rm{font-size:12px;color:var(--muted)}
+.prof-card .rn{font-weight:700;font-size:18px}
+.prof-card .rm{font-size:14px;color:var(--muted)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .cmp-meta{display:flex;align-items:center;justify-content:space-around;gap:10px;background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:16px}
 .cmp-meta div{display:flex;flex-direction:column;align-items:center;gap:4px}
 .cmp-meta b{font-family:var(--f-display);font-size:28px}
 .guide{background:var(--teal-soft);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:10px}
 .guide h3{margin:0;font-family:var(--f-display);font-size:18px}
-.guide ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:14px}
+.guide ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:16px}
 .sh-row{background:var(--surface);border-radius:14px;box-shadow:var(--shadow);padding:12px;display:flex;flex-direction:column;gap:8px;margin-top:8px}
-.sh-n{font-weight:700;font-size:14px}
+.sh-n{font-weight:700;font-size:16px}
 
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+.privacy{background:var(--surface);border-radius:var(--r);box-shadow:var(--shadow);padding:14px 16px}
+.privacy b{font-family:var(--f-display)}
+.privacy .bul{margin:8px 0 0}
+.meal-acts{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 14px}
+.meal-acts .btn{width:auto;flex:1 1 auto}
+.ways{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.proto.ok{color:var(--teal);background:var(--teal-soft)}
+.btn{min-height:52px}
+.btn.btn-sm{min-height:44px}
+.chip{min-height:44px}
 </style>
 </head>
 <body>
@@ -348,7 +358,7 @@ button.meta-note{color:var(--teal);font-weight:700;text-decoration:underline;tex
   <header class="top">
     <div class="brand">
       <div class="wordmark">Studio Fit <span>Protein</span></div>
-      <div class="proto" id="protoPill">Protótipo</div>
+      <div class="proto ok" id="protoPill">Studio Fit Personal</div>
     </div>
     <button class="avatar-btn" id="btnSettings" aria-label="Perfil"><span id="avatar">?</span></button>
   </header>
@@ -413,7 +423,7 @@ const FOODS = [
  {id:"minas",n:"Queijo minas frescal",prep:"",taco:461,src:"TACO",p:17.4,kcal:264,fat:20.2,grp:"lacteo",pronto:true,por:[["1 fatia",30],["2 fatias",60]]},
  {id:"ricota",n:"Ricota",prep:"",taco:469,src:"TACO",p:12.6,kcal:140,fat:8.1,grp:"lacteo",pronto:true,por:[["2 colheres de sopa",40],["1 fatia",60]]},
  {id:"mussarela",n:"Mussarela",prep:"",taco:463,src:"TACO",p:22.6,kcal:330,fat:25.2,grp:"lacteo",pronto:true,por:[["1 fatia",20],["2 fatias",40]]},
- {id:"leite",n:"Leite desnatado",prep:"UHT · valor de rótulo ilustrativo",taco:null,src:"ILUSTRATIVO",p:3.0,kcal:35,fat:0.3,grp:"lacteo",pronto:true,unit:"ml",por:[["1 copo",200],["½ copo",100]],obs:"A TACO não traz análise de proteína do leite fluido. Valor ilustrativo; confira o rótulo."},
+ {id:"leite",n:"Leite desnatado",prep:"UHT · valor típico de rótulo",taco:null,src:"ILUSTRATIVO",p:3.0,kcal:35,fat:0.3,grp:"lacteo",pronto:true,unit:"ml",por:[["1 copo",200],["½ copo",100]],obs:"A TACO não traz análise de proteína do leite fluido. Valor típico de embalagem; confira o rótulo do seu leite."},
  {id:"feijao",n:"Feijão carioca",prep:"cozido",taco:561,src:"TACO",p:4.8,kcal:76,fat:0.5,grp:"vegetal",por:[["1 concha",80],["2 conchas",160]]},
  {id:"feijao_preto",n:"Feijão preto",prep:"cozido",taco:567,src:"TACO",p:4.5,kcal:77,fat:0.5,grp:"vegetal",por:[["1 concha",80],["2 conchas",160]]},
  {id:"lentilha",n:"Lentilha",prep:"cozida",taco:577,src:"TACO",p:6.3,kcal:93,fat:0.5,grp:"vegetal",por:[["1 concha",80],["2 conchas",150]]},
@@ -432,11 +442,152 @@ const FOODS = [
  {id:"cenoura",n:"Cenoura",prep:"cozida",taco:109,src:"TACO",p:0.8,kcal:30,fat:0.2,grp:"veg",por:[["3 colheres de sopa",50]]},
  {id:"banana",n:"Banana prata",prep:"crua",taco:182,src:"TACO",p:1.3,kcal:98,fat:0.1,grp:"fruta",pronto:true,por:[["1 unidade",60]]},
  {id:"mamao",n:"Mamão papaia",prep:"cru",taco:226,src:"TACO",p:0.5,kcal:40,fat:0.1,grp:"fruta",pronto:true,por:[["1 fatia",100],["½ unidade",150]]},
- {id:"leite_int",n:"Leite integral",prep:"UHT · valor de rótulo ilustrativo",taco:null,src:"ILUSTRATIVO",p:3.2,kcal:61,fat:3.3,grp:"lacteo",pronto:true,unit:"ml",por:[["1 copo",200],["½ copo",100]],obs:"Valor ilustrativo de rótulo; confira o rótulo do seu leite."},
- {id:"soja",n:"Bebida de soja",prep:"valor de rótulo ilustrativo",taco:null,src:"ILUSTRATIVO",p:3.0,kcal:45,fat:1.8,grp:"vegetal",pronto:true,unit:"ml",por:[["1 copo",200],["½ copo",100]],obs:"Valor ilustrativo de rótulo; varia bastante por marca. Confira o rótulo."},
+ {id:"leite_int",n:"Leite integral",prep:"UHT · valor típico de rótulo",taco:null,src:"ILUSTRATIVO",p:3.2,kcal:61,fat:3.3,grp:"lacteo",pronto:true,unit:"ml",por:[["1 copo",200],["½ copo",100]],obs:"Valor típico de embalagem; confira o rótulo do seu leite."},
+ {id:"soja",n:"Bebida de soja",prep:"extrato solúvel, natural",taco:582,src:"TACO",p:2.4,kcal:39,fat:1.6,grp:"vegetal",pronto:true,unit:"ml",por:[["1 copo",200],["½ copo",100]]},
  {id:"morango",n:"Morango",prep:"cru",taco:239,src:"TACO",p:0.9,kcal:30,fat:0.3,grp:"fruta",pronto:true,por:[["5 unidades",75],["1 xícara",150]]},
- {id:"pasta_amend",n:"Pasta de amendoim",prep:"valor de rótulo ilustrativo",taco:null,src:"ILUSTRATIVO",p:25,kcal:590,fat:50,grp:"vegetal",pronto:true,por:[["1 colher de sobremesa",10],["1 colher de sopa",15]],obs:"Valor ilustrativo de rótulo; confira o rótulo do seu produto."},
- {id:"whey",n:"Whey protein",prep:"conforme rótulo",taco:null,src:"ILUSTRATIVO",grp:"suplemento",pronto:true,whey:true,por:[["1 porção do rótulo",30]],obs:"Valores ilustrativos de rótulo. Variam por marca e sabor: use o rótulo do seu produto."}
+ {id:"pasta_amend",n:"Pasta de amendoim",prep:"valor típico de rótulo",taco:null,src:"ILUSTRATIVO",p:25,kcal:590,fat:50,grp:"vegetal",pronto:true,por:[["1 colher de sobremesa",10],["1 colher de sopa",15]],obs:"A TACO não traz pasta de amendoim. Valor típico de embalagem; confira o rótulo do seu produto."},
+ {id:"ovo_frito",n:"Ovo frito",prep:"",taco:490,src:"TACO",p:15.6,kcal:240,fat:18.6,grp:"animal",por:[["1 unidade",50],["2 unidades",100]]},
+ {id:"frango_assado",n:"Frango assado",prep:"inteiro, sem pele",taco:403,src:"TACO",p:28.0,kcal:187,fat:7.5,grp:"animal",por:[["1 pedaço médio",100],["2 pedaços médios",200]]},
+ {id:"sobrecoxa",n:"Sobrecoxa de frango",prep:"sem pele, assada",taco:413,src:"TACO",p:29.2,kcal:233,fat:12.0,grp:"animal",por:[["1 unidade",90],["2 unidades",180]]},
+ {id:"frango_milanesa",n:"Filé de frango à milanesa",prep:"",taco:401,src:"TACO",p:28.5,kcal:221,fat:7.8,grp:"animal",por:[["1 filé médio",120],["1 filé pequeno",90]]},
+ {id:"coracao",n:"Coração de frango",prep:"grelhado",taco:395,src:"TACO",p:22.4,kcal:207,fat:12.1,grp:"animal",por:[["1 espeto",50],["2 espetos",100]]},
+ {id:"alcatra",n:"Alcatra",prep:"sem gordura, grelhada",taco:370,src:"TACO",p:31.9,kcal:241,fat:11.6,grp:"animal",por:[["1 bife pequeno",80],["1 bife médio",100],["1 bife grande",130]]},
+ {id:"picanha",n:"Picanha",prep:"com gordura, grelhada",taco:381,src:"TACO",p:26.4,kcal:289,fat:19.5,grp:"animal",por:[["2 fatias",100],["3 fatias",150]]},
+ {id:"file_mignon",n:"Filé mignon",prep:"sem gordura, grelhado",taco:358,src:"TACO",p:32.8,kcal:220,fat:8.8,grp:"animal",por:[["1 bife médio",100],["1 bife grande",130]]},
+ {id:"maminha",n:"Maminha",prep:"grelhada",taco:368,src:"TACO",p:30.7,kcal:153,fat:2.4,grp:"animal",por:[["2 fatias",100],["3 fatias",150]]},
+ {id:"coxao_mole",n:"Coxão mole",prep:"sem gordura, cozido",taco:351,src:"TACO",p:32.4,kcal:219,fat:8.9,grp:"animal",por:[["1 bife médio",100],["1 bife grande",130]]},
+ {id:"musculo",n:"Músculo",prep:"sem gordura, cozido",taco:371,src:"TACO",p:31.2,kcal:194,fat:6.7,grp:"animal",por:[["3 pedaços",90],["5 pedaços",150]]},
+ {id:"lagarto",n:"Lagarto",prep:"cozido",taco:363,src:"TACO",p:32.9,kcal:222,fat:9.1,grp:"animal",por:[["2 fatias",80],["3 fatias",120]]},
+ {id:"costela",n:"Costela bovina",prep:"assada",taco:347,src:"TACO",p:28.8,kcal:373,fat:27.7,grp:"animal",por:[["1 pedaço médio",100],["2 pedaços médios",200]]},
+ {id:"cupim",n:"Cupim",prep:"assado",taco:353,src:"TACO",p:28.6,kcal:330,fat:23.0,grp:"animal",por:[["2 fatias",100]]},
+ {id:"fraldinha",n:"Fraldinha",prep:"com gordura, cozida",taco:361,src:"TACO",p:24.2,kcal:338,fat:26.0,grp:"animal",por:[["2 fatias",100],["3 fatias",150]]},
+ {id:"figado",n:"Fígado bovino",prep:"grelhado",taco:356,src:"TACO",p:29.9,kcal:225,fat:9.0,grp:"animal",por:[["1 bife médio",100]]},
+ {id:"carne_seca",n:"Carne seca",prep:"cozida",taco:384,src:"TACO",p:26.9,kcal:313,fat:21.9,grp:"animal",por:[["2 colheres de sopa",50],["4 colheres de sopa",100]]},
+ {id:"bife_milanesa",n:"Bife à milanesa",prep:"contrafilé",taco:340,src:"TACO",p:20.6,kcal:352,fat:24.0,grp:"animal",por:[["1 bife médio",120]]},
+ {id:"almondega",n:"Almôndega",prep:"frita",taco:331,src:"TACO",p:18.2,kcal:272,fat:15.8,grp:"animal",por:[["2 unidades",60],["4 unidades",120]]},
+ {id:"hamburguer",n:"Hambúrguer bovino",prep:"grelhado",taco:417,src:"TACO",p:13.2,kcal:210,fat:12.4,grp:"animal",por:[["1 unidade",55],["2 unidades",110]]},
+ {id:"pernil",n:"Pernil de porco",prep:"assado",taco:435,src:"TACO",p:32.1,kcal:262,fat:13.9,grp:"animal",por:[["2 fatias",100],["3 fatias",150]]},
+ {id:"bisteca",n:"Bisteca de porco",prep:"grelhada",taco:429,src:"TACO",p:28.9,kcal:280,fat:17.4,grp:"animal",por:[["1 unidade",100],["2 unidades",200]]},
+ {id:"costela_porco",n:"Costelinha de porco",prep:"assada",taco:430,src:"TACO",p:30.2,kcal:402,fat:30.3,grp:"animal",por:[["2 pedaços",100],["4 pedaços",200]]},
+ {id:"linguica_frango",n:"Linguiça de frango",prep:"grelhada",taco:420,src:"TACO",p:18.2,kcal:244,fat:18.4,grp:"animal",por:[["1 gomo",60],["2 gomos",120]]},
+ {id:"torresmo",n:"Torresmo",prep:"toucinho frito",taco:445,src:"TACO",p:27.3,kcal:697,fat:64.3,grp:"animal",por:[["1 colher de sopa",15],["3 colheres de sopa",45]]},
+ {id:"peru",n:"Peru",prep:"assado",taco:425,src:"TACO",p:26.2,kcal:163,fat:5.7,grp:"animal",por:[["2 fatias",80],["3 fatias",120]]},
+ {id:"presunto",n:"Presunto",prep:"sem capa de gordura",taco:439,src:"TACO",p:14.3,kcal:94,fat:2.7,grp:"animal",pronto:true,por:[["1 fatia",15],["2 fatias",30],["4 fatias",60]]},
+ {id:"apresuntado",n:"Apresuntado",prep:"",taco:323,src:"TACO",p:13.5,kcal:129,fat:6.7,grp:"animal",pronto:true,por:[["2 fatias",30],["4 fatias",60]]},
+ {id:"mortadela",n:"Mortadela",prep:"",taco:424,src:"TACO",p:12.0,kcal:269,fat:21.6,grp:"animal",pronto:true,por:[["2 fatias",30],["4 fatias",60]]},
+ {id:"salame",n:"Salame",prep:"",taco:443,src:"TACO",p:25.8,kcal:398,fat:30.6,grp:"animal",pronto:true,por:[["5 fatias",25]]},
+ {id:"peixe_frito",n:"Merluza frita",prep:"filé",taco:303,src:"TACO",p:26.9,kcal:192,fat:8.5,grp:"animal",por:[["1 filé médio",120],["1 filé grande",150]]},
+ {id:"pescada",n:"Pescada frita",prep:"filé",taco:308,src:"TACO",p:28.6,kcal:154,fat:3.6,grp:"animal",por:[["1 filé médio",120]]},
+ {id:"salmao",n:"Salmão",prep:"sem pele, grelhado",taco:317,src:"TACO",p:26.1,kcal:243,fat:14.5,grp:"animal",por:[["1 filé pequeno",100],["1 filé médio",140]]},
+ {id:"abadejo",n:"Abadejo",prep:"filé grelhado",taco:276,src:"TACO",p:27.6,kcal:130,fat:1.3,grp:"animal",por:[["1 filé médio",120]]},
+ {id:"pintado",n:"Pintado",prep:"grelhado",taco:313,src:"TACO",p:30.8,kcal:152,fat:2.3,grp:"animal",por:[["1 posta",120]]},
+ {id:"sardinha_lata",n:"Sardinha em lata",prep:"conserva em óleo",taco:319,src:"TACO",p:15.9,kcal:285,fat:24.0,grp:"animal",pronto:true,por:[["½ lata",40],["1 lata",83]]},
+ {id:"bacalhau",n:"Bacalhau",prep:"refogado",taco:280,src:"TACO",p:24.0,kcal:140,fat:3.6,grp:"animal",por:[["1 porção",120],["½ porção",60]]},
+ {id:"camarao",n:"Camarão",prep:"cozido",taco:284,src:"TACO",p:19.0,kcal:90,fat:1.0,grp:"animal",por:[["3 colheres de sopa",60],["1 porção",120]]},
+ {id:"iogurte_morango",n:"Iogurte sabor morango",prep:"",taco:451,src:"TACO",p:2.7,kcal:70,fat:2.3,grp:"lacteo",pronto:true,por:[["1 pote pequeno",100],["1 pote",170]]},
+ {id:"bebida_lactea",n:"Bebida láctea",prep:"sabor pêssego",taco:446,src:"TACO",p:2.1,kcal:55,fat:1.9,grp:"lacteo",pronto:true,por:[["1 pote",180]]},
+ {id:"minas_cura",n:"Queijo minas meia cura",prep:"",taco:462,src:"TACO",p:21.2,kcal:321,fat:24.6,grp:"lacteo",pronto:true,por:[["1 fatia",30],["2 fatias",60]]},
+ {id:"prato",n:"Queijo prato",prep:"",taco:467,src:"TACO",p:22.7,kcal:360,fat:29.1,grp:"lacteo",pronto:true,por:[["1 fatia",15],["2 fatias",30]]},
+ {id:"parmesao",n:"Queijo parmesão",prep:"",taco:464,src:"TACO",p:35.6,kcal:453,fat:33.5,grp:"lacteo",pronto:true,por:[["1 colher de sopa (ralado)",10],["2 colheres de sopa (ralado)",20]]},
+ {id:"requeijao",n:"Requeijão cremoso",prep:"",taco:468,src:"TACO",p:9.6,kcal:257,fat:23.4,grp:"lacteo",pronto:true,por:[["1 colher de sopa",30],["2 colheres de sopa",60]]},
+ {id:"leite_po",n:"Leite em pó integral",prep:"",taco:459,src:"TACO",p:25.4,kcal:497,fat:26.9,grp:"lacteo",pronto:true,por:[["2 colheres de sopa",26]]},
+ {id:"leite_po_d",n:"Leite em pó desnatado",prep:"",taco:456,src:"TACO",p:34.7,kcal:362,fat:0.9,grp:"lacteo",pronto:true,por:[["2 colheres de sopa",20]]},
+ {id:"achocolatado",n:"Leite achocolatado",prep:"pronto para beber",taco:455,src:"TACO",p:2.1,kcal:83,fat:2.2,grp:"lacteo",pronto:true,unit:"ml",por:[["1 caixinha",200]]},
+ {id:"leite_ferm",n:"Leite fermentado",prep:"",taco:460,src:"TACO",p:1.9,kcal:70,fat:0.1,grp:"lacteo",pronto:true,unit:"ml",por:[["1 frasco",80]]},
+ {id:"creme_leite",n:"Creme de leite",prep:"",taco:447,src:"TACO",p:1.5,kcal:221,fat:22.5,grp:"lacteo",pronto:true,por:[["1 colher de sopa",15]]},
+ {id:"doce_leite",n:"Doce de leite",prep:"cremoso",taco:501,src:"TACO",p:5.5,kcal:306,fat:6.0,grp:"lacteo",pronto:true,por:[["1 colher de sopa",20]]},
+ {id:"feijao_fradinho",n:"Feijão fradinho",prep:"cozido",taco:563,src:"TACO",p:5.1,kcal:78,fat:0.6,grp:"vegetal",por:[["1 concha",80],["2 conchas",160]]},
+ {id:"pacoca",n:"Paçoca de amendoim",prep:"",taco:579,src:"TACO",p:16.0,kcal:487,fat:26.1,grp:"vegetal",pronto:true,por:[["1 unidade",20],["2 unidades",40]]},
+ {id:"castanha_caju",n:"Castanha de caju",prep:"torrada, salgada",taco:588,src:"TACO",p:18.5,kcal:570,fat:46.3,grp:"vegetal",pronto:true,por:[["10 unidades",25]]},
+ {id:"castanha_para",n:"Castanha-do-pará",prep:"crua",taco:589,src:"TACO",p:14.5,kcal:643,fat:63.5,grp:"vegetal",pronto:true,por:[["2 unidades",8],["4 unidades",16]]},
+ {id:"amendoa",n:"Amêndoa",prep:"torrada, salgada",taco:587,src:"TACO",p:18.6,kcal:581,fat:47.3,grp:"vegetal",pronto:true,por:[["10 unidades",12]]},
+ {id:"noz",n:"Noz",prep:"crua",taco:597,src:"TACO",p:14.0,kcal:620,fat:59.4,grp:"vegetal",pronto:true,por:[["2 unidades",10],["4 unidades",20]]},
+ {id:"linhaca",n:"Linhaça",prep:"semente",taco:594,src:"TACO",p:14.1,kcal:495,fat:32.3,grp:"vegetal",pronto:true,por:[["1 colher de sopa",10]]},
+ {id:"macarrao_bol",n:"Macarrão à bolonhesa",prep:"preparação TACO",taco:542,src:"TACO",p:4.9,kcal:120,fat:0.9,grp:"prato",por:[["1 pegador",110],["1 prato raso",220]]},
+ {id:"nhoque",n:"Nhoque de batata",prep:"cozido",taco:136,src:"TACO",p:5.9,kcal:181,fat:1.9,grp:"base",por:[["1 escumadeira",120],["1 prato raso",240]]},
+ {id:"torrada",n:"Torrada de pão francês",prep:"",taco:63,src:"TACO",p:10.5,kcal:377,fat:3.3,grp:"base",pronto:true,por:[["2 unidades",16],["4 unidades",32]]},
+ {id:"cream_cracker",n:"Biscoito cream cracker",prep:"",taco:13,src:"TACO",p:10.1,kcal:432,fat:14.4,grp:"base",pronto:true,por:[["3 unidades",18],["6 unidades",36]]},
+ {id:"maisena",n:"Biscoito maisena",prep:"",taco:8,src:"TACO",p:8.1,kcal:443,fat:12.0,grp:"base",pronto:true,por:[["4 unidades",20],["8 unidades",40]]},
+ {id:"bolo_choc",n:"Bolo de chocolate",prep:"",taco:16,src:"TACO",p:6.2,kcal:410,fat:18.5,grp:"base",pronto:true,por:[["1 fatia",60],["2 fatias",120]]},
+ {id:"bolo_milho",n:"Bolo de milho",prep:"",taco:18,src:"TACO",p:4.8,kcal:311,fat:12.4,grp:"base",pronto:true,por:[["1 fatia",60],["2 fatias",120]]},
+ {id:"bolo_coco",n:"Bolo de coco",prep:"",taco:17,src:"TACO",p:5.7,kcal:333,fat:11.3,grp:"base",pronto:true,por:[["1 fatia",60],["2 fatias",120]]},
+ {id:"bolo_aipim",n:"Bolo de mandioca",prep:"",taco:15,src:"TACO",p:4.4,kcal:324,fat:12.7,grp:"base",pronto:true,por:[["1 fatia",60],["2 fatias",120]]},
+ {id:"cereal",n:"Cereal matinal de milho",prep:"",taco:25,src:"TACO",p:7.2,kcal:365,fat:1.0,grp:"base",pronto:true,por:[["1 xícara",30],["½ xícara",15]]},
+ {id:"cuscuz",n:"Cuscuz de milho",prep:"cozido com sal",taco:533,src:"TACO",p:2.2,kcal:113,fat:0.7,grp:"base",por:[["1 fatia",100],["2 fatias",200]]},
+ {id:"polenta",n:"Polenta",prep:"pré-cozida",taco:62,src:"TACO",p:2.3,kcal:103,fat:0.3,grp:"base",por:[["1 fatia",100],["2 fatias",200]]},
+ {id:"pipoca",n:"Pipoca",prep:"com óleo de soja, sem sal",taco:61,src:"TACO",p:9.9,kcal:448,fat:15.9,grp:"base",pronto:true,por:[["1 xícara",10],["1 saco médio",50]]},
+ {id:"pao_queijo",n:"Pão de queijo",prep:"assado",taco:140,src:"TACO",p:5.1,kcal:363,fat:24.6,grp:"base",pronto:true,por:[["1 unidade média",40],["2 unidades médias",80],["3 unidades médias",120]]},
+ {id:"tapioca",n:"Tapioca com manteiga",prep:"",taco:551,src:"TACO",p:0.1,kcal:348,fat:10.9,grp:"base",por:[["1 unidade média",80],["1 unidade grande",120]]},
+ {id:"pastel_carne",n:"Pastel de carne",prep:"frito",taco:56,src:"TACO",p:10.1,kcal:388,fat:20.1,grp:"prato",pronto:true,por:[["1 unidade média",80],["2 unidades médias",160]]},
+ {id:"pastel_queijo",n:"Pastel de queijo",prep:"frito",taco:58,src:"TACO",p:8.7,kcal:422,fat:22.7,grp:"prato",pronto:true,por:[["1 unidade média",80],["2 unidades médias",160]]},
+ {id:"farinha_mand",n:"Farinha de mandioca",prep:"torrada",taco:122,src:"TACO",p:1.2,kcal:365,fat:0.3,grp:"base",pronto:true,por:[["1 colher de sopa",16],["2 colheres de sopa",32]]},
+ {id:"farofa",n:"Farofa de mandioca",prep:"temperada",taco:131,src:"TACO",p:2.1,kcal:406,fat:9.1,grp:"base",por:[["2 colheres de sopa",30],["4 colheres de sopa",60]]},
+ {id:"milho",n:"Milho verde",prep:"enlatado",taco:45,src:"TACO",p:3.2,kcal:98,fat:2.4,grp:"veg",pronto:true,por:[["2 colheres de sopa",50],["½ lata",100]]},
+ {id:"pamonha",n:"Pamonha",prep:"",taco:47,src:"TACO",p:2.6,kcal:171,fat:4.8,grp:"base",por:[["1 unidade",160]]},
+ {id:"canjica",n:"Canjica com leite",prep:"",taco:20,src:"TACO",p:2.4,kcal:112,fat:1.2,grp:"base",por:[["1 concha",130],["1 tigela",250]]},
+ {id:"batata_frita",n:"Batata frita",prep:"",taco:93,src:"TACO",p:5.0,kcal:267,fat:13.1,grp:"base",por:[["1 porção pequena",70],["1 porção média",120]]},
+ {id:"batata_saute",n:"Batata sauté",prep:"",taco:94,src:"TACO",p:1.3,kcal:68,fat:0.9,grp:"base",por:[["3 colheres de sopa",90]]},
+ {id:"batata_doce",n:"Batata-doce",prep:"cozida",taco:88,src:"TACO",p:0.6,kcal:77,fat:0.1,grp:"base",por:[["1 pedaço médio",100],["2 pedaços médios",200]]},
+ {id:"mandioca_frita",n:"Mandioca frita",prep:"",taco:132,src:"TACO",p:1.4,kcal:300,fat:11.2,grp:"base",por:[["1 porção pequena",80],["1 porção média",130]]},
+ {id:"baroa",n:"Batata-baroa",prep:"cozida",taco:86,src:"TACO",p:0.9,kcal:80,fat:0.2,grp:"base",por:[["2 colheres de sopa",70]]},
+ {id:"cara",n:"Cará",prep:"cozido",taco:102,src:"TACO",p:1.5,kcal:78,fat:0.1,grp:"base",por:[["2 pedaços",100]]},
+ {id:"brocolis",n:"Brócolis",prep:"cozido",taco:100,src:"TACO",p:2.1,kcal:25,fat:0.5,grp:"veg",por:[["3 ramos",60],["1 xícara",90]]},
+ {id:"couve",n:"Couve",prep:"refogada",taco:116,src:"TACO",p:1.7,kcal:90,fat:6.6,grp:"veg",por:[["2 colheres de sopa",40]]},
+ {id:"abobrinha",n:"Abobrinha",prep:"refogada",taco:72,src:"TACO",p:1.1,kcal:24,fat:0.8,grp:"veg",por:[["2 colheres de sopa",60]]},
+ {id:"abobora",n:"Abóbora cabotiá",prep:"cozida",taco:64,src:"TACO",p:1.4,kcal:48,fat:0.7,grp:"veg",por:[["2 colheres de sopa",70]]},
+ {id:"beterraba",n:"Beterraba",prep:"cozida",taco:97,src:"TACO",p:1.3,kcal:32,fat:0.1,grp:"veg",por:[["2 colheres de sopa",40]]},
+ {id:"chuchu",n:"Chuchu",prep:"cozido",taco:112,src:"TACO",p:0.4,kcal:19,fat:0.0,grp:"veg",por:[["2 colheres de sopa",60]]},
+ {id:"couve_flor",n:"Couve-flor",prep:"cozida",taco:118,src:"TACO",p:1.2,kcal:19,fat:0.3,grp:"veg",por:[["3 ramos",60]]},
+ {id:"repolho",n:"Repolho",prep:"cru",taco:149,src:"TACO",p:0.9,kcal:17,fat:0.1,grp:"veg",pronto:true,por:[["1 pires",50]]},
+ {id:"pepino",n:"Pepino",prep:"cru",taco:142,src:"TACO",p:0.9,kcal:10,fat:0.0,grp:"veg",pronto:true,por:[["6 rodelas",40]]},
+ {id:"rucula",n:"Rúcula",prep:"crua",taco:152,src:"TACO",p:1.8,kcal:13,fat:0.1,grp:"veg",pronto:true,por:[["1 prato de sobremesa",30]]},
+ {id:"espinafre",n:"Espinafre",prep:"refogado",taco:120,src:"TACO",p:2.7,kcal:67,fat:5.4,grp:"veg",por:[["2 colheres de sopa",50]]},
+ {id:"berinjela",n:"Berinjela",prep:"cozida",taco:95,src:"TACO",p:0.7,kcal:19,fat:0.1,grp:"veg",por:[["2 colheres de sopa",50]]},
+ {id:"cenoura_crua",n:"Cenoura crua",prep:"ralada",taco:110,src:"TACO",p:1.3,kcal:34,fat:0.2,grp:"veg",pronto:true,por:[["2 colheres de sopa",25]]},
+ {id:"palmito",n:"Palmito",prep:"pupunha, em conserva",taco:139,src:"TACO",p:2.5,kcal:29,fat:0.5,grp:"veg",pronto:true,por:[["2 pedaços",40]]},
+ {id:"salada_maionese",n:"Salada de legumes com maionese",prep:"",taco:545,src:"TACO",p:1.1,kcal:96,fat:7.0,grp:"veg",por:[["2 colheres de sopa",70],["4 colheres de sopa",140]]},
+ {id:"legumes_vapor",n:"Legumes no vapor",prep:"salada de legumes cozida",taco:546,src:"TACO",p:2.0,kcal:35,fat:0.3,grp:"veg",por:[["3 colheres de sopa",90]]},
+ {id:"banana_nanica",n:"Banana nanica",prep:"crua",taco:179,src:"TACO",p:1.4,kcal:92,fat:0.1,grp:"fruta",pronto:true,por:[["1 unidade",90]]},
+ {id:"maca",n:"Maçã",prep:"fuji, com casca",taco:222,src:"TACO",p:0.3,kcal:56,fat:0.0,grp:"fruta",pronto:true,por:[["1 unidade",130]]},
+ {id:"laranja",n:"Laranja",prep:"pera",taco:214,src:"TACO",p:1.0,kcal:37,fat:0.1,grp:"fruta",pronto:true,por:[["1 unidade",140]]},
+ {id:"suco_laranja",n:"Suco de laranja",prep:"natural",taco:215,src:"TACO",p:0.7,kcal:33,fat:0.1,grp:"fruta",pronto:true,unit:"ml",por:[["1 copo",200]]},
+ {id:"mamao_formosa",n:"Mamão formosa",prep:"cru",taco:225,src:"TACO",p:0.8,kcal:45,fat:0.1,grp:"fruta",pronto:true,por:[["1 fatia",170]]},
+ {id:"manga",n:"Manga",prep:"palmer",taco:229,src:"TACO",p:0.4,kcal:72,fat:0.2,grp:"fruta",pronto:true,por:[["½ unidade",150]]},
+ {id:"abacaxi",n:"Abacaxi",prep:"cru",taco:164,src:"TACO",p:0.9,kcal:48,fat:0.1,grp:"fruta",pronto:true,por:[["1 fatia",80],["2 fatias",160]]},
+ {id:"melancia",n:"Melancia",prep:"crua",taco:235,src:"TACO",p:0.9,kcal:33,fat:0.0,grp:"fruta",pronto:true,por:[["1 fatia",200]]},
+ {id:"melao",n:"Melão",prep:"cru",taco:236,src:"TACO",p:0.7,kcal:29,fat:0.0,grp:"fruta",pronto:true,por:[["1 fatia",120]]},
+ {id:"uva",n:"Uva",prep:"itália",taco:256,src:"TACO",p:0.7,kcal:53,fat:0.2,grp:"fruta",pronto:true,por:[["10 unidades",80],["1 cacho pequeno",150]]},
+ {id:"abacate",n:"Abacate",prep:"cru",taco:163,src:"TACO",p:1.2,kcal:96,fat:8.4,grp:"fruta",pronto:true,por:[["2 colheres de sopa",60],["½ unidade",200]]},
+ {id:"pera",n:"Pera",prep:"williams",taco:243,src:"TACO",p:0.6,kcal:53,fat:0.1,grp:"fruta",pronto:true,por:[["1 unidade",130]]},
+ {id:"tangerina",n:"Tangerina",prep:"poncã",taco:251,src:"TACO",p:0.8,kcal:38,fat:0.1,grp:"fruta",pronto:true,por:[["1 unidade",135]]},
+ {id:"kiwi",n:"Kiwi",prep:"cru",taco:207,src:"TACO",p:1.3,kcal:51,fat:0.6,grp:"fruta",pronto:true,por:[["1 unidade",75]]},
+ {id:"goiaba",n:"Goiaba",prep:"vermelha, com casca",taco:200,src:"TACO",p:1.1,kcal:54,fat:0.4,grp:"fruta",pronto:true,por:[["1 unidade",170]]},
+ {id:"acai",n:"Açaí",prep:"polpa com xarope de guaraná",taco:167,src:"TACO",p:0.7,kcal:110,fat:3.7,grp:"fruta",pronto:true,por:[["1 tigela pequena",200],["1 tigela média",300]]},
+ {id:"feijoada",n:"Feijoada",prep:"preparação TACO",taco:540,src:"TACO",p:8.7,kcal:117,fat:6.5,grp:"prato",por:[["1 concha",130],["2 conchas",260]]},
+ {id:"tropeiro",n:"Feijão tropeiro",prep:"mineiro",taco:539,src:"TACO",p:10.2,kcal:152,fat:6.8,grp:"prato",por:[["3 colheres de sopa",90],["1 prato raso",200]]},
+ {id:"estrog_carne",n:"Estrogonofe de carne",prep:"",taco:537,src:"TACO",p:15.0,kcal:173,fat:10.8,grp:"prato",por:[["1 concha",130],["2 conchas",260]]},
+ {id:"estrog_frango",n:"Estrogonofe de frango",prep:"",taco:538,src:"TACO",p:17.6,kcal:157,fat:8.0,grp:"prato",por:[["1 concha",130],["2 conchas",260]]},
+ {id:"yakisoba",n:"Yakisoba",prep:"",taco:556,src:"TACO",p:7.5,kcal:113,fat:2.6,grp:"prato",por:[["1 prato raso",250],["½ prato",125]]},
+ {id:"salpicao",n:"Salpicão de frango",prep:"",taco:547,src:"TACO",p:13.9,kcal:148,fat:7.8,grp:"prato",por:[["2 colheres de sopa",60],["4 colheres de sopa",120]]},
+ {id:"baiao",n:"Baião de dois",prep:"",taco:527,src:"TACO",p:6.2,kcal:136,fat:3.2,grp:"prato",por:[["3 colheres de sopa",90],["1 prato raso",200]]},
+ {id:"carreteiro",n:"Arroz carreteiro",prep:"",taco:526,src:"TACO",p:10.8,kcal:154,fat:7.1,grp:"prato",por:[["3 colheres de sopa",90],["1 prato raso",200]]},
+ {id:"bife_cavalo",n:"Bife a cavalo",prep:"contrafilé com ovo",taco:529,src:"TACO",p:23.7,kcal:291,fat:21.1,grp:"prato",por:[["1 porção",150]]},
+ {id:"vaca_atolada",n:"Vaca atolada",prep:"",taco:553,src:"TACO",p:5.1,kcal:145,fat:9.3,grp:"prato",por:[["1 concha",150]]},
+ {id:"dobradinha",n:"Dobradinha",prep:"",taco:536,src:"TACO",p:19.8,kcal:125,fat:4.4,grp:"prato",por:[["1 concha",130]]},
+ {id:"cuscuz_paulista",n:"Cuscuz paulista",prep:"",taco:534,src:"TACO",p:2.6,kcal:142,fat:4.6,grp:"prato",por:[["1 fatia",100]]},
+ {id:"tabule",n:"Tabule",prep:"",taco:549,src:"TACO",p:2.0,kcal:57,fat:1.2,grp:"prato",por:[["2 colheres de sopa",50]]},
+ {id:"quibe_assado",n:"Quibe assado",prep:"",taco:440,src:"TACO",p:14.6,kcal:136,fat:2.7,grp:"prato",por:[["1 pedaço",80],["2 pedaços",160]]},
+ {id:"quibe_frito",n:"Quibe frito",prep:"",taco:442,src:"TACO",p:14.9,kcal:254,fat:15.8,grp:"prato",pronto:true,por:[["1 unidade média",70]]},
+ {id:"coxinha",n:"Coxinha de frango",prep:"frita",taco:386,src:"TACO",p:9.6,kcal:283,fat:11.8,grp:"prato",pronto:true,por:[["1 unidade de lanchonete",110],["1 unidade de festa",25]]},
+ {id:"empada",n:"Empada de frango",prep:"assada",taco:389,src:"TACO",p:6.9,kcal:358,fat:15.6,grp:"prato",pronto:true,por:[["1 unidade média",55]]},
+ {id:"croquete",n:"Croquete de carne",prep:"frito",taco:388,src:"TACO",p:16.9,kcal:347,fat:22.7,grp:"prato",pronto:true,por:[["1 unidade",30],["3 unidades",90]]},
+ {id:"bolinho_arroz",n:"Bolinho de arroz",prep:"",taco:530,src:"TACO",p:8.0,kcal:274,fat:8.3,grp:"prato",pronto:true,por:[["1 unidade",30],["3 unidades",90]]},
+ {id:"acaraje",n:"Acarajé",prep:"",taco:525,src:"TACO",p:8.3,kcal:289,fat:19.9,grp:"prato",pronto:true,por:[["1 unidade",100]]},
+ {id:"charuto",n:"Charuto de repolho",prep:"",taco:532,src:"TACO",p:6.8,kcal:78,fat:1.1,grp:"prato",por:[["2 unidades",100]]},
+ {id:"chocolate",n:"Chocolate ao leite",prep:"",taco:495,src:"TACO",p:7.2,kcal:540,fat:30.3,grp:"base",pronto:true,por:[["2 quadradinhos",12],["1 barra pequena",25]]},
+ {id:"achoc_po",n:"Achocolatado em pó",prep:"",taco:491,src:"TACO",p:4.2,kcal:401,fat:2.2,grp:"base",pronto:true,por:[["1 colher de sopa",10],["2 colheres de sopa",20]]},
+ {id:"cafe",n:"Café",prep:"infusão, sem açúcar",taco:471,src:"TACO",p:0.7,kcal:9,fat:0.1,grp:"base",pronto:true,unit:"ml",por:[["1 xícara",50],["1 caneca",150]]},
+ {id:"whey",n:"Whey protein",prep:"conforme rótulo",taco:null,src:"ILUSTRATIVO",grp:"suplemento",pronto:true,whey:true,por:[["1 porção do rótulo",30]],obs:"Varia por marca e sabor: informe o rótulo do seu produto."}
 ];
 const WHEY_DEFAULT = {porcao:30, p:21, kcal:116, fat:1.5, carb:3, ilustrativo:true};
 const COMBOS = [
@@ -474,12 +625,6 @@ const COMBOS = [
 ];
 /* Porções práticas usadas em "Faltam X g" */
 const QUICK = [["ovo",100],["iogurte",170],["atum",60],["atum",120],["frango_desf",80],["minas",60],["clara",90],["whey",30],["tofu",150],["lentilha",150],["sardinha",100],["frango",100],["ricota",60]];
-/* Pratos fictícios da SIMULAÇÃO de foto (não são resultado de análise) */
-const SIM_PLATES = [
- [{ref:"frango",g:120,conf:"alta"},{ref:"arroz",g:100,conf:"alta"},{ref:"feijao",conf:"incerta",opts:[["Pouco",40],["Médio",80],["Muito",130]]},{ref:"alface",g:40,conf:"media"}],
- [{ref:"ovo",g:100,conf:"alta"},{ref:"pao",g:50,conf:"media"},{ref:"minas",conf:"incerta",opts:[["Pouco",20],["Médio",30],["Muito",50]]}],
- [{ref:"patinho",g:100,conf:"media"},{ref:"arroz_int",g:100,conf:"alta"},{ref:"feijao_preto",conf:"incerta",opts:[["Pouco",40],["Médio",80],["Muito",130]]},{ref:"cenoura",g:50,conf:"alta"}]
-];
 /* DATA-END */
 
 const MEALS = [["cafe","Café da manhã","Café"],["almoco","Almoço","Almoço"],["lanche","Lanche","Lanche"],["jantar","Jantar","Jantar"]];
@@ -596,7 +741,7 @@ let view="hoje";
 function setChrome(){
   const onb=!S; document.body.classList.toggle("onb-mode",onb);
   const vo=document.getElementById("v-onb"); vo.hidden=!onb; if(!onb) vo.innerHTML="";
-  document.getElementById("protoPill").textContent = !S ? "Protótipo" : (MODE==="demo" ? "Demonstração · dados fictícios" : "Protótipo · dados só neste aparelho");
+  const pp=document.getElementById("protoPill"); pp.textContent = (S&&MODE==="demo") ? "Demonstração · dados fictícios" : "Studio Fit Personal"; pp.classList.toggle("ok",!(S&&MODE==="demo"));
   const b=document.getElementById("btnSettings"); b.hidden=onb;
   if(S) document.getElementById("avatar").textContent=(firstName()[0]||"?").toUpperCase();
 }
@@ -613,22 +758,54 @@ function showWelcome(){
   document.getElementById("v-onb").innerHTML=`<div class="welcome">
     <div class="w-ring" aria-hidden="true"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="var(--surface-2)" stroke-width="12"/><circle cx="60" cy="60" r="50" fill="none" stroke="var(--teal)" stroke-width="12" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="90" transform="rotate(-90 60 60)"/></svg></div>
     <h1 class="w-title">Sua proteína do dia, sem complicação.</h1>
-    <p class="w-text">Registre refeições, acompanhe quanto falta para a sua meta e receba opções práticas para completá-la.</p>
-    <button class="btn btn-primary" id="wStart">Criar meu perfil</button>
+    <p class="w-text">Escreva o que comeu, veja quanto falta para a sua meta e receba opções práticas para completá-la.</p>
+    <button class="btn btn-primary" id="wStart">Começar</button>
     <button class="btn btn-ghost" id="wDemo">Ver demonstração com dados fictícios</button>
-    <p class="foot-note">Protótipo: seu perfil e seus registros ficam salvos apenas neste navegador, neste aparelho. Eles não acompanham você em outro celular ou computador, e limpar os dados do navegador apaga tudo.</p>
+    <label class="btn btn-link" for="wImp" style="cursor:pointer">Já usei antes: restaurar cópia de segurança<input id="wImp" type="file" accept=".json,application/json" hidden></label>
+    <p class="foot-note">Seu perfil e seus registros ficam salvos apenas neste aparelho. Para não perder, adicione o app à tela inicial do celular e use sempre o mesmo aparelho.</p>
   </div>`;
   document.getElementById("wStart").onclick=()=>startOnb();
+  document.getElementById("wImp").onchange=ev=>importBackup(ev.target.files&&ev.target.files[0]);
   document.getElementById("wDemo").onclick=()=>{ MODE="demo"; lsSet(KMODE,"demo"); seedDemo(); shownP=null; go("hoje"); toast("Demonstração com dados fictícios"); };
 }
-function startOnb(){ OB={step:0,pf:{nome:"",idade:"",sexo:"",peso:"",altura:"",objetivo:"",nivel:"",saude:""},err:{},prof:false}; renderOnb(); }
-const ONB_STEPS=["Sobre você","Medidas","Objetivo","Rotina","Saúde","Sua meta"];
+function startOnb(){ OB={step:0,phase:"a",ok:false,pf:{nome:"",idade:"",peso:"",altura:"",objetivo:"",nivel:"",saude:""},err:{},prof:false}; renderStart(); }
+function renderStart(){
+  const el=document.getElementById("v-onb"), pf=OB.pf, E=OB.err;
+  if(OB.phase==="a"){
+    el.innerHTML=`<div class="onb-wrap">
+      <div class="onb-top"><div class="label">Etapa 1 de 2</div><div class="prog"><i style="width:50%"></i></div><h2 class="v-title">Antes de começar</h2></div>
+      <div class="onb-body"><label class="field" for="fNome"><span class="label">Como você quer ser chamado?</span><input class="inp" id="fNome" autocomplete="given-name" placeholder="Seu primeiro nome" value="${esc(pf.nome)}">${errH(E.nome)}</label>
+        <div class="privacy"><b>Seus dados</b><ul class="bul"><li>O aplicativo guarda <b>só neste celular</b> o seu nome, a sua meta e o que você registrar.</li>
+          <li>Nada é enviado para servidor. O Studio só vê o que você decidir enviar.</li>
+          <li>Você pode apagar tudo quando quiser, em <b>Perfil</b>.</li>
+          <li>Os valores de proteína são <b>estimativas</b> para acompanhamento. Não substituem a orientação de nutricionista ou médico.</li></ul></div>
+        <button class="opt" id="fOk" aria-pressed="${OB.ok}"><b>${OB.ok?"✓ ":""}Li e concordo</b><span>Autorizo guardar esses dados neste aparelho.</span></button>${errH(E.ok)}</div>
+      <div class="onb-foot"><button class="btn btn-primary" id="sNext">Continuar</button><button class="btn btn-link" id="sCancel">Cancelar</button></div></div>`;
+    const i=document.getElementById("fNome"); i.oninput=()=>{pf.nome=i.value;};
+    document.getElementById("fOk").onclick=()=>{ OB.ok=!OB.ok; delete E.ok; if((pf.nome||"").trim().length>=2) delete E.nome; renderStart(); };
+    document.getElementById("sCancel").onclick=showWelcome;
+    document.getElementById("sNext").onclick=()=>{ OB.err={};
+      if((pf.nome||"").trim().length<2) OB.err.nome="Informe como quer ser chamado.";
+      if(!OB.ok) OB.err.ok="Toque em \"Li e concordo\" para continuar.";
+      if(Object.keys(OB.err).length){ renderStart(); return; }
+      OB.phase="b"; renderStart(); window.scrollTo(0,0); };
+    return;
+  }
+  el.innerHTML=`<div class="onb-wrap">
+    <div class="onb-top"><div class="label">Etapa 2 de 2</div><div class="prog"><i style="width:100%"></i></div><h2 class="v-title">Sua meta de proteína</h2></div>
+    <div class="onb-body"><p class="sub">Digite a meta diária que o seu professor ou nutricionista definiu para você.</p>${profFormHTML()}</div>
+    <div class="onb-foot"><button class="btn btn-primary" id="sProf">Começar a usar</button><button class="btn btn-ghost" id="sCalc">Ainda não tenho uma meta</button><button class="btn btn-link" id="sBack">Voltar</button></div></div>`;
+  document.getElementById("sBack").onclick=()=>{ OB.phase="a"; OB.err={}; renderStart(); };
+  document.getElementById("sCalc").onclick=()=>{ OB.step=0; OB.err={}; renderOnb(); window.scrollTo(0,0); };
+  document.getElementById("sProf").onclick=()=>{ const d=readProf(); if(!d) return;
+    MODE="perfil"; lsSet(KMODE,"perfil"); lsDel(KEYS.demo); S=newState({nome:pf.nome.trim()}); S.consent=today();
+    setMeta(d.valor,"profissional",{prof:d.prof}); OB=null; shownP=null; go("hoje"); toast(`Tudo pronto. Meta: ${d.valor} g por dia`); };
+}
+const ONB_STEPS=["Sua idade","Medidas","Objetivo","Rotina","Saúde","Sua estimativa"];
 function numVal(v){ const n=parseFloat(String(v).replace(",",".")); return isNaN(n)?null:n; }
 function validateStep(s,pf){
   const e={};
-  if(s===0){ if((pf.nome||"").trim().length<2) e.nome="Informe seu nome.";
-    const i=numVal(pf.idade); if(i===null||i<10||i>100||!Number.isInteger(i)) e.idade="Informe a idade em anos (número inteiro).";
-    if(!pf.sexo) e.sexo="Escolha uma opção."; }
+  if(s===0){ const i=numVal(pf.idade); if(i===null||i<10||i>100||!Number.isInteger(i)) e.idade="Informe a idade em anos (número inteiro)."; }
   if(s===1){ const p=numVal(pf.peso), a=numVal(pf.altura);
     if(p===null||p<30||p>250) e.peso="Informe o peso em kg, entre 30 e 250.";
     if(a===null||a<120||a>220) e.altura="Informe a altura em cm, entre 120 e 220."; }
@@ -643,10 +820,8 @@ function optCards(name,list,cur){ return `<div class="opts">${list.map(o=>`<butt
 function renderOnb(){
   const el=document.getElementById("v-onb"), s=OB.step, pf=OB.pf, E=OB.err;
   let body="";
-  if(s===0) body=`<label class="field" for="fNome"><span class="label">Nome completo</span><input class="inp" id="fNome" autocomplete="name" value="${esc(pf.nome)}">${errH(E.nome)}</label>
-    <label class="field" for="fIdade"><span class="label">Idade</span><div class="inp-u"><input class="inp" id="fIdade" type="number" inputmode="numeric" value="${esc(pf.idade)}"><span>anos</span></div>${errH(E.idade)}</label>
-    <div class="field"><span class="label">Sexo</span><div class="chips">${SEXO.map(([v,l])=>`<button class="chip" data-sexo="${v}" aria-pressed="${pf.sexo===v}">${l}</button>`).join("")}</div>${errH(E.sexo)}
-    <p class="hint">Não altera o cálculo da meta: as referências usadas expressam a necessidade em gramas por quilo, igual para homens e mulheres.</p></div>`;
+  if(s===0) body=`<p class="sub">Sem uma meta do professor, o app calcula uma <b>estimativa provisória</b>. Confirme depois com o seu professor no Studio.</p>
+    <label class="field" for="fIdade"><span class="label">Idade</span><div class="inp-u"><input class="inp" id="fIdade" type="number" inputmode="numeric" value="${esc(pf.idade)}"><span>anos</span></div>${errH(E.idade)}</label>`;
   if(s===1) body=`<label class="field" for="fPeso"><span class="label">Peso atual</span><div class="inp-u"><input class="inp" id="fPeso" type="number" inputmode="decimal" step="0.1" value="${esc(pf.peso)}"><span>kg</span></div>${errH(E.peso)}</label>
     <label class="field" for="fAlt"><span class="label">Altura</span><div class="inp-u"><input class="inp" id="fAlt" type="number" inputmode="numeric" value="${esc(pf.altura)}"><span>cm</span></div>${errH(E.altura)}</label>
     <p class="hint">A altura é usada só para calcular o IMC, o que evita uma meta exagerada quando o peso está bem acima da referência.</p>`;
@@ -658,9 +833,9 @@ function renderOnb(){
     <p class="hint">Não pedimos detalhes. A resposta fica só neste aparelho e serve para saber se a estimativa automática é adequada.</p>`;
   if(s===5) body=metaResultHTML(cleanPf(pf));
   el.innerHTML=`<div class="onb-wrap">
-    <div class="onb-top"><div class="label">Etapa ${s+1} de ${ONB_STEPS.length}</div><div class="prog"><i style="width:${(s+1)/ONB_STEPS.length*100}%"></i></div><h2 class="v-title">${ONB_STEPS[s]}</h2></div>
+    <div class="onb-top"><div class="label">Estimativa · passo ${s+1} de ${ONB_STEPS.length}</div><div class="prog"><i style="width:${(s+1)/ONB_STEPS.length*100}%"></i></div><h2 class="v-title">${ONB_STEPS[s]}</h2></div>
     <div class="onb-body">${body}</div>
-    <div class="onb-foot">${s<5?`<button class="btn btn-primary" id="oNext">Continuar</button>`:""}${s>0?`<button class="btn btn-link" id="oBack">Voltar</button>`:`<button class="btn btn-link" id="oCancel">Cancelar</button>`}</div></div>`;
+    <div class="onb-foot">${s<5?`<button class="btn btn-primary" id="oNext">Continuar</button>`:""}${s>0?`<button class="btn btn-link" id="oBack">Voltar</button>`:`<button class="btn btn-link" id="oCancel">Voltar</button>`}</div></div>`;
   const bind=(id,key)=>{ const i=document.getElementById(id); if(i) i.oninput=()=>{pf[key]=i.value;}; };
   bind("fNome","nome"); bind("fIdade","idade"); bind("fPeso","peso"); bind("fAlt","altura");
   el.querySelectorAll("[data-sexo]").forEach(b=>b.onclick=()=>{pf.sexo=b.dataset.sexo; delete E.sexo; renderOnb();});
@@ -669,7 +844,7 @@ function renderOnb(){
   el.querySelectorAll("[data-sau]").forEach(b=>b.onclick=()=>{pf.saude=b.dataset.sau; delete E.saude; renderOnb();});
   const nx=document.getElementById("oNext"); if(nx) nx.onclick=()=>{ OB.err=validateStep(s,pf); if(Object.keys(OB.err).length){ renderOnb(); return; } OB.step++; renderOnb(); window.scrollTo(0,0); };
   const bk=document.getElementById("oBack"); if(bk) bk.onclick=()=>{ OB.err={}; OB.step--; renderOnb(); };
-  const cc=document.getElementById("oCancel"); if(cc) cc.onclick=showWelcome;
+  const cc=document.getElementById("oCancel"); if(cc) cc.onclick=()=>{ OB.phase="b"; OB.err={}; renderStart(); };
   if(s===5) bindMetaResult(cleanPf(pf));
 }
 function calcRows(r){
@@ -683,8 +858,8 @@ function calcRows(r){
     <p class="hint" style="margin:6px 0 0"><b>Referência:</b> ${esc(r.ref)}</p>
     ${r.avisos.length?`<ul class="bul small">${r.avisos.map(a=>`<li>${esc(a)}</li>`).join("")}</ul>`:""}`;
 }
-function profFormHTML(){ return `<div class="prof-form"><label class="field" for="pVal"><span class="label">Meta definida pelo profissional</span><div class="inp-u"><input class="inp" id="pVal" type="number" inputmode="numeric" placeholder="ex.: 110"><span>g/dia</span></div></label>
-  <label class="field" for="pNome"><span class="label">Nome do profissional (opcional)</span><input class="inp" id="pNome" autocomplete="off"></label><div id="pErr"></div></div>`; }
+function profFormHTML(){ return `<div class="prof-form"><label class="field" for="pVal"><span class="label">Meta diária de proteína</span><div class="inp-u"><input class="inp" id="pVal" type="number" inputmode="numeric" placeholder="ex.: 110"><span>g/dia</span></div></label>
+  <label class="field" for="pNome"><span class="label">Quem definiu a meta (opcional)</span><input class="inp" id="pNome" autocomplete="off" placeholder="ex.: Prof. Sherley"></label><div id="pErr"></div></div>`; }
 function readProf(){ const v=numVal(document.getElementById("pVal").value); const n=document.getElementById("pNome").value.trim();
   if(v===null||v<20||v>400){ document.getElementById("pErr").innerHTML=errH("Informe a meta em gramas por dia, entre 20 e 400."); return null; } return {valor:Math.round(v),prof:n}; }
 function metaResultHTML(pf){
@@ -693,14 +868,14 @@ function metaResultHTML(pf){
     <p class="sub">Você pode informar a meta que o profissional definiu e usar o aplicativo normalmente.</p>${profFormHTML()}
     <button class="btn btn-primary" id="mProf">Usar meta do profissional</button>`;
   return `<div class="meta-res"><span class="label">Estimativa educativa</span><div class="mr-val num">≈ ${r.valor} g<small> por dia</small></div>
-    <p class="sub">Calculada a partir do seu peso, objetivo e rotina. Não é uma prescrição individualizada: um profissional pode ajustá-la.</p></div>
+    <p class="sub">Calculada a partir do seu peso, objetivo e rotina. É uma estimativa provisória, não uma prescrição: confirme a meta com o seu professor.</p></div>
     <details class="more" open><summary>Como foi calculada</summary>${calcRows(r)}</details>
     <button class="btn btn-primary" id="mUse">Usar esta estimativa</button>
     <button class="btn btn-ghost" id="mOpenProf">Tenho uma meta definida por profissional</button>
     <div id="profBox" hidden>${profFormHTML()}<button class="btn btn-primary" id="mProf" style="margin-top:12px">Usar meta do profissional</button></div>`;
 }
 function bindMetaResult(pf){
-  const finish=(valor,tipo,extra)=>{ MODE="perfil"; lsSet(KMODE,"perfil"); lsDel(KEYS.demo); S=newState(pf); setMeta(valor,tipo,extra); OB=null; shownP=null; go("hoje"); toast(`Perfil criado. Meta: ${valor} g por dia`); };
+  const finish=(valor,tipo,extra)=>{ MODE="perfil"; lsSet(KMODE,"perfil"); lsDel(KEYS.demo); S=newState(pf); S.consent=today(); setMeta(valor,tipo,extra); OB=null; shownP=null; go("hoje"); toast(`Perfil criado. Meta: ${valor} g por dia`); };
   const u=document.getElementById("mUse"); if(u) u.onclick=()=>{ const r=estimate(pf); finish(r.valor,"estimativa",{calc:r}); };
   const op=document.getElementById("mOpenProf"); if(op) op.onclick=()=>{ document.getElementById("profBox").hidden=false; op.hidden=true; document.getElementById("pVal").focus(); };
   const p=document.getElementById("mProf"); if(p) p.onclick=()=>{ const d=readProf(); if(d) finish(d.valor,"profissional",{prof:d.prof}); };
@@ -716,16 +891,17 @@ function renderHoje(){
   const el=document.getElementById("v-hoje");
   const byMeal=MEALS.map(([m,label])=>{ const es=dayEntries(k).filter(e=>e.meal===m); const t=es.reduce((a,e)=>a+e.p,0);
     return `<div class="meal-block"><div class="meal-head"><h3>${label}</h3><span class="tot num">${es.length?"≈ "+fmtP(t)+" g":""}</span></div>
-    ${es.length? es.map(entryHTML).join("") : `<div class="meal-empty">Nada registrado.</div>`}</div>`; }).join("");
+    ${es.length? es.map(entryHTML).join("") : `<div class="meal-empty">Nada registrado.</div>`}
+    <div class="meal-acts"><button class="btn btn-ghost btn-sm" data-addm="${m}">+ Adicionar</button>${!es.length&&lastMeal(m)?`<button class="btn btn-ghost btn-sm" data-rep="${m}">Repetir o último</button>`:""}</div></div>`; }).join("");
   const opts = left>0 ? pickOptions(left) : [];
   const dt=new Date().toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long"});
   el.innerHTML = `
   <div class="greet"><h2 class="v-title">Olá, ${esc(firstName())}</h2><p class="sub">${dt}</p></div>
   ${showGuide()?`<div class="guide"><h3>Comece por aqui</h3>
     <p class="sub" style="margin:0">O anel mostra quanto da sua meta de proteína você já consumiu hoje. Para usar o app:</p>
-    <ol><li>Toque no botão <b>+</b>, no centro da barra de baixo, para registrar o que comeu: foto, busca de alimento, combinação pronta ou o montador de shake com whey.</li>
-    <li>Confirme a porção e toque em <b>Confirmar consumo</b>. O anel e o número de <b>Faltam</b> se atualizam.</li>
-    <li>Sem ideia do que comer? Veja <b>Para completar</b> logo abaixo do anel ou a aba <b>Sugestões</b>.</li></ol>
+    <ol><li>Toque em <b>Registrar o que comi</b> e escreva a refeição do seu jeito. Exemplo: <b>arroz, feijão e 2 ovos</b>.</li>
+    <li>Confira a quantidade de cada alimento e toque em <b>Confirmar consumo</b>.</li>
+    <li>Acompanhe no anel quanto já consumiu e quanto <b>falta</b> para a sua meta.</li></ol>
     <button class="btn btn-primary" id="gAdd">Registrar minha primeira refeição</button>
     <button class="btn btn-link" id="gOff">Entendi, ocultar este guia</button></div>`:""}
   <div class="ring-card">
@@ -741,17 +917,23 @@ function renderHoje(){
     </div>
     <button class="meta-note" id="btnMetaInfo">${metaLabel()}</button>
   </div>
+  <button class="btn btn-primary" id="hAdd"><svg width="20" height="20"><use href="#i-plus"/></svg>Registrar o que comi</button>
   ${ left>0 ? `<div class="sug-inline"><div class="sec-head"><h3>Para completar ${fmtP(left)} g</h3><button class="link" id="btnMoreSug">Ver todas as sugestões</button></div>
       ${opts.map((c,i)=>`<div class="opt-row"><div class="ri"><div class="rn">${esc(c.n)}</div><div class="rm">${esc(c.sub)}</div>
-        <div class="combo-tags" style="margin-top:6px"><span class="badge b-neutral">${optLabel(c)}</span>${c.whey?'<span class="badge b-whey">com whey</span>':'<span class="badge b-ok">sem whey</span>'}${c.ilu?'<span class="badge b-ilu">ilustrativo</span>':""}</div></div>
+        <div class="combo-tags" style="margin-top:6px"><span class="badge b-neutral">${optLabel(c)}</span>${c.whey?'<span class="badge b-whey">com whey</span>':'<span class="badge b-ok">sem whey</span>'}${c.ilu?'<span class="badge b-ilu">confira o rótulo</span>':""}</div></div>
         <div class="or-side"><b class="num">≈ ${fmtP(c.p)} g</b><button class="btn btn-primary btn-sm" data-pick="${i}">Já comi</button></div></div>`).join("")}
       ${opts.length && left>Math.max(...opts.map(o=>o.p))*1.2?`<p class="hint">Para completar ${fmtP(left)} g, distribua entre as próximas refeições.</p>`:""}
       <p class="hint">Nada é registrado até você tocar em <b>Já comi</b> e confirmar a porção.</p></div>`
      : `<div class="done-card"><svg width="24" height="24" style="color:var(--teal);flex:none"><use href="#i-check"/></svg><div><b>Meta de hoje atingida.</b><div class="sub">Siga suas refeições normalmente, sem necessidade de ultrapassar.</div></div></div>` }
   ${byMeal}
-  <p class="foot-note">Valores de proteína são estimativas. Fonte principal: TACO 4ª ed. (NEPA/UNICAMP). Itens marcados como <b>ilustrativo</b> ainda não foram verificados. Toque em ✎ para corrigir a porção ou em 🗑 para excluir; também é possível deslizar o item para a esquerda.</p>`;
+  ${MODE==="perfil"?`<button class="btn btn-ghost" id="hSend">Enviar meu dia pelo WhatsApp</button>`:""}
+  <p class="foot-note">Valores de proteína são estimativas para acompanhamento. Fonte: TACO 4ª ed. (NEPA/UNICAMP). Itens com <b>confira o rótulo</b> usam valor típico de embalagem. Toque no lápis para corrigir a porção ou na lixeira para excluir.</p>`;
   document.getElementById("btnMetaInfo").onclick=openMetaInfo;
-  const ga=document.getElementById("gAdd"); if(ga) ga.onclick=()=>document.getElementById("btnAdd").click();
+  document.getElementById("hAdd").onclick=()=>openManual();
+  const hs=document.getElementById("hSend"); if(hs) hs.onclick=sendSummary;
+  el.querySelectorAll("[data-addm]").forEach(b=>b.onclick=()=>openManual(b.dataset.addm));
+  el.querySelectorAll("[data-rep]").forEach(b=>b.onclick=()=>repeatMeal(b.dataset.rep));
+  const ga=document.getElementById("gAdd"); if(ga) ga.onclick=()=>openManual();
   const go2=document.getElementById("gOff"); if(go2) go2.onclick=()=>{ S.guideOff=true; S.guideForce=false; save(); renderHoje(); };
   const ms=document.getElementById("btnMoreSug"); if(ms) ms.onclick=()=>go("sug");
   el.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{ const c=opts[+b.dataset.pick]; openPortion({kind:c.kind,ref:c.ref,g:c.g,mult:1,meal:currentMeal()}); });
@@ -771,7 +953,7 @@ function countUp(a,b){ const el=document.getElementById("ringVal"); const t0=per
   const step=t=>{ const k=Math.min(1,(t-t0)/D), e=1-Math.pow(1-k,3); if(el) el.innerHTML=fmtP(a+(b-a)*e)+"<small>g</small>"; if(k<1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
 function entryHTML(e){
   const q = e.kind==="custom" ? (e.kcal!=null?`≈ ${fmt(Math.round(e.kcal),0)} kcal`:"") : e.kind==="shake" ? "Shake montado por você" : e.kind==="combo" ? (e.mult===1?"1 porção":fmt(e.mult)+" porções") : `${fmt(e.g,0)} ${unit(FOOD[e.ref])}`;
-  const tags = (e.user?`<span class="badge b-user">informado por você</span>`:"") + (e.sim?`<span class="badge b-sim">simulação</span>`:"") + (e.ilu?`<span class="badge b-ilu">ilustrativo</span>`:"") + (e.demo?`<span class="badge b-neutral">exemplo</span>`:"");
+  const tags = (e.user?`<span class="badge b-user">informado por você</span>`:"") + (e.sim?`<span class="badge b-sim">simulação</span>`:"") + (e.ilu?`<span class="badge b-ilu">confira o rótulo</span>`:"") + (e.demo?`<span class="badge b-neutral">exemplo</span>`:"");
   return `<div class="entry" data-id="${e.id}"><div class="entry-del-bg">Excluir</div><div class="entry-main">
     <div class="entry-info"><div class="entry-name">${esc(e.n)}</div><div class="entry-meta"><span>${q}</span>${tags}</div></div>
     <div class="entry-p num">≈ ${fmtP(e.p)} g</div>
@@ -811,17 +993,7 @@ backdrop.onclick=closeSheet;
 document.addEventListener("keydown",e=>{ if(e.key==="Escape" && !sheet.hidden) closeSheet(); });
 
 /* ===== REGISTRAR ===== */
-document.getElementById("btnAdd").onclick=()=>{
-  openSheet("Registrar refeição",`
-    <button class="choice" id="chFoto"><div class="ic" style="background:var(--magenta-soft);color:var(--magenta)"><svg><use href="#i-cam"/></svg></div><div><b>Foto da refeição</b><span>Câmera ou galeria · análise simulada nesta versão</span></div></button>
-    <button class="choice" id="chManual"><div class="ic" style="background:var(--teal-soft);color:var(--teal)"><svg><use href="#i-search"/></svg></div><div><b>Registro manual</b><span>Busque o alimento e escolha a porção</span></div></button>
-    <button class="choice" id="chShake"><div class="ic" style="background:var(--magenta-soft);color:var(--magenta)"><svg><use href="#i-bowl"/></svg></div><div><b>Monte seu shake com whey</b><span>Escolha whey, líquido e frutas do seu jeito</span></div></button>
-    <button class="choice" id="chSug"><div class="ic" style="background:var(--surface-2);color:var(--ink)"><svg><use href="#i-bowl"/></svg></div><div><b>Combinações prontas</b><span>Escolha uma refeição sugerida</span></div></button>`);
-  document.getElementById("chShake").onclick=()=>openShake({});
-  document.getElementById("chFoto").onclick=openPhoto;
-  document.getElementById("chManual").onclick=openManual;
-  document.getElementById("chSug").onclick=()=>{closeSheet(); go("sug");};
-};
+document.getElementById("btnAdd").onclick=()=>openManual();
 /* Outros nomes que o cliente usa para cada alimento (busca) */
 const ALIAS={frango:"frango, peito de frango, file de frango, galinha, frango grelhado",frango_desf:"frango desfiado, galinha desfiada, frango cozido",coxa:"coxa, sobrecoxa, frango assado, coxa de frango",
  ovo:"ovo, ovos, ovo cozido",clara:"clara, claras",omelete:"omelete, omelet, ovo mexido",
@@ -829,32 +1001,303 @@ const ALIAS={frango:"frango, peito de frango, file de frango, galinha, frango gr
  acem:"carne moida, moida, moido, carne, carne bovina, carne vermelha, guisado, picadinho",patinho_moido:"carne moida, moida, moido, patinho, carne magra, carne, carne bovina, carne vermelha",lombo:"porco, carne de porco, suino, lombo",linguica:"linguica, linguica de porco",
  merluza:"peixe, file de peixe, peixe assado",atum:"atum, peixe, peixe em lata",sardinha:"sardinha, peixe",
  iogurte:"iogurte",iogurte_d:"iogurte, iogurte light",minas:"queijo, queijo branco, queijo fresco, frescal",ricota:"queijo, ricota",mussarela:"queijo, mucarela, mozarela, queijo amarelo",
- leite:"leite",leite_int:"leite",soja:"leite de soja, bebida vegetal",feijao:"feijao, caldo de feijao",feijao_preto:"feijao, feijao preto",lentilha:"lentilha",ervilha:"ervilha",tofu:"tofu, queijo de soja",
+ leite:"leite",leite_int:"leite",soja:"leite de soja, bebida vegetal, bebida de soja",feijao:"feijao, caldo de feijao",feijao_preto:"feijao, feijao preto",lentilha:"lentilha",ervilha:"ervilha",tofu:"tofu, queijo de soja",
  amendoim:"amendoim",pasta_amend:"pasta de amendoim, manteiga de amendoim",arroz:"arroz, arroz branco",arroz_int:"arroz, arroz integral",batata:"batata, pure",mandioca:"mandioca, aipim, macaxeira",
  pao:"pao, pao de sal, paozinho, pao frances",pao_int:"pao, pao integral, pao de forma",aveia:"aveia",alface:"salada, alface, verdura, folhas",tomate:"tomate, salada",cenoura:"cenoura, legume, legumes",
- banana:"banana",mamao:"mamao, papaia",morango:"morango",whey:"whey, proteina em po, suplemento"};
-const STOP=new Set(["de","da","do","das","dos","com","e","em","a","o"]);
+ banana:"banana",mamao:"mamao, papaia",morango:"morango",whey:"whey, proteina em po, suplemento, whey protein",
+ ovo_frito:"ovo frito, ovo estrelado, ovo mexido, ovos mexidos",
+ frango_assado:"frango assado, frango de padaria, galeto, frango de televisao",
+ sobrecoxa:"sobrecoxa, frango assado, frango",
+ frango_milanesa:"frango a milanesa, frango empanado, milanesa de frango, frango frito",
+ coracao:"coracao, coracaozinho, espetinho de coracao",
+ alcatra:"alcatra, bife, carne, carne bovina, churrasco",
+ picanha:"picanha, churrasco, carne",
+ file_mignon:"file mignon, mignon, medalhao, file, bife, carne",
+ maminha:"maminha, churrasco, carne",
+ coxao_mole:"coxao mole, carne cozida, carne de panela, bife de panela, carne",
+ musculo:"musculo, carne de panela, carne cozida, ensopado, carne",
+ lagarto:"lagarto, carne assada, rosbife, carne",
+ costela:"costela, costela de boi, costelao, churrasco",
+ cupim:"cupim, churrasco",
+ fraldinha:"fraldinha, churrasco, carne",
+ figado:"figado, bife de figado",
+ carne_seca:"carne seca, carne de sol, charque, jaba",
+ bife_milanesa:"bife a milanesa, milanesa, bife empanado",
+ almondega:"almondega, almondegas, bolinho de carne",
+ hamburguer:"hamburguer, hamburger, burger, carne de hamburguer",
+ pernil:"pernil, porco, carne de porco",
+ bisteca:"bisteca, porco, carne de porco, costeleta",
+ costela_porco:"costelinha, costela de porco, porco",
+ linguica_frango:"linguica de frango, linguica",
+ torresmo:"torresmo, toucinho",
+ peru:"peru, peru assado",
+ presunto:"presunto, frios",
+ apresuntado:"apresuntado, frios",
+ mortadela:"mortadela, frios",
+ salame:"salame, frios, salaminho",
+ peixe_frito:"peixe frito, file de peixe frito, merluza frita",
+ pescada:"pescada, peixe frito",
+ salmao:"salmao, peixe, peixe grelhado",
+ abadejo:"abadejo, peixe grelhado, file de peixe grelhado",
+ pintado:"pintado, surubim, peixe grelhado",
+ sardinha_lata:"sardinha em lata, sardinha enlatada, sardinha em conserva",
+ bacalhau:"bacalhau, bacalhoada",
+ camarao:"camarao, camaroes",
+ iogurte_morango:"iogurte de morango, iogurte de fruta, iogurte sabor",
+ bebida_lactea:"bebida lactea, iogurte de garrafinha",
+ minas_cura:"queijo minas, queijo curado, meia cura, queijo canastra, queijo",
+ prato:"queijo prato, queijo amarelo, queijo fatiado, queijo",
+ parmesao:"parmesao, queijo ralado",
+ requeijao:"requeijao, catupiry",
+ leite_po:"leite em po, leite ninho",
+ leite_po_d:"leite em po desnatado, leite molico",
+ achocolatado:"achocolatado, toddynho, leite com chocolate",
+ leite_ferm:"leite fermentado, yakult",
+ creme_leite:"creme de leite, nata",
+ doce_leite:"doce de leite",
+ feijao_fradinho:"feijao fradinho, feijao de corda, feijao verde",
+ pacoca:"pacoca, pacoquinha",
+ castanha_caju:"castanha de caju, castanha, castanhas",
+ castanha_para:"castanha do para, castanha do brasil",
+ amendoa:"amendoa, amendoas",
+ noz:"noz, nozes",
+ linhaca:"linhaca, semente de linhaca",
+ macarrao_bol:"macarrao, espaguete, massa, macarronada, bolonhesa, macarrao com carne moida",
+ nhoque:"nhoque",
+ torrada:"torrada, torradas",
+ cream_cracker:"biscoito de agua e sal, bolacha de agua e sal, cream cracker, biscoito salgado, bolacha salgada",
+ maisena:"biscoito maisena, bolacha maisena, biscoito doce, bolacha doce, bolacha maria",
+ bolo_choc:"bolo, bolo de chocolate",
+ bolo_milho:"bolo de milho, bolo de fuba, bolo",
+ bolo_coco:"bolo de coco, bolo",
+ bolo_aipim:"bolo de aipim, bolo de mandioca, bolo de macaxeira",
+ cereal:"cereal, sucrilhos, cereal matinal, corn flakes",
+ cuscuz:"cuscuz, cuscuz nordestino",
+ polenta:"polenta, angu",
+ pipoca:"pipoca",
+ pao_queijo:"pao de queijo, paozinho de queijo",
+ tapioca:"tapioca, beiju",
+ pastel_carne:"pastel, pastel de carne",
+ pastel_queijo:"pastel de queijo, pastel",
+ farinha_mand:"farinha, farinha de mandioca",
+ farofa:"farofa",
+ milho:"milho, milho verde",
+ pamonha:"pamonha",
+ canjica:"canjica, mungunza",
+ batata_frita:"batata frita, fritas",
+ batata_saute:"batata saute, batata na manteiga",
+ batata_doce:"batata doce",
+ mandioca_frita:"mandioca frita, aipim frito, macaxeira frita",
+ baroa:"batata baroa, mandioquinha, batata salsa",
+ cara:"cara, inhame",
+ brocolis:"brocolis, verdura, legume",
+ couve:"couve, couve refogada, verdura",
+ abobrinha:"abobrinha, legume",
+ abobora:"abobora, moranga, jerimum, legume",
+ beterraba:"beterraba, legume",
+ chuchu:"chuchu, legume",
+ couve_flor:"couve flor, legume",
+ repolho:"repolho, salada de repolho",
+ pepino:"pepino, salada",
+ rucula:"rucula, salada, folhas",
+ espinafre:"espinafre, verdura",
+ berinjela:"berinjela, legume",
+ cenoura_crua:"cenoura ralada, cenoura crua, salada",
+ palmito:"palmito",
+ salada_maionese:"maionese, salada de maionese, salada de batata, salpicao de legumes",
+ legumes_vapor:"legumes, legumes cozidos, legumes no vapor",
+ banana_nanica:"banana nanica, banana dagua, banana caturra",
+ maca:"maca, fruta",
+ laranja:"laranja, fruta",
+ suco_laranja:"suco, suco de laranja, suco natural",
+ mamao_formosa:"mamao formosa, mamao",
+ manga:"manga, fruta",
+ abacaxi:"abacaxi, fruta",
+ melancia:"melancia, fruta",
+ melao:"melao, fruta",
+ uva:"uva, uvas, fruta",
+ abacate:"abacate, fruta",
+ pera:"pera, fruta",
+ tangerina:"tangerina, mexerica, bergamota, ponca, fruta",
+ kiwi:"kiwi, fruta",
+ goiaba:"goiaba, fruta",
+ acai:"acai, acai na tigela",
+ feijoada:"feijoada",
+ tropeiro:"feijao tropeiro, tropeiro",
+ estrog_carne:"estrogonofe, strogonoff, estrogonofe de carne",
+ estrog_frango:"estrogonofe de frango, strogonoff de frango, estrogonofe",
+ yakisoba:"yakisoba, yakissoba",
+ salpicao:"salpicao",
+ baiao:"baiao de dois, baiao",
+ carreteiro:"arroz carreteiro, carreteiro, arroz com carne",
+ bife_cavalo:"bife a cavalo, bife com ovo",
+ vaca_atolada:"vaca atolada, costela com mandioca",
+ dobradinha:"dobradinha, bucho",
+ cuscuz_paulista:"cuscuz paulista",
+ tabule:"tabule",
+ quibe_assado:"quibe assado, kibe assado, quibe de forno",
+ quibe_frito:"quibe, kibe, quibe frito",
+ coxinha:"coxinha, salgado, salgadinho",
+ empada:"empada, empadinha, salgado",
+ croquete:"croquete, salgadinho",
+ bolinho_arroz:"bolinho de arroz",
+ acaraje:"acaraje",
+ charuto:"charuto, charutinho",
+ chocolate:"chocolate, bombom",
+ achoc_po:"achocolatado em po, nescau, toddy",
+ cafe:"cafe, cafezinho, cafe preto"};
+const STOP=new Set(["de","da","do","das","dos","com","e","em","a","o","ao","na","no","nas","nos"]);
 const stem=w=>w.replace(/s$/,"").replace(/[aoe]$/,"");
 function matchQ(q,hay){ const qs=norm(q).split(/[^a-z0-9]+/).filter(w=>w.length>1&&!STOP.has(w)).map(stem); if(!qs.length) return true;
   const hs=norm(hay).split(/[^a-z0-9]+/).filter(Boolean).map(stem); return qs.every(t=>hs.some(h=>h.startsWith(t))); }
 function foodHay(f){ return f.n+" "+(f.prep||"")+" "+(ALIAS[f.id]||""); }
 
-function openManual(){
-  openSheet("Registro manual",`<div class="search"><svg width="18" height="18" style="color:var(--muted)"><use href="#i-search"/></svg><input id="q" type="search" placeholder="Buscar alimento" autocomplete="off" aria-label="Buscar alimento"></div><div class="list" id="foodList"></div>
-    <button class="btn btn-ghost" id="btnCustom"><svg width="18" height="18"><use href="#i-pen"/></svg>Não encontrei: digitar valores do rótulo</button>`);
-  document.getElementById("btnCustom").onclick=()=>openCustom({n:document.getElementById("q").value.trim()});
-  const q=document.getElementById("q"), list=document.getElementById("foodList");
+/* ===== LEITURA DO TEXTO DA REFEIÇÃO (regras fixas, sem IA) ===== */
+const QW={um:1,uma:1,dois:2,duas:2,tres:3,quatro:4,cinco:5,seis:6,meio:0.5,meia:0.5};
+const UW=new Set(["concha","conchas","fatia","fatias","unidade","unidades","copo","copos","xicara","xicaras","pedaco","pedacos","pote","potes","lata","latas","prato","pratos","gomo","gomos","grande","grandes","pequeno","pequena","medio","cheia","cheias","rasa","rasas","pouco","porcao","porcoes","comi","tomei","bebi","hoje","almoco","jantar","lanche","mais","meu","minha","pra","para","foi","so","tambem","depois","antes"]);
+const toks=s=>norm(s).split(/[^a-z0-9]+/).filter(w=>w.length>1&&!STOP.has(w)).map(stem);
+let FTOK=null;
+function ftok(f){ if(!FTOK){ FTOK={}; FOODS.forEach(x=>{ FTOK[x.id]={name:toks(x.n),als:(ALIAS[x.id]||"").split(",").map(toks).filter(a=>a.length),hay:toks(foodHay(x))}; }); } return FTOK[f.id]; }
+function foodScore(qt,f){
+  if(!qt.length) return 0; const T=ftok(f);
+  const has=hs=>qt.every(t=>hs.some(h=>h===t||(t.length>=4&&h.startsWith(t))));
+  const eq=hs=>hs.length===qt.length && qt.every(t=>hs.includes(t));
+  if(eq(T.name)||T.als.some(eq)) return 4;
+  if(has(T.name)) return 3;
+  if(T.als.some(has)) return 2;
+  return has(T.hay)?1:0;
+}
+function bestFood(qt,min){ let best=null,bs=0; FOODS.forEach(f=>{ const s=foodScore(qt,f); if(s>bs){bs=s;best=f;} }); return bs>=min?best:null; }
+function unitG(f){ const m=String(f.por[0][0]).match(/^(\d+|½)/); const n=m?(m[1]==="½"?0.5:+m[1]):1; return f.por[0][1]/n; }
+function parseMeal(text){
+  const items=[], unknown=[], seen=new Set();
+  const put=(f,g,q)=>{ if(seen.has(f.id)) return; seen.add(f.id);
+    const gg=g!=null?g:(q!=null?Math.round(q*unitG(f)):f.por[0][1]); items.push({ref:f.id,g:Math.max(1,Math.min(1500,gg))}); };
+  String(text).replace(/½/g," 0.5 ").replace(/(\d)\s*\/\s*2\b/g,"0.5").split(/[,;+\n]+/).forEach(chunk=>{
+    let s=norm(chunk).replace(/colher(es)?( de)?( sopa| cha| sobremesa| servir)?/g," ");
+    let g=null,q=null; const words=[];
+    s=s.replace(/(\d+(?:[.,]\d+)?)\s*(gramas|grama|gr|g|ml)\b/g,(m,n)=>" #g"+n.replace(",",".")+" ");
+    s.split(/[^a-z0-9#.]+/).filter(Boolean).forEach(w=>{
+      if(w.startsWith("#g")){ words.push({g:parseFloat(w.slice(2))}); return; }
+      if(/^\d+(\.\d+)?$/.test(w)){ words.push({q:parseFloat(w)}); return; }
+      if(w in QW){ words.push({q:QW[w]}); return; }
+      if(UW.has(w)||STOP.has(w)||w.length<2) return;
+      words.push({w});
+    });
+    let i=0, miss=[];
+    const flush=()=>{ if(miss.length){ unknown.push(miss.join(" ")); miss=[]; } };
+    while(i<words.length){
+      const x=words[i];
+      if(x.g!=null){ g=x.g; i++; continue; }
+      if(x.q!=null){ q=x.q; i++; continue; }
+      let found=null, used=0;
+      for(let len=4; len>=1 && !found; len--){
+        const span=[]; let j=i; while(j<words.length && span.length<len && words[j].w){ span.push(words[j].w); j++; }
+        if(span.length<len) continue;
+        const f=bestFood(span.map(stem),2); if(f){ found=f; used=len; }
+      }
+      if(found){ flush();
+        let k=i+used; if(g==null && k<words.length && words[k].g!=null){ g=words[k].g; k++; }
+        put(found,g,q); g=null; q=null; i=k; }
+      else { miss.push(x.w); i++; }
+    }
+    flush();
+  });
+  return {items,unknown};
+}
+function recentFoods(){ const c={}; Object.keys(S.days).forEach(k=>S.days[k].forEach(e=>{ if(e.kind==="food"&&!e.demo&&FOOD[e.ref]) c[e.ref]=(c[e.ref]||0)+1; })); return Object.keys(c).sort((a,b)=>c[b]-c[a]).slice(0,6); }
+
+function openManual(meal){
+  const ml=(typeof meal==="string"&&MEAL_NAME[meal])?meal:currentMeal();
+  openSheet("O que você comeu?",`<div class="search"><svg width="18" height="18" style="color:var(--muted)"><use href="#i-search"/></svg><input id="q" type="search" placeholder="Ex.: arroz, feijão e 2 ovos" autocomplete="off" aria-label="Escreva o que você comeu"></div>
+    <p class="hint" style="margin:0">Escreva um alimento ou a refeição inteira. O app encontra e você confere a quantidade.</p>
+    <div id="multiBox"></div><div class="list" id="foodList"></div>
+    <div class="ways"><button class="btn btn-ghost" id="wShake">Montar shake com whey</button><button class="btn btn-ghost" id="wCombo">Ver refeições prontas</button>
+    <button class="btn btn-ghost" id="btnCustom">Produto com rótulo (iogurte proteico, barrinha…)</button></div>`);
+  document.getElementById("btnCustom").onclick=()=>openCustom({n:"",meal:ml});
+  document.getElementById("wShake").onclick=()=>openShake({meal:ml});
+  document.getElementById("wCombo").onclick=()=>{closeSheet(); go("sug");};
+  const q=document.getElementById("q"), list=document.getElementById("foodList"), mb=document.getElementById("multiBox");
+  const row=f=>{ const [pl,pg]=f.por[0]; const v=foodNut(f.id,pg);
+    return `<button class="row" data-f="${f.id}"><div class="ri"><div class="rn">${esc(f.n)}</div><div class="rm">${esc(f.prep||"")}${f.prep?" · ":""}${pl} (${pg} ${unit(f)}) ${isIlu(f.id)?' · <span class="badge b-ilu">confira o rótulo</span>':""}</div></div><div class="rp num">≈ ${fmtP(v.p)} g</div></button>`; };
   const draw=()=>{ const t=q.value.trim();
+    const pm=t?parseMeal(t):{items:[],unknown:[]};
+    if(pm.items.length>=2){
+      mb.innerHTML=`<div class="guide"><h3>Encontrei ${pm.items.length} alimentos</h3><p class="sub" style="margin:0">${pm.items.map(i=>esc(FOOD[i.ref].n)).join(" · ")}</p>
+        ${pm.unknown.length?`<p class="hint" style="margin:0">Não encontrei: <b>${esc(pm.unknown.join(", "))}</b>. Registre separado, com outra palavra.</p>`:""}
+        <button class="btn btn-primary" id="mGo">Conferir quantidades</button></div>`;
+      list.innerHTML="";
+      document.getElementById("mGo").onclick=()=>openMeal({items:pm.items,meal:ml,unknown:pm.unknown});
+      return;
+    }
+    mb.innerHTML="";
     const cs=(S.customs||[]).filter(c=>!t||matchQ(t,c.n));
-    const fs=FOODS.filter(f=>!t||matchQ(t,foodHay(f))).sort((a,b)=>(matchQ(t,a.n)?0:1)-(matchQ(t,b.n)?0:1));
     const ch=cs.map(c=>`<button class="row" data-c="${c.id}"><div class="ri"><div class="rn">${esc(c.n)}</div><div class="rm"><span class="badge b-user">informado por você</span>${c.kcal!=null?` · ≈ ${fmt(Math.round(c.kcal),0)} kcal`:""}</div></div><div class="rp num">≈ ${fmtP(c.p)} g</div></button>`).join("");
-    const fh=fs.map(f=>{ const [pl,pg]=f.por[0]; const v=foodNut(f.id,pg);
-      return `<button class="row" data-f="${f.id}"><div class="ri"><div class="rn">${esc(f.n)}</div><div class="rm">${esc(f.prep||"")}${f.prep?" · ":""}${pl} (${pg} ${unit(f)}) ${isIlu(f.id)?' · <span class="badge b-ilu">ilustrativo</span>':""}</div></div><div class="rp num">≈ ${fmtP(v.p)} g</div></button>`; }).join("");
-    list.innerHTML = (ch+fh) || `<div class="row"><div class="ri"><div class="rn">Nada encontrado para "${esc(t)}"</div><div class="rm">Tente uma palavra simples, como <b>carne</b>, <b>frango</b>, <b>peixe</b>, <b>queijo</b> ou <b>feijão</b>, e escolha o alimento mais parecido. Use "digitar" só para produtos com rótulo.</div></div></div>`;
-    list.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>openPortion({kind:"food",ref:b.dataset.f,meal:currentMeal()}));
-    list.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{ const c=S.customs.find(x=>x.id===b.dataset.c); openCustom({n:c.n,p:c.p,kcal:c.kcal,savedId:c.id}); }); };
+    let fh="";
+    if(!t){ const rc=recentFoods();
+      fh=(rc.length?`<div class="label" style="padding:10px 16px 4px">Seus mais usados</div>`+rc.map(id=>row(FOOD[id])).join("")+`<div class="label" style="padding:14px 16px 4px">Todos os alimentos</div>`:"")
+        +[...FOODS].sort((a,b)=>a.n.localeCompare(b.n,"pt-BR")).map(row).join("");
+    } else { const qt=toks(t);
+      fh=FOODS.map((f,i)=>({f,i,s:foodScore(qt,f)})).filter(x=>x.s>0).sort((a,b)=>b.s-a.s||a.i-b.i).map(x=>row(x.f)).join(""); }
+    list.innerHTML = (ch+fh) || `<div class="row"><div class="ri"><div class="rn">Não encontrei "${esc(t)}"</div><div class="rm">Tente uma palavra simples, como <b>carne</b>, <b>frango</b>, <b>peixe</b>, <b>queijo</b> ou <b>feijão</b>, e escolha o mais parecido.</div></div></div>`;
+    list.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>openPortion({kind:"food",ref:b.dataset.f,meal:ml}));
+    list.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{ const c=S.customs.find(x=>x.id===b.dataset.c); openCustom({n:c.n,p:c.p,kcal:c.kcal,savedId:c.id,meal:ml}); }); };
   q.oninput=draw; draw();
 }
+/* Conferir vários alimentos de uma vez */
+function openMeal(o){
+  const st={items:o.items.map(i=>({...i})),meal:o.meal||currentMeal()};
+  const draw=()=>{
+    const total=st.items.reduce((a,i)=>a+foodNut(i.ref,i.g).p,0);
+    const body=`${o.unknown&&o.unknown.length?`<div class="notice"><svg><use href="#i-warn"/></svg><span>Não encontrei: <b>${esc(o.unknown.join(", "))}</b>. Depois de confirmar, registre separado com outra palavra.</span></div>`:""}
+      <p class="hint" style="margin:0">Confira cada quantidade. Use − e + para ajustar ou o ✕ para tirar um item.</p>
+      ${st.items.map((it,i)=>{ const f=FOOD[it.ref], v=foodNut(it.ref,it.g);
+        return `<div class="sh-row"><div style="display:flex;align-items:center;gap:10px"><div style="flex:1;min-width:0"><div class="sh-n">${esc(f.n)}</div><div class="sub">${esc(f.prep||"")}</div></div>
+          <b class="num" style="white-space:nowrap">≈ ${fmtP(v.p)} g</b><button class="mini-btn" data-rm="${i}" aria-label="Tirar ${esc(f.n)}"><svg><use href="#i-x"/></svg></button></div>
+          <div class="chips">${f.por.map(([l,pg])=>`<button class="chip" data-pg="${i}|${pg}" aria-pressed="${it.g===pg}">${l}</button>`).join("")}</div>
+          <div class="mini-step"><button data-mm="${i}" aria-label="Diminuir">−</button><span class="num">${fmt(it.g,0)} ${unit(f)}</span><button data-mp="${i}" aria-label="Aumentar">+</button></div></div>`; }).join("")}
+      <div class="p-result"><b class="num">≈ ${fmtP(total)} g</b><span>de proteína nesta refeição (estimativa)</span></div>
+      <div class="field"><span class="label">Refeição</span><div class="chips">${MEALS.map(([m,,s])=>`<button class="chip" data-meal="${m}" aria-pressed="${st.meal===m}">${s}</button>`).join("")}</div></div>`;
+    openSheet("Confira sua refeição",body,`<button class="btn btn-primary" id="mOk" ${st.items.length?"":"disabled"}>Confirmar consumo</button>`);
+    const q=s=>document.querySelectorAll("#sheetBody "+s);
+    q("[data-rm]").forEach(b=>b.onclick=()=>{ st.items.splice(+b.dataset.rm,1); draw(); });
+    q("[data-pg]").forEach(b=>b.onclick=()=>{ const [i,g]=b.dataset.pg.split("|"); st.items[+i].g=+g; draw(); });
+    q("[data-mm]").forEach(b=>b.onclick=()=>{ const it=st.items[+b.dataset.mm]; it.g=Math.max(5,it.g-(it.g<=30?5:10)); draw(); });
+    q("[data-mp]").forEach(b=>b.onclick=()=>{ const it=st.items[+b.dataset.mp]; it.g=Math.min(1500,it.g+(it.g<30?5:10)); draw(); });
+    q("[data-meal]").forEach(b=>b.onclick=()=>{ st.meal=b.dataset.meal; draw(); });
+    document.getElementById("mOk").onclick=()=>{ if(!st.items.length) return;
+      const k=today(); S.days[k] ||= [];
+      st.items.forEach(it=>S.days[k].push(makeEntry({kind:"food",ref:it.ref,g:it.g,meal:st.meal})));
+      save(); closeSheet(); if(view!=="hoje") go("hoje"); else renderHoje();
+      toast(`Registrado: ≈ ${fmtP(total)} g de proteína`); checkCelebrate(); };
+  };
+  draw();
+}
+/* Repetir a última vez que essa refeição foi registrada */
+function lastMeal(m){ const t=today(); const ks=Object.keys(S.days).filter(k=>k<t).sort().reverse();
+  for(const k of ks){ const es=(S.days[k]||[]).filter(e=>e.meal===m&&!e.demo); if(es.length) return es; } return null; }
+function cloneEntry(e){
+  if(e.kind==="food"&&FOOD[e.ref]) return makeEntry({kind:"food",ref:e.ref,g:e.g,meal:e.meal});
+  if(e.kind==="combo"&&COMBO[e.ref]) return makeEntry({kind:"combo",ref:e.ref,mult:e.mult,meal:e.meal});
+  return {...e,id:uid(),ts:Date.now(),sim:false}; }
+function repeatMeal(m){ const es=lastMeal(m); if(!es) return; const k=today(); S.days[k] ||= [];
+  const ne=es.map(cloneEntry); S.days[k].push(...ne); save(); renderHoje(); const ids=new Set(ne.map(e=>e.id));
+  toast(`${MEAL_NAME[m]} repetido: ≈ ${fmtP(ne.reduce((a,e)=>a+e.p,0))} g`,()=>{ S.days[k]=S.days[k].filter(e=>!ids.has(e.id)); save(); renderHoje(); });
+  checkCelebrate(); }
+/* Resumo do dia e cópia de segurança */
+function daySummary(){ const k=today(), M=metaHoje(), t=dayTotal(k); const d=new Date().toLocaleDateString("pt-BR",{weekday:"long",day:"numeric",month:"long"});
+  const lines=MEALS.map(([m,label])=>{ const es=dayEntries(k).filter(e=>e.meal===m); return es.length?`${label}: ${es.map(e=>e.n).join(", ")} (≈ ${fmtP(es.reduce((a,e)=>a+e.p,0))} g)`:null; }).filter(Boolean);
+  return `Studio Fit Protein\n${firstName()} · ${d}\nProteína: ≈ ${fmtP(t)} g de ${M} g${t>=M?" (meta atingida)":""}\n${lines.join("\n")||"Nenhuma refeição registrada."}`; }
+function sendSummary(){ window.open("https://wa.me/?text="+encodeURIComponent(daySummary()),"_blank"); }
+function exportBackup(){ const name=`studio-fit-protein-${today()}.json`; let file=null;
+  try{ file=new File([JSON.stringify(S)],name,{type:"application/json"}); }catch(e){}
+  if(file&&navigator.canShare&&navigator.canShare({files:[file]})){ navigator.share({files:[file],title:"Cópia de segurança"}).catch(()=>{}); return; }
+  const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"})); a.download=name; document.body.appendChild(a); a.click(); a.remove(); toast("Cópia salva nos downloads do aparelho"); }
+function importBackup(file){ if(!file) return; const r=new FileReader();
+  r.onload=()=>{ try{ const d=JSON.parse(r.result); if(!(d&&d.v===2&&d.profile&&d.meta&&d.days&&typeof d.days==="object")) throw 0;
+      d.demo=false; S=d; MODE="perfil"; S.whey ||= {...WHEY_DEFAULT}; S.celebrated ||= {}; lsSet(KMODE,"perfil"); save(); closeSheet(); shownP=null; go("hoje"); toast("Cópia restaurada"); }
+    catch(e){ toast("Arquivo inválido. Escolha a cópia salva por este aplicativo."); } };
+  r.readAsText(file); }
 function openCustom(o){
   const st={meal:o.meal||currentMeal(),save:!o.entryId&&!o.savedId};
   const draw=(err)=>{
@@ -897,8 +1340,8 @@ function openPortion(o){
     const v = f? foodNut(f.id,st.g) : comboNut(c,st.mult);
     const ilu = f? isIlu(f.id) : comboIlu(c);
     const body = `
-      ${o.sim?`<div class="notice"><svg><use href="#i-warn"/></svg>Item vindo da simulação de foto. Valores fictícios.</div>`:""}
-      ${f? `<div class="sub">${esc(f.prep||"")}${ilu?' · <span class="badge b-ilu">ilustrativo</span>':' · <span class="badge b-ok">TACO</span>'}</div>
+      ${f&&f.whey&&S.whey.ilustrativo?`<div class="notice"><svg><use href="#i-warn"/></svg><span>Você ainda não informou o rótulo do seu whey. A conta está usando um exemplo (${fmt(S.whey.p)} g de proteína em ${fmt(S.whey.porcao)} g).</span></div><button class="btn btn-ghost btn-sm" id="editLabel2">Informar o rótulo do meu whey</button>`:""}
+      ${f? `<div class="sub">${esc(f.prep||"")}${ilu?' · <span class="badge b-ilu">confira o rótulo</span>':' · <span class="badge b-ok">TACO</span>'}</div>
         <div class="field"><span class="label">Porção</span><div class="chips">${f.por.map(([l,g])=>`<button class="chip" data-g="${g}" aria-pressed="${st.g===g}">${l}</button>`).join("")}</div></div>
         <div class="stepper"><button id="stMinus" aria-label="Diminuir 10">−</button><div class="val num">${fmt(st.g,0)}<small>${unit(f)}</small></div><button id="stPlus" aria-label="Aumentar 10">+</button></div>`
       : `<div class="sub">${c.ing.map(([id,g])=>`${FOOD[id].n} ${g} ${unit(FOOD[id])}`).join(" · ")}</div>
@@ -906,7 +1349,7 @@ function openPortion(o){
       <div class="p-result"><b class="num">≈ ${fmtP(v.p)} g</b><span>de proteína (estimativa)</span></div>
       <details class="more"><summary>Calorias, gordura e fonte</summary><dl class="kv">
         <dt>Calorias</dt><dd class="num">≈ ${fmt(Math.round(v.kcal),0)} kcal</dd><dt>Gorduras</dt><dd class="num">≈ ${fmt(v.fat)} g</dd>
-        <dt>Fonte</dt><dd>${f? srcText(f) : (ilu?"TACO + item ilustrativo":"TACO 4ª ed.")}</dd></dl>
+        <dt>Fonte</dt><dd>${f? srcText(f) : (ilu?"TACO + valor de rótulo":"TACO 4ª ed.")}</dd></dl>
         ${f&&f.obs?`<p class="hint" style="margin:10px 0 0">${esc(f.obs)}</p>`:""}
         ${f&&f.whey?`<button class="btn btn-ghost btn-sm" id="editLabel" style="margin-top:10px">Usar o rótulo do meu whey</button>`:""}
       </details>
@@ -919,6 +1362,7 @@ function openPortion(o){
     const mi=document.getElementById("stMinus"), pl=document.getElementById("stPlus");
     if(mi){ mi.onclick=()=>{st.g=Math.max(10,st.g-10); draw();}; pl.onclick=()=>{st.g=Math.min(1000,st.g+10); draw();}; }
     const el=document.getElementById("editLabel"); if(el) el.onclick=()=>openWhey(()=>draw());
+    const el2=document.getElementById("editLabel2"); if(el2) el2.onclick=()=>openWhey(()=>draw());
     document.getElementById("confirm").onclick=()=>{
       const k=today(); S.days[k] ||= [];
       const ne=makeEntry({kind:st.kind,ref:st.ref,g:st.g,mult:st.mult,meal:st.meal,sim:o.sim});
@@ -931,15 +1375,15 @@ function openPortion(o){
   };
   draw();
 }
-function srcText(f){ if(f.whey) return S.whey.ilustrativo?"Rótulo ilustrativo":"Rótulo informado por você"; return f.src==="TACO"?`TACO 4ª ed., nº ${f.taco}`:"Ilustrativo (não verificado)"; }
+function srcText(f){ if(f.whey) return S.whey.ilustrativo?"Rótulo de exemplo (informe o seu)":"Rótulo informado por você"; return f.src==="TACO"?`TACO 4ª ed., nº ${f.taco}`:"Valor típico de embalagem (confira o rótulo)"; }
 function openWhey(after){
   const w={...S.whey};
   const fld=(id,l,v,u)=>`<label class="field" for="${id}"><span class="label">${l}</span><div class="search"><input id="${id}" type="number" inputmode="decimal" min="0" step="0.1" value="${v}"><span class="sub">${u}</span></div></label>`;
   openSheet("Rótulo do whey",`<div class="notice"><svg><use href="#i-warn"/></svg>Copie os valores da tabela nutricional do seu produto. A conta usa a porção em gramas do rótulo, não "1 dosador".</div>
     ${fld("wPor","Porção do rótulo",w.porcao,"g")}${fld("wP","Proteínas na porção",w.p,"g")}${fld("wK","Valor energético na porção",w.kcal,"kcal")}${fld("wF","Gorduras totais na porção",w.fat,"g")}${fld("wC","Carboidratos na porção",w.carb,"g")}
-    <button class="btn btn-ghost btn-sm" id="wReset">Voltar ao exemplo ilustrativo</button>`,
+    <button class="btn btn-ghost btn-sm" id="wReset">Voltar ao exemplo</button>`,
     `<button class="btn btn-primary" id="wSave">Salvar rótulo</button>`);
-  document.getElementById("wReset").onclick=()=>{ S.whey={...WHEY_DEFAULT}; save(); toast("Exemplo ilustrativo restaurado"); after?after():closeSheet(); };
+  document.getElementById("wReset").onclick=()=>{ S.whey={...WHEY_DEFAULT}; save(); toast("Exemplo restaurado"); after?after():closeSheet(); };
   document.getElementById("wSave").onclick=()=>{
     const val=id=>numVal(document.getElementById(id).value);
     const n={porcao:val("wPor"),p:val("wP"),kcal:val("wK"),fat:val("wF"),carb:val("wC"),ilustrativo:false};
@@ -981,7 +1425,7 @@ function openShake(o){
         ${Object.entries(st.items).map(([id,g])=>{ const f=FOOD[id]; return `<div class="sh-row"><div class="sh-n">${esc(f.n)}</div><div class="chips">${f.por.map(([l,pg])=>`<button class="chip" data-eg="${id}|${pg}" aria-pressed="${g===pg}">${l}</button>`).join("")}</div>
           <div class="mini-step"><button data-xm="${id}" aria-label="Diminuir">−</button><span class="num">${fmt(g,0)} g</span><button data-xp="${id}" aria-label="Aumentar">+</button></div></div>`; }).join("")}</div>
       <div class="p-result"><b class="num">≈ ${fmtP(v.p)} g</b><span>de proteína neste shake (estimativa)</span></div>
-      <details class="more"><summary>Calorias, gordura e fonte</summary><dl class="kv"><dt>Calorias</dt><dd class="num">≈ ${fmt(Math.round(v.kcal),0)} kcal</dd><dt>Gorduras</dt><dd class="num">≈ ${fmt(v.fat)} g</dd><dt>Fonte</dt><dd>${ilu?"TACO + itens ilustrativos (whey e leite: confira o rótulo)":"TACO 4ª ed. e rótulo informado por você"}</dd></dl></details>
+      <details class="more"><summary>Calorias, gordura e fonte</summary><dl class="kv"><dt>Calorias</dt><dd class="num">≈ ${fmt(Math.round(v.kcal),0)} kcal</dd><dt>Gorduras</dt><dd class="num">≈ ${fmt(v.fat)} g</dd><dt>Fonte</dt><dd>${ilu?"TACO + valores de rótulo (whey e leite: confira o rótulo)":"TACO 4ª ed. e rótulo informado por você"}</dd></dl></details>
       <label class="field" for="shName"><span class="label">Nome do shake (opcional)</span><input class="inp" id="shName" placeholder="${esc(auto)}" value="${esc(st.name)}"></label>
       <div class="field"><span class="label">Refeição</span><div class="chips">${MEALS.map(([m,,s])=>`<button class="chip" data-meal="${m}" aria-pressed="${st.meal===m}">${s}</button>`).join("")}</div></div>`;
     const foot=`<button class="btn btn-primary" id="shOk">${o.entryId?"Salvar correção":"Confirmar consumo"}</button><button class="btn btn-ghost" id="shSave">Salvar como meu shake</button>`;
@@ -1009,58 +1453,6 @@ function openShake(o){
     };
   };
   draw();
-}
-
-/* ===== FOTO (SIMULAÇÃO) ===== */
-function openPhoto(){
-  openSheet("Foto da refeição",`
-    <div class="notice sticky"><svg><use href="#i-warn"/></svg><span>SIMULAÇÃO: nesta versão a foto não é analisada. Os itens exibidos depois da foto são fictícios e servem só para demonstrar o fluxo.</span></div>
-    <div class="photo-pick">
-      <label for="inCam"><svg><use href="#i-cam"/></svg>Abrir câmera<input id="inCam" type="file" accept="image/*" capture="environment"></label>
-      <label for="inGal"><svg><use href="#i-img"/></svg>Escolher da galeria<input id="inGal" type="file" accept="image/*"></label>
-    </div>
-    <div id="photoArea"></div>`);
-  const onPick=ev=>{ const file=ev.target.files&&ev.target.files[0]; if(!file) return; startSim(URL.createObjectURL(file)); };
-  document.getElementById("inCam").onchange=onPick; document.getElementById("inGal").onchange=onPick;
-}
-function startSim(src){
-  const area=document.getElementById("photoArea"); document.querySelector(".photo-pick").hidden=true;
-  area.innerHTML=`<img class="photo-prev" src="${src}" alt="Foto selecionada"><div class="loading"><div class="spin"></div>Montando exemplo simulado…</div>`;
-  const plate=SIM_PLATES[S.plate%SIM_PLATES.length]; S.plate=(S.plate+1)%SIM_PLATES.length; save();
-  const items=plate.map(it=>({...it,g:it.g||null,on:true}));
-  const meal={v:currentMeal()};
-  setTimeout(()=>drawSim(src,items,meal),1100);
-}
-function drawSim(src,items,meal){
-  const area=document.getElementById("photoArea"); if(!area) return;
-  const active=items.filter(i=>i.on), pending=active.some(i=>!i.g);
-  const total=active.reduce((a,i)=>a+(i.g?foodNut(i.ref,i.g).p:0),0);
-  const confL={alta:"confiança alta",media:"confiança média",incerta:"porção incerta"};
-  area.innerHTML=`<img class="photo-prev" src="${src}" alt="Foto selecionada">
-    <div class="label">Itens de exemplo (fictícios)</div>
-    ${items.map((it,i)=>{ const f=FOOD[it.ref], v=it.g?foodNut(it.ref,it.g):null;
-      return `<div class="sim-item ${it.on?"":"off"}"><div class="sim-top"><div class="ri"><div class="rn" style="font-weight:700">${esc(f.n)}</div><div class="rm sub">${esc(f.prep)}</div></div>
-        <span class="conf ${it.conf==="media"?"media":it.conf}">${confL[it.conf]}</span>
-        <button class="mini-btn" data-tog="${i}" aria-label="${it.on?"Remover":"Incluir"} ${esc(f.n)}"><svg><use href="${it.on?"#i-x":"#i-plus"}"/></svg></button></div>
-        ${it.on? (it.conf==="incerta" ? `<div class="hint">Qual quantidade parece com a do seu prato?</div><div class="chips">${it.opts.map(([l,g])=>`<button class="chip" data-opt="${i}" data-g="${g}" aria-pressed="${it.g===g}">${l} · ${g} g</button>`).join("")}</div>` : "")
-          + (it.g? `<div class="mini-step"><button data-sm="${i}" aria-label="Diminuir">−</button><span class="num">~${it.g} g</span><button data-sp="${i}" aria-label="Aumentar">+</button><span class="entry-p num" style="margin-left:auto">≈ ${fmtP(v.p)} g prot.</span></div>`:"") : ""}
-      </div>`; }).join("")}
-    <div class="p-result"><b class="num">≈ ${fmtP(total)} g</b><span>de proteína no total (exemplo fictício)</span></div>
-    <div class="field"><span class="label">Refeição</span><div class="chips">${MEALS.map(([m,,s])=>`<button class="chip" data-meal="${m}" aria-pressed="${meal.v===m}">${s}</button>`).join("")}</div></div>
-    <button class="btn btn-primary" id="simOk" ${pending||!active.length?"disabled":""}>${pending?"Escolha a quantidade dos itens incertos":"Confirmar consumo"}</button>
-    <button class="btn btn-ghost" id="simNew">Escolher outra foto</button>`;
-  const re=()=>drawSim(src,items,meal);
-  area.querySelectorAll("[data-tog]").forEach(b=>b.onclick=()=>{items[+b.dataset.tog].on=!items[+b.dataset.tog].on; re();});
-  area.querySelectorAll("[data-opt]").forEach(b=>b.onclick=()=>{items[+b.dataset.opt].g=+b.dataset.g; re();});
-  area.querySelectorAll("[data-sm]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.sm]; it.g=Math.max(10,it.g-10); re();});
-  area.querySelectorAll("[data-sp]").forEach(b=>b.onclick=()=>{const it=items[+b.dataset.sp]; it.g=Math.min(1000,it.g+10); re();});
-  area.querySelectorAll("[data-meal]").forEach(b=>b.onclick=()=>{meal.v=b.dataset.meal; re();});
-  document.getElementById("simNew").onclick=openPhoto;
-  document.getElementById("simOk").onclick=()=>{
-    const k=today(); S.days[k] ||= [];
-    active.forEach(i=>S.days[k].push(makeEntry({kind:"food",ref:i.ref,g:i.g,meal:meal.v,sim:true})));
-    save(); closeSheet(); go("hoje"); toast(`Registrado (simulação): ≈ ${fmtP(total)} g`); checkCelebrate();
-  };
 }
 
 /* ===== OPÇÕES PARA COMPLETAR A META ===== */
@@ -1114,7 +1506,7 @@ function renderSug(){
       <div class="chips">${[["padrao","Mais proteína"],["gord","Menos gordura"],["kcal","Menos calorias"]].map(([k,l])=>`<button class="chip" data-s="${k}" aria-pressed="${SG.sort===k}">${l}</button>`).join("")}${left>0?`<button class="chip" id="sgFit" aria-pressed="${SG.fit}">Cabe no que falta</button>`:""}</div></div>
       ${left>0?`<p class="hint">Hoje ainda faltam <b>${fmtP(left)} g</b> para a sua meta de ${metaHoje()} g.</p>`:`<p class="hint">Meta de hoje atingida. As sugestões ficam disponíveis para planejar as próximas refeições.</p>`}
       ${cs.length? cs.map(({c,v})=>comboCard(c,v)).join("") : `<p class="hint">Nenhuma combinação com esse filtro nesta refeição.</p>`}
-      <p class="foot-note">Combinações calculadas a partir dos ingredientes (TACO 4ª ed.). Whey e leite fluido usam valores ilustrativos de rótulo.</p>`;
+      <p class="foot-note">Combinações calculadas a partir dos ingredientes (TACO 4ª ed.). Whey usa o rótulo informado por você; leite fluido usa valor típico de embalagem.</p>`;
   } else body=cmpHTML();
   el.innerHTML=`<div><h2 class="v-title">Sugestões</h2></div>
     <div class="seg" role="group" aria-label="Tipo"><button data-tab="ref" aria-pressed="${SG.tab==="ref"}">Combinações</button><button data-tab="cmp" aria-pressed="${SG.tab==="cmp"}">Comparar fontes</button></div>${body}`;
@@ -1134,7 +1526,7 @@ function comboCard(c,v){
   const w=comboWhey(c), il=comboIlu(c), pr=comboPronto(c);
   return `<div class="combo"><div class="combo-top"><div class="ri"><h4>${esc(c.n)}</h4><div class="ing">${c.ing.map(([id,g])=>`${FOOD[id].n} ${g} ${unit(FOOD[id])}`).join(" · ")}</div></div>
     <div class="pbig"><b class="num">≈ ${fmtP(v.p)} g</b><span>proteína</span></div></div>
-    <div class="combo-tags">${w?'<span class="badge b-whey">com whey</span>':'<span class="badge b-ok">sem whey</span>'}${pr?'<span class="badge b-neutral">sem preparo</span>':""}${il?'<span class="badge b-ilu">contém ilustrativo</span>':'<span class="badge b-ok">TACO</span>'}</div>
+    <div class="combo-tags">${w?'<span class="badge b-whey">com whey</span>':'<span class="badge b-ok">sem whey</span>'}${pr?'<span class="badge b-neutral">sem preparo</span>':""}${il?'<span class="badge b-ilu">confira o rótulo</span>':'<span class="badge b-ok">TACO</span>'}</div>
     <details class="more"><summary>≈ ${fmt(Math.round(v.kcal),0)} kcal · ≈ ${fmt(v.fat)} g gordura · ver ingredientes</summary>
       <table class="ing-table"><tbody>${c.ing.map(([id,g])=>{const f=FOOD[id], n=foodNut(id,g); return `<tr><td>${esc(f.n)} · ${g} ${unit(f)}<span class="src">${esc(f.prep)}${f.prep?" · ":""}${srcText(f)}</span></td><td class="num">≈ ${fmt(n.p)} g</td></tr>`;}).join("")}</tbody></table></details>
     <div class="combo-actions"><button class="btn btn-primary btn-sm" data-eat="${c.id}">Já comi</button></div></div>`;
@@ -1164,13 +1556,13 @@ function renderHist(){
   const y=v=>top+ch-(v/maxV)*ch;
   const wd=["dom","seg","ter","qua","qui","sex","sáb"];
   const bars=days.map((x,i)=>{ const bx=left+i*bw+bw*0.2, w=bw*0.6, by=y(x.t), ok=x.t>=x.m, sel=x.k===histSel, isT=x.k===today();
-    const lab=`<text x="${bx+w/2}" y="${H-16}" text-anchor="middle" font-size="11" font-weight="${isT?800:600}" fill="${isT?"var(--ink)":"var(--muted)"}" font-family="Manrope,sans-serif">${isT?"hoje":wd[x.d.getDay()]}</text>`;
+    const lab=`<text x="${bx+w/2}" y="${H-16}" text-anchor="middle" font-size="12" font-weight="${isT?800:600}" fill="${isT?"var(--ink)":"var(--muted)"}" font-family="Manrope,sans-serif">${isT?"hoje":wd[x.d.getDay()]}</text>`;
     if(x.pre) return `<g><text x="${bx+w/2}" y="${top+ch-4}" text-anchor="middle" font-size="12" fill="var(--muted)">–</text>${lab}</g>`;
     return `<g data-day="${x.k}" style="cursor:pointer"><rect x="${left+i*bw}" y="${top-10}" width="${bw}" height="${ch+40}" fill="transparent"/>
       <rect x="${bx}" y="${by}" width="${w}" height="${Math.max(2,top+ch-by)}" rx="7" fill="${ok?"var(--teal)":"var(--line)"}" ${sel?'stroke="var(--ink)" stroke-width="2"':""}/>
       <line x1="${bx-4}" x2="${bx+w+4}" y1="${y(x.m)}" y2="${y(x.m)}" stroke="var(--magenta)" stroke-width="2" stroke-dasharray="3 3"/>
-      <text x="${bx+w/2}" y="${Math.min(by,y(x.m))-6}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)" font-family="Manrope,sans-serif">${Math.round(x.t)}</text>
-      ${lab}${ok?`<text x="${bx+w/2}" y="${H-2}" text-anchor="middle" font-size="11" font-weight="800" fill="var(--teal)">✓</text>`:""}</g>`; }).join("");
+      <text x="${bx+w/2}" y="${Math.min(by,y(x.m))-6}" text-anchor="middle" font-size="12" font-weight="700" fill="var(--ink)" font-family="Manrope,sans-serif">${Math.round(x.t)}</text>
+      ${lab}${ok?`<text x="${bx+w/2}" y="${H-2}" text-anchor="middle" font-size="12" font-weight="800" fill="var(--teal)">✓</text>`:""}</g>`; }).join("");
   const sel=dayEntries(histSel), selT=dayTotal(histSel), sd=new Date(histSel+"T12:00:00");
   document.getElementById("v-hist").innerHTML=`<div><h2 class="v-title">Últimos 7 dias</h2><p class="sub">Proteína consumida por dia · <span style="color:var(--magenta);font-weight:700">- - -</span> meta do dia</p></div>
     <div class="hist-card"><div class="hist-sum"><div><b class="num">${hit} de ${valid.length}</b><div class="sub">dias com meta atingida</div></div><div style="text-align:right"><b class="num">${fmtP(avg)} g</b><div class="sub">média diária</div></div></div>
@@ -1202,11 +1594,12 @@ function confetti(){
   requestAnimationFrame(f);
 }
 
+const hasCalc=()=>!!(S&&S.profile&&S.profile.peso&&S.profile.objetivo&&S.profile.nivel);
 /* ===== META: explicação e meta de profissional ===== */
 function openMetaInfo(){
   const m=S.meta;
   if(m.tipo==="profissional"){
-    const est=estimate(S.profile);
+    const est=hasCalc()?estimate(S.profile):{blocked:"sem dados"};
     openSheet("Sua meta",`<div class="meta-res"><span class="label">Definida por profissional</span><div class="mr-val num">${m.valor} g<small> por dia</small></div>
       <p class="sub">${m.prof?"Informada como definida por "+esc(m.prof)+".":"Informada por você como definida por um profissional."} O aplicativo não altera essa meta.</p></div>
       <button class="btn btn-ghost" id="miEdit">Atualizar meta do profissional</button>
@@ -1225,7 +1618,7 @@ function openMetaInfo(){
   document.getElementById("miProf").onclick=()=>openProfMeta();
 }
 function openProfMeta(){
-  openSheet("Meta definida por profissional",`<p class="sub">Informe a meta diária de proteína definida pelo seu nutricionista ou médico.</p>${profFormHTML()}`,`<button class="btn btn-primary" id="pmSave">Salvar meta</button>`);
+  openSheet("Meta definida por profissional",`<p class="sub">Informe a meta diária de proteína definida pelo seu professor, nutricionista ou médico.</p>${profFormHTML()}`,`<button class="btn btn-primary" id="pmSave">Salvar meta</button>`);
   if(S.meta.tipo==="profissional"){ document.getElementById("pVal").value=S.meta.valor; document.getElementById("pNome").value=S.meta.prof||""; }
   document.getElementById("pmSave").onclick=()=>{ const d=readProf(); if(!d) return; setMeta(d.valor,"profissional",{prof:d.prof}); closeSheet(); renderAfterMeta(`Meta do profissional salva: ${d.valor} g`); };
 }
@@ -1238,28 +1631,34 @@ function openPerfil(){
   const pf=S.profile, m=S.meta;
   openSheet("Perfil",`
     <div class="prof-card"><div class="avatar-lg">${esc((firstName()[0]||"?").toUpperCase())}</div><div class="ri"><div class="rn">${esc(pf.nome)}</div><div class="rm">${MODE==="demo"?"Perfil fictício de demonstração":"Perfil salvo neste aparelho"}</div></div></div>
-    <div class="list">
-      <div class="row"><div class="ri"><div class="rm">Idade</div><div class="rn">${pf.idade} anos</div></div><div class="ri"><div class="rm">Sexo</div><div class="rn">${sexoN(pf.sexo)}</div></div></div>
-      <div class="row"><div class="ri"><div class="rm">Peso</div><div class="rn num">${fmt(pf.peso)} kg</div></div><div class="ri"><div class="rm">Altura</div><div class="rn num">${pf.altura} cm</div></div></div>
+    ${hasCalc()?`<div class="list">
+      <div class="row"><div class="ri"><div class="rm">Idade</div><div class="rn">${pf.idade} anos</div></div><div class="ri"><div class="rm">Peso</div><div class="rn num">${fmt(pf.peso)} kg</div></div><div class="ri"><div class="rm">Altura</div><div class="rn num">${pf.altura} cm</div></div></div>
       <div class="row"><div class="ri"><div class="rm">Objetivo</div><div class="rn">${esc(OBJ[pf.objetivo].n)}</div></div></div>
       <div class="row"><div class="ri"><div class="rm">Rotina</div><div class="rn">${esc(NIV.find(n=>n.id===pf.nivel).n)}</div></div></div>
-    </div>
+    </div>`:""}
     <button class="btn btn-ghost" id="aEdit">Editar perfil</button>
     ${MODE==="perfil"?`<button class="btn btn-ghost" id="aGuide">Ver o guia "Comece por aqui"</button>`:""}
     <div class="list">
       <button class="row" id="aMeta"><div class="ri"><div class="rn">Meta diária: ${m.valor} g</div><div class="rm">${m.tipo==="profissional"?"Definida por profissional":"Estimativa educativa · ver cálculo"}</div></div><svg width="18" height="18"><use href="#i-arrow"/></svg></button>
-      <button class="row" id="aWhey"><div class="ri"><div class="rn">Rótulo do whey</div><div class="rm">${S.whey.ilustrativo?"Usando exemplo ilustrativo":"Usando o rótulo informado"} · ${fmt(S.whey.p)} g de proteína em ${fmt(S.whey.porcao)} g</div></div><svg width="18" height="18"><use href="#i-arrow"/></svg></button>
+      <button class="row" id="aWhey"><div class="ri"><div class="rn">Rótulo do whey</div><div class="rm">${S.whey.ilustrativo?"Usando exemplo: informe o rótulo do seu":"Usando o rótulo informado"} · ${fmt(S.whey.p)} g de proteína em ${fmt(S.whey.porcao)} g</div></div><svg width="18" height="18"><use href="#i-arrow"/></svg></button>
     </div>
     <div class="list">
       <div class="row"><div class="ri"><div class="rn">Onde ficam seus dados</div><div class="rm">Perfil e registros ficam salvos apenas neste navegador, neste aparelho. Não acompanham você em outro celular ou computador. Não há login nem envio para servidor.</div></div></div>
-      <div class="row"><div class="ri"><div class="rn">Fontes dos valores</div><div class="rm">TACO 4ª ed. revisada e ampliada, NEPA/UNICAMP, 2011. Whey e leite fluido: valores ilustrativos de rótulo.</div></div></div>
+      <div class="row"><div class="ri"><div class="rn">Fontes dos valores</div><div class="rm">Tabela Brasileira de Composição de Alimentos (TACO), 4ª ed. revisada e ampliada, NEPA/UNICAMP, 2011. Whey: rótulo do seu produto. Leite fluido e pasta de amendoim: valor típico de embalagem.</div></div></div>
     </div>
+    ${MODE==="perfil"?`<button class="btn btn-ghost" id="aSend">Enviar meu dia pelo WhatsApp</button>
+    <button class="btn btn-ghost" id="aExp">Salvar cópia de segurança</button>
+    <label class="btn btn-ghost" for="aImp" style="cursor:pointer">Restaurar cópia de segurança<input id="aImp" type="file" accept=".json,application/json" hidden></label>
+    <p class="hint">A cópia guarda seu perfil e seus registros num arquivo. Restaurar substitui o que está neste aparelho.</p>`:""}
     <button class="btn btn-ghost" id="aZero">Zerar registros de hoje</button>
     ${MODE==="demo"?`<button class="btn btn-primary" id="aExit">Sair da demonstração e criar meu perfil</button>`
       :`<button class="btn btn-ghost" id="aDel" style="color:var(--magenta)">Apagar meu perfil e registros</button><div id="delBox"></div>`}`);
   document.getElementById("aEdit").onclick=openEditPerfil;
   const ag=document.getElementById("aGuide"); if(ag) ag.onclick=()=>{ S.guideForce=true; S.guideOff=false; save(); closeSheet(); go("hoje"); };
   document.getElementById("aMeta").onclick=openMetaInfo;
+  const as=document.getElementById("aSend"); if(as) as.onclick=sendSummary;
+  const ae=document.getElementById("aExp"); if(ae) ae.onclick=exportBackup;
+  const ai=document.getElementById("aImp"); if(ai) ai.onchange=ev=>importBackup(ev.target.files&&ev.target.files[0]);
   document.getElementById("aWhey").onclick=()=>openWhey();
   document.getElementById("aZero").onclick=()=>{ S.days[today()]=[]; delete S.celebrated[today()]; save(); shownP=null; closeSheet(); go("hoje"); toast("Registros de hoje apagados"); };
   const ex=document.getElementById("aExit"); if(ex) ex.onclick=()=>{ lsDel(KEYS.demo); lsDel(KMODE); closeSheet(); showWelcome(); startOnb(); };
@@ -1267,14 +1666,19 @@ function openPerfil(){
     document.getElementById("delOk").onclick=()=>{ lsDel(KEYS.perfil); lsDel(KMODE); closeSheet(); showWelcome(); toast("Perfil e registros apagados"); }; };
 }
 function openEditPerfil(){
+  if(!hasCalc()){
+    openSheet("Editar nome",`<label class="field" for="eNome"><span class="label">Como você quer ser chamado?</span><input class="inp" id="eNome" value="${esc(S.profile.nome)}"></label><div id="eErr"></div>`,`<button class="btn btn-primary" id="eSave">Salvar</button>`);
+    document.getElementById("eSave").onclick=()=>{ const n=document.getElementById("eNome").value.trim(); if(n.length<2){ document.getElementById("eErr").innerHTML=errH("Informe seu nome."); return; }
+      S.profile.nome=n; save(); setChrome(); closeSheet(); render(); toast("Nome atualizado"); };
+    return;
+  }
   const pf={...S.profile}; const E={};
   const draw=()=>{
     openSheet("Editar perfil",`
-      <label class="field" for="eNome"><span class="label">Nome completo</span><input class="inp" id="eNome" value="${esc(pf.nome)}">${errH(E.nome)}</label>
+      <label class="field" for="eNome"><span class="label">Nome</span><input class="inp" id="eNome" value="${esc(pf.nome)}">${errH(E.nome)}</label>
       <div class="two"><label class="field" for="eIdade"><span class="label">Idade</span><div class="inp-u"><input class="inp" id="eIdade" type="number" inputmode="numeric" value="${esc(pf.idade)}"><span>anos</span></div>${errH(E.idade)}</label>
       <label class="field" for="ePeso"><span class="label">Peso</span><div class="inp-u"><input class="inp" id="ePeso" type="number" inputmode="decimal" step="0.1" value="${esc(pf.peso)}"><span>kg</span></div>${errH(E.peso)}</label></div>
       <label class="field" for="eAlt"><span class="label">Altura</span><div class="inp-u"><input class="inp" id="eAlt" type="number" inputmode="numeric" value="${esc(pf.altura)}"><span>cm</span></div>${errH(E.altura)}</label>
-      <div class="field"><span class="label">Sexo</span><div class="chips">${SEXO.map(([v,l])=>`<button class="chip" data-sexo="${v}" aria-pressed="${pf.sexo===v}">${l}</button>`).join("")}</div></div>
       <div class="field"><span class="label">Objetivo</span>${optCards("obj",Object.entries(OBJ).map(([id,o])=>({id,n:o.n,d:o.d})),pf.objetivo)}</div>
       <div class="field"><span class="label">Rotina</span>${optCards("niv",NIV,pf.nivel)}</div>
       <div class="field"><span class="label">Doença renal, gestação ou amamentação, orientação para controlar proteína ou condição de saúde em acompanhamento que envolva a alimentação?</span><div class="chips">${[["nao","Não"],["sim","Sim"]].map(([v,l])=>`<button class="chip" data-sau="${v}" aria-pressed="${pf.saude===v}">${l}</button>`).join("")}</div></div>`,
@@ -1285,7 +1689,7 @@ function openEditPerfil(){
     document.querySelectorAll("#sheetBody [data-niv]").forEach(b=>b.onclick=()=>{keep(); pf.nivel=b.dataset.niv; draw();});
     document.querySelectorAll("#sheetBody [data-sau]").forEach(b=>b.onclick=()=>{keep(); pf.saude=b.dataset.sau; draw();});
     document.getElementById("eSave").onclick=()=>{ keep(); Object.keys(E).forEach(k=>delete E[k]);
-      Object.assign(E,validateStep(0,pf),validateStep(1,pf)); if(Object.keys(E).length){ draw(); return; }
+      Object.assign(E,validateStep(0,pf),validateStep(1,pf)); if((pf.nome||"").trim().length<2) E.nome="Informe seu nome."; if(Object.keys(E).length){ draw(); return; }
       applyProfile(cleanPf(pf)); };
   };
   draw();
@@ -1329,6 +1733,7 @@ function toast(msg,undo){ const t=document.getElementById("toast"), u=document.g
   if(m && KEYS[m]){ const d=load(m); if(d){ S=d; MODE=m; S.whey ||= {...WHEY_DEFAULT}; S.celebrated ||= {}; S.days ||= {}; go("hoje"); return; } }
   showWelcome();
 })();
+if("serviceWorker" in navigator && location.protocol==="https:"){ window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{})); }
 </script>
 
 </body>
