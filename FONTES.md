@@ -28,3 +28,14 @@ As porções (colher, concha, fatia, unidade) e seus pesos em gramas são **apro
 - Inquérito Nacional de Alimentação 2008-2009 (Souza et al., Rev Saúde Pública, 2013): arroz, café, feijão, pão de sal e carne bovina como padrão básico; tomate, alface e sanduíches mais citados na maior renda.
 - Estudos do café da manhã com dados do INA (Baltar et al., Cad Saúde Pública, 2018; Monteiro et al., Rev Nutr, 2017): pão, café, leite, queijo, manteiga, bolos, biscoitos, frutas e sucos; no Sudeste, embutidos, leite, queijo e pão.
 - Limite: não foi encontrada pesquisa pública com a lista de alimentos por refeição especificamente para as classes A e B. A distribuição por refeição segue o padrão geral desses estudos.
+
+## Alimentos fora da tabela (rodada de 09/11/2026)
+
+Pizza, lasanha pronta, granola, tilápia, peito de peru, pão de forma branco e macarrão cozido simples **não existem na TACO 4ª ed. como alimento pronto**. Por isso não foram cadastrados.
+
+- **TBCA (USP/FoRC):** tem esses alimentos, mas os dados são publicados sob licença Creative Commons BY-NC-ND 4.0 (sem uso comercial e sem alteração), e o uso da base em outra ferramenta depende de licença própria. Contato: tbca.contato@usp.br. Os valores da TBCA não foram copiados para o app.
+- **No app:** quando o aluno escreve um desses alimentos, o app avisa que não encontrou e oferece "Cadastrar pelo rótulo" (porção do rótulo, proteína na porção, quanto comeu). O valor fica marcado como "informado por você".
+
+## Medidas caseiras
+
+Os pesos de colher, concha, fatia e unidade são aproximações de projeto. A lista completa para revisão está em `MEDIDAS-CASEIRAS.md`.

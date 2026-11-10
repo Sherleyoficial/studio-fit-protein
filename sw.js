@@ -1,7 +1,7 @@
 /* Studio Fit Protein — funcionamento sem internet.
    Página: busca a versão nova na rede e guarda; sem rede, usa a guardada.
    Fontes e ícones: usa a cópia guardada. */
-const CACHE="sfp-v3";
+const CACHE="sfp-v4";
 const ASSETS=["./","index.html","manifest.webmanifest","fonts/sora.woff2","fonts/manrope.woff2","icon-192.png","icon-512.png","apple-touch-icon.png"];
 self.addEventListener("install",e=>{ e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())); });
 self.addEventListener("activate",e=>{ e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())); });
