@@ -20,7 +20,7 @@ Projeto independente do Sistema Sherley GLP-1™.
 - Perfil e registros ficam só no aparelho do aluno (`localStorage`). Nada é enviado.
 - O aluno aceita um aviso de privacidade no primeiro uso e pode apagar tudo em Perfil.
 - Cópia de segurança: exportar e restaurar arquivo, em Perfil.
-- "Enviar meu dia pelo WhatsApp": o aluno decide se envia o resumo.
+- Não há envio de dados ao Studio. O aluno mostra o Histórico no próprio celular.
 - Fontes tipográficas hospedadas no próprio site (sem chamadas a terceiros).
 
 ## Valores nutricionais

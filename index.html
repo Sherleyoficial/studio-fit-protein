@@ -695,6 +695,12 @@ const norm = s=>s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
 const esc = s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const firstName = ()=> (S.profile.nome||"").trim().split(/\s+/)[0];
 
+/* Refeição sugerida: a última que a pessoa escolheu (por 30 min); senão, pelo horário */
+let STK=null;
+function pickMeal(m){ if(MEAL_NAME[m]) STK={m,t:Date.now()}; }
+function defMeal(){ return STK&&Date.now()-STK.t<30*60000?STK.m:currentMeal(); }
+function mealPickHTML(cur){ return `<div class="field meal-pick"><span class="label">Para qual refeição?</span><div class="chips">${MEALS.map(([m,l])=>`<button class="chip" data-meal="${m}" aria-pressed="${cur===m}">${l}</button>`).join("")}</div></div>`; }
+document.addEventListener("click",e=>{ const b=e.target.closest&&e.target.closest("#sheetBody [data-meal]"); if(b) pickMeal(b.dataset.meal); },true);
 function currentMeal(){ const h=new Date().getHours()+new Date().getMinutes()/60; if(h<10.5) return "cafe"; if(h<15) return "almoco"; if(h<18.5) return "lanche"; return "jantar"; }
 
 /* meta válida em cada dia (o histórico usa a meta da época) */
@@ -782,8 +788,8 @@ function renderStart(){
       <div class="onb-top"><div class="label">Etapa 1 de 2</div><div class="prog"><i style="width:50%"></i></div><h2 class="v-title">Antes de começar</h2></div>
       <div class="onb-body"><label class="field" for="fNome"><span class="label">Como você quer ser chamado?</span><input class="inp" id="fNome" autocomplete="given-name" placeholder="Seu primeiro nome" value="${esc(pf.nome)}">${errH(E.nome)}</label>
         <div class="privacy"><b>Seus dados</b><ul class="bul"><li>O aplicativo guarda <b>só neste celular</b> o seu nome, a sua meta e o que você registrar.</li>
-          <li>Nada é enviado para servidor. O Studio só vê o que você decidir enviar.</li>
-          <li>Os dados só saem do celular se <b>você</b> usar "Enviar pelo WhatsApp" ou salvar a cópia de segurança.</li>
+          <li>Nada é enviado para servidor nem para o Studio. Para mostrar ao seu professor, abra o <b>Histórico</b> no seu celular.</li>
+          <li>Os dados só saem do celular se <b>você</b> salvar a cópia de segurança.</li>
           <li>Você pode apagar tudo quando quiser, em <b>Perfil</b>.</li>
           <li>Os valores de proteína são <b>estimativas</b> para acompanhamento. Não substituem a orientação de nutricionista ou médico.</li></ul></div>
         <button class="opt" id="fOk" aria-pressed="${OB.ok}"><b>${OB.ok?"✓ ":""}Li e concordo</b><span>Autorizo guardar esses dados neste aparelho.</span></button>${errH(E.ok)}</div>
@@ -941,14 +947,13 @@ function renderHoje(){
       ${opts.length && left>Math.max(...opts.map(o=>o.p))*1.2?`<p class="hint">Para completar ${fmtP(left)} g, distribua entre as próximas refeições.</p>`:""}
       <p class="hint">Nada é registrado até você tocar em <b>Já comi</b> e confirmar a porção.</p></div>`
      : `<div class="done-card"><svg width="24" height="24" style="color:var(--teal);flex:none"><use href="#i-check"/></svg><div><b>Meta de hoje atingida.</b><div class="sub">Siga suas refeições normalmente, sem necessidade de ultrapassar.</div></div></div>` }
-  ${MODE==="perfil"?`<button class="btn btn-ghost" id="hSend">Enviar meu dia pelo WhatsApp</button>`:""}
   ${bkH}${prH}
   <p class="foot-note">Valores de proteína são estimativas para acompanhamento. Fonte: TACO 4ª ed. (NEPA/UNICAMP). Itens com <b>confira o rótulo</b> usam valor típico de embalagem. As medidas caseiras (colher, concha, fatia, unidade) são aproximadas. Toque no lápis para corrigir a porção ou na lixeira para excluir.</p>`;
   document.getElementById("btnMetaInfo").onclick=openMetaInfo;
   document.getElementById("hAdd").onclick=()=>openManual();
   const hs=document.getElementById("hSend"); if(hs) hs.onclick=sendSummary;
   const fm=document.getElementById("favMng"); if(fm) fm.onclick=openFavs;
-  el.querySelectorAll("[data-fav]").forEach(b=>b.onclick=()=>{ const f=S.favs.find(x=>x.id===b.dataset.fav); if(f) openMeal({items:f.items,meal:currentMeal(),fromFav:true}); });
+  el.querySelectorAll("[data-fav]").forEach(b=>b.onclick=()=>{ const f=S.favs.find(x=>x.id===b.dataset.fav); if(f) openMeal({items:f.items,meal:defMeal(),fromFav:true}); });
   el.querySelectorAll("[data-sfav]").forEach(b=>b.onclick=()=>openSaveFav(b.dataset.sfav));
   const hb=document.getElementById("hBk"); if(hb) hb.onclick=()=>{ exportBackup(); renderHoje(); };
   const hp=document.getElementById("hPriv"); if(hp) hp.onclick=openPrivacy;
@@ -957,7 +962,7 @@ function renderHoje(){
   const ga=document.getElementById("gAdd"); if(ga) ga.onclick=()=>openManual();
   const go2=document.getElementById("gOff"); if(go2) go2.onclick=()=>{ S.guideOff=true; S.guideForce=false; save(); renderHoje(); };
   const ms=document.getElementById("btnMoreSug"); if(ms) ms.onclick=()=>go("sug");
-  el.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{ const c=opts[+b.dataset.pick]; openPortion({kind:c.kind,ref:c.ref,g:c.g,mult:1,meal:currentMeal()}); });
+  el.querySelectorAll("[data-pick]").forEach(b=>b.onclick=()=>{ const c=opts[+b.dataset.pick]; openPortion({kind:c.kind,ref:c.ref,g:c.g,mult:1,meal:defMeal()}); });
   el.querySelectorAll("[data-edit]").forEach(b=>b.onclick=()=>editEntry(b.dataset.edit));
   el.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>delEntry(b.dataset.del));
   el.querySelectorAll(".entry").forEach(setupSwipe);
@@ -1252,8 +1257,9 @@ function parseMeal(text){
 function recentFoods(){ const c={}; Object.keys(S.days).forEach(k=>S.days[k].forEach(e=>{ if(e.kind==="food"&&!e.demo&&FOOD[e.ref]) c[e.ref]=(c[e.ref]||0)+1; })); return Object.keys(c).sort((a,b)=>c[b]-c[a]).slice(0,6); }
 
 function openManual(meal){
-  const ml=(typeof meal==="string"&&MEAL_NAME[meal])?meal:currentMeal();
-  openSheet("O que você comeu?",`<div class="search"><svg width="18" height="18" style="color:var(--muted)"><use href="#i-search"/></svg><input id="q" type="search" placeholder="Ex.: arroz, feijão e 2 ovos" autocomplete="off" aria-label="Escreva o que você comeu"></div>
+  let ml=(typeof meal==="string"&&MEAL_NAME[meal])?meal:defMeal();
+  if(typeof meal==="string"&&MEAL_NAME[meal]) pickMeal(meal);
+  openSheet("O que você comeu?",`${mealPickHTML(ml)}<div class="search"><svg width="18" height="18" style="color:var(--muted)"><use href="#i-search"/></svg><input id="q" type="search" placeholder="Ex.: arroz, feijão e 2 ovos" autocomplete="off" aria-label="Escreva o que você comeu"></div>
     <p class="hint" style="margin:0">Escreva um alimento ou a refeição inteira. O app encontra e você confere a quantidade.</p>
     <div id="multiBox"></div><div class="list" id="foodList"></div>
     <div class="ways"><button class="btn btn-ghost" id="wShake">Montar shake com whey</button><button class="btn btn-ghost" id="wCombo">Ver refeições prontas</button>
@@ -1261,6 +1267,8 @@ function openManual(meal){
   document.getElementById("btnCustom").onclick=()=>openCustom({n:"",meal:ml});
   document.getElementById("wShake").onclick=()=>openShake({meal:ml});
   document.getElementById("wCombo").onclick=()=>{closeSheet(); go("sug");};
+  document.querySelectorAll("#sheetBody .meal-pick [data-meal]").forEach(b=>b.onclick=()=>{ ml=b.dataset.meal;
+    document.querySelectorAll("#sheetBody .meal-pick [data-meal]").forEach(x=>x.setAttribute("aria-pressed",x.dataset.meal===ml)); });
   const q=document.getElementById("q"), list=document.getElementById("foodList"), mb=document.getElementById("multiBox");
   const row=f=>{ const [pl,pg]=f.por[0]; const v=foodNut(f.id,pg);
     return `<button class="row" data-f="${f.id}"><div class="ri"><div class="rn">${esc(f.n)}</div><div class="rm">${esc(f.prep||"")}${f.prep?" · ":""}${pl} (${pg} ${unit(f)}) ${isIlu(f.id)?' · <span class="badge b-ilu">confira o rótulo</span>':""}</div></div><div class="rp num">≈ ${fmtP(v.p)} g</div></button>`; };
@@ -1297,10 +1305,10 @@ const stripIt=it=>it.raw?{raw:it.raw}:{ref:it.ref,g:it.g};
 function saveFav(name,items){ S.favs ||= []; const ex=S.favs.find(f=>norm(f.n)===norm(name)); if(ex) ex.items=items; else S.favs.push({id:uid(),n:name,items}); save(); }
 function openMeal(o){
   const edit=!!o.fav;
-  const st={items:o.items.map(i=>({...i})),meal:o.meal||currentMeal(),sv:false,name:edit?o.fav.n:""};
+  const st={items:o.items.map(i=>({...i})),meal:o.meal||defMeal(),sv:false,name:edit?o.fav.n:""};
   const draw=()=>{
     const total=st.items.reduce((a,i)=>a+itemP(i),0), pend=st.items.some(i=>!i.raw&&!i.ref);
-    const body=`${!edit&&o.unknown&&o.unknown.length?`<div class="notice"><svg><use href="#i-warn"/></svg><span>Não encontrei: <b>${esc(o.unknown.join(", "))}</b>. Depois de confirmar, registre separado com outra palavra ou pelo rótulo.</span></div>`:""}
+    const body=`${edit?"":mealPickHTML(st.meal)}${!edit&&o.unknown&&o.unknown.length?`<div class="notice"><svg><use href="#i-warn"/></svg><span>Não encontrei: <b>${esc(o.unknown.join(", "))}</b>. Depois de confirmar, registre separado com outra palavra ou pelo rótulo.</span></div>`:""}
       ${edit?`<label class="field" for="fvName"><span class="label">Nome</span><input class="inp" id="fvName" value="${esc(st.name)}" autocomplete="off"></label><div id="fvErr"></div>`:""}
       <p class="hint" style="margin:0">Confira cada quantidade. Use − e + para ajustar ou o ✕ para tirar um item. Colher, concha, fatia e unidade são <b>medidas aproximadas</b>.</p>
       ${st.items.map((it,i)=>{
@@ -1316,8 +1324,7 @@ function openMeal(o){
           <div class="mini-step"><button data-mm="${i}" aria-label="Diminuir">−</button><span class="num">${fmt(it.g,0)} ${unit(f)}</span><button data-mp="${i}" aria-label="Aumentar">+</button></div></div>`; }).join("")}
       <div class="p-result"><b class="num">≈ ${fmtP(total)} g</b><span>de proteína nesta refeição (estimativa)</span></div>
       ${edit?`<button class="btn btn-ghost" id="fvDel" style="color:var(--magenta)">Excluir esta refeição salva</button>`
-        :`<div class="field"><span class="label">Refeição</span><div class="chips">${MEALS.map(([m,,s])=>`<button class="chip" data-meal="${m}" aria-pressed="${st.meal===m}">${s}</button>`).join("")}</div></div>
-        ${o.fromFav?"":`<button class="chip" id="fvSave" aria-pressed="${st.sv}" style="align-self:flex-start">${st.sv?"✓ ":"☆ "}Salvar em Minhas refeições</button>
+        :`${o.fromFav?"":`<button class="chip" id="fvSave" aria-pressed="${st.sv}" style="align-self:flex-start">${st.sv?"✓ ":"☆ "}Salvar em Minhas refeições</button>
         ${st.sv?`<label class="field" for="fvName"><span class="label">Nome da refeição</span><input class="inp" id="fvName" value="${esc(st.name||FAV_DEF[st.meal])}" autocomplete="off"></label>`:""}`}`}`;
     openSheet(edit?"Editar minha refeição":"Confira sua refeição",body,`<button class="btn btn-primary" id="mOk" ${st.items.length&&!pend?"":"disabled"}>${pend?"Escolha o tipo para continuar":edit?"Salvar alterações":"Confirmar consumo"}</button>`);
     const q=s=>document.querySelectorAll("#sheetBody "+s);
@@ -1340,7 +1347,7 @@ function openMeal(o){
       st.items.forEach(it=>S.days[k].push(it.raw?{...cloneEntry(it.raw),meal:st.meal}:makeEntry({kind:"food",ref:it.ref,g:it.g,meal:st.meal})));
       if(st.sv) saveFav((st.name||"").trim()||FAV_DEF[st.meal], st.items.map(stripIt));
       save(); closeSheet(); if(view!=="hoje") go("hoje"); else renderHoje();
-      toast(`Registrado: ≈ ${fmtP(total)} g de proteína`); checkCelebrate(); };
+      toast(`${MEAL_NAME[st.meal]}: registrado ≈ ${fmtP(total)} g de proteína`); checkCelebrate(); };
   };
   draw();
 }
@@ -1390,9 +1397,9 @@ function importBackup(file){ if(!file) return; const r=new FileReader();
     catch(e){ toast("Arquivo inválido. Escolha a cópia salva por este aplicativo."); } };
   r.readAsText(file); }
 function openCustom(o){
-  const st={meal:o.meal||currentMeal(),save:!o.entryId&&!o.savedId};
+  const st={meal:o.meal||defMeal(),save:!o.entryId&&!o.savedId};
   const draw=(err)=>{
-    openSheet(o.entryId?"Corrigir alimento digitado":"Digitar alimento",`
+    openSheet(o.entryId?"Corrigir alimento digitado":"Digitar alimento",`${mealPickHTML(st.meal)}
       <p class="hint">Use para produtos com rótulo (iogurte proteico, barrinha, etc.): copie a proteína da tabela nutricional, para a quantidade que você comeu.</p>
       <div class="notice"><svg><use href="#i-warn"/></svg><span>Comida caseira e não sabe a proteína? Volte e busque um alimento parecido (ex.: <b>carne moída</b> → Acém moído). O app calcula pela porção.</span></div>
       <label class="field" for="cNome"><span class="label">Nome do alimento</span><input class="inp" id="cNome" value="${esc(o.n||"")}" placeholder="ex.: Iogurte proteico (marca)" autocomplete="off"></label>
@@ -1404,7 +1411,6 @@ function openCustom(o){
         <label class="field" for="rQ"><span class="label">Quanto você comeu</span><div class="inp-u"><input class="inp" id="rQ" type="number" inputmode="decimal"><span>g</span></div></label></details>
       ${err?errH(err):""}
       ${o.entryId?"":`<button class="chip" id="cSave" aria-pressed="${st.save}" style="align-self:flex-start">${st.save?"✓ ":""}Salvar para usar de novo</button>`}
-      <div class="field"><span class="label">Refeição</span><div class="chips">${MEALS.map(([m,,s2])=>`<button class="chip" data-meal="${m}" aria-pressed="${st.meal===m}">${s2}</button>`).join("")}</div></div>
       <p class="foot-note">Este valor fica marcado como "informado por você" e não vem da tabela TACO.</p>`,
       `<button class="btn btn-primary" id="cOk">${o.entryId?"Salvar correção":"Confirmar consumo"}</button>`);
     const keep=()=>{ o.n=document.getElementById("cNome").value; o.p=document.getElementById("cP").value; o.kcal=document.getElementById("cK").value; };
@@ -1423,20 +1429,20 @@ function openCustom(o){
       else S.days[k2].push(ne);
       if(st.save){ S.customs ||= []; const ex=S.customs.find(c=>norm(c.n)===norm(n)); if(ex){ ex.p=p; ex.kcal=k; } else S.customs.unshift({id:uid(),n,p,kcal:k}); }
       save(); closeSheet(); if(view!=="hoje") go("hoje"); else renderHoje();
-      toast(o.entryId?"Correção salva":`Registrado: ≈ ${fmtP(p)} g de proteína`); checkCelebrate();
+      toast(o.entryId?"Correção salva":`${MEAL_NAME[st.meal]}: registrado ≈ ${fmtP(p)} g de proteína`); checkCelebrate();
     };
   };
   draw();
 }
 function openPortion(o){
-  const st={kind:o.kind,ref:o.ref,meal:o.meal||currentMeal(),g:o.g,mult:o.mult||1};
+  const st={kind:o.kind,ref:o.ref,meal:o.meal||defMeal(),g:o.g,mult:o.mult||1};
   const f=o.kind==="food"?FOOD[o.ref]:null, c=o.kind==="combo"?COMBO[o.ref]:null;
   if(f && !st.g) st.g=f.por[0][1];
   const title = f? f.n : c.n;
   const draw=()=>{
     const v = f? foodNut(f.id,st.g) : comboNut(c,st.mult);
     const ilu = f? isIlu(f.id) : comboIlu(c);
-    const body = `
+    const body = `${mealPickHTML(st.meal)}
       ${f&&f.whey&&S.whey.ilustrativo?`<div class="notice"><svg><use href="#i-warn"/></svg><span>Você ainda não informou o rótulo do seu whey. A conta está usando um exemplo (${fmt(S.whey.p)} g de proteína em ${fmt(S.whey.porcao)} g).</span></div><button class="btn btn-ghost btn-sm" id="editLabel2">Informar o rótulo do meu whey</button>`:""}
       ${f? `<div class="sub">${esc(f.prep||"")}${ilu?' · <span class="badge b-ilu">confira o rótulo</span>':' · <span class="badge b-ok">TACO</span>'}</div>
         <div class="field"><span class="label">Porção (medidas aproximadas)</span><div class="chips">${f.por.map(([l,g])=>`<button class="chip" data-g="${g}" aria-pressed="${st.g===g}">${l}</button>`).join("")}</div></div>
@@ -1449,8 +1455,7 @@ function openPortion(o){
         <dt>Fonte</dt><dd>${f? srcText(f) : (ilu?"TACO + valor de rótulo":"TACO 4ª ed.")}</dd></dl>
         ${f&&f.obs?`<p class="hint" style="margin:10px 0 0">${esc(f.obs)}</p>`:""}
         ${f&&f.whey?`<button class="btn btn-ghost btn-sm" id="editLabel" style="margin-top:10px">Usar o rótulo do meu whey</button>`:""}
-      </details>
-      <div class="field"><span class="label">Refeição</span><div class="chips">${MEALS.map(([m,,s])=>`<button class="chip" data-meal="${m}" aria-pressed="${st.meal===m}">${s}</button>`).join("")}</div></div>`;
+      </details>`;
     const foot = `<button class="btn btn-primary" id="confirm">${o.entryId?"Salvar correção":"Confirmar consumo"}</button>`;
     openSheet(title, body, foot);
     document.querySelectorAll("#sheetBody [data-g]").forEach(b=>b.onclick=()=>{st.g=+b.dataset.g; draw();});
@@ -1466,7 +1471,7 @@ function openPortion(o){
       if(o.entryId){ const i=S.days[k].findIndex(e=>e.id===o.entryId); if(i>=0){ ne.id=o.entryId; S.days[k][i]=ne; } }
       else S.days[k].push(ne);
       save(); closeSheet(); if(view!=="hoje") go("hoje"); else renderHoje();
-      toast(o.entryId?"Correção salva":`Registrado: ≈ ${fmtP(ne.p)} g de proteína`);
+      toast(o.entryId?"Correção salva":`${MEAL_NAME[st.meal]}: registrado ≈ ${fmtP(ne.p)} g de proteína`);
       checkCelebrate();
     };
   };
@@ -1497,7 +1502,7 @@ const SH_DOSES=[[0.5,"½ porção"],[1,"1 porção"],[1.5,"1½ porção"],[2,"2 
 function shakeAutoName(ing,water){ const nomes=ing.filter(([id])=>id!=="whey").map(([id])=>FOOD[id].n.toLowerCase()); if(water) nomes.push("água"); return "Shake de whey"+(nomes.length?" com "+nomes.join(", "):""); }
 function openShake(o){
   const por=()=>S.whey.porcao;
-  const st={wg:por(),liq:"leite",vol:200,items:{},meal:o.meal||currentMeal(),name:""};
+  const st={wg:por(),liq:"leite",vol:200,items:{},meal:o.meal||defMeal(),name:""};
   if(o.ing){
     st.liq="agua";
     o.ing.forEach(([id,g])=>{
@@ -1743,8 +1748,7 @@ function openPerfil(){
       <button class="row" id="aPriv"><div class="ri"><div class="rn">Privacidade e seus dados</div><div class="rm">Tudo fica salvo apenas neste aparelho. Toque para ler o aviso completo.</div></div><svg width="18" height="18"><use href="#i-arrow"/></svg></button>
       <div class="row"><div class="ri"><div class="rn">Fontes dos valores</div><div class="rm">Tabela Brasileira de Composição de Alimentos (TACO), 4ª ed. revisada e ampliada, NEPA/UNICAMP, 2011. Whey: rótulo do seu produto. Leite fluido e pasta de amendoim: valor típico de embalagem.</div></div></div>
     </div>
-    ${MODE==="perfil"?`<button class="btn btn-ghost" id="aSend">Enviar meu dia pelo WhatsApp</button>
-    <button class="btn btn-ghost" id="aExp">Salvar cópia de segurança</button>
+    ${MODE==="perfil"?`<button class="btn btn-ghost" id="aExp">Salvar cópia de segurança</button>
     <label class="btn btn-ghost" for="aImp" style="cursor:pointer">Restaurar cópia de segurança<input id="aImp" type="file" accept=".json,application/json" hidden></label>
     <p class="hint">A cópia guarda seu perfil, seus registros e suas refeições salvas num arquivo. Guarde em local seguro. Restaurar substitui o que está neste aparelho.${S.lastBackup?" Última cópia: "+S.lastBackup.split("-").reverse().join("/")+".":""}</p>`:""}
     <button class="btn btn-ghost" id="aZero">Zerar registros de hoje</button>
@@ -1768,7 +1772,7 @@ function openPrivacy(){
   openSheet("Privacidade e seus dados",`<ul class="bul">
     <li><b>O que o app guarda:</b> seu primeiro nome, sua meta de proteína, as refeições que você registrar, suas refeições salvas e o rótulo do seu whey. Se você usou a estimativa, também idade, peso, altura, objetivo e rotina.</li>
     <li><b>Onde fica:</b> somente neste celular, dentro do navegador. Não há cadastro, login nem servidor. O Studio Fit Personal não recebe nada automaticamente.</li>
-    <li><b>Quando sai do celular:</b> só quando você toca em "Enviar meu dia pelo WhatsApp" (o resumo vai para a conversa que você escolher) ou salva a cópia de segurança (um arquivo com todos os seus dados; guarde em local seguro).</li>
+    <li><b>Quando sai do celular:</b> só quando você salva a cópia de segurança (um arquivo com todos os seus dados; guarde em local seguro).</li>
     <li><b>Risco de perda:</b> limpar os dados do navegador, desinstalar ou trocar de celular apaga tudo. Use a cópia de segurança.</li>
     <li><b>Como apagar:</b> em Perfil, "Apagar meu perfil e registros". A exclusão é imediata e definitiva neste aparelho.</li>
     <li><b>Finalidade:</b> acompanhar o seu consumo de proteína. Os valores são estimativas e não substituem a orientação de nutricionista ou médico.</li></ul>
